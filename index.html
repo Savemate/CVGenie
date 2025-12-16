@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVGenie - Free Professional Resume Builder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧞</text></svg>">
+    <style>
+        /* CSS - Complete styling */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--dark);
+            background: var(--light);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .logo-emoji {
+            font-size: 2rem;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            color: var(--secondary);
+            font-weight: 600;
+            display: block;
+            line-height: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 8rem 2rem 6rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Features */
+        .features {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        /* Resume Builder */
+        .resume-builder {
+            padding: 5rem 2rem;
+            background: linear-gradient(to bottom right, #f0f9ff, #faf5ff);
+        }
+
+        .builder-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        .form-section {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Templates */
+        .templates {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .template-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .template-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .template-preview {
+            height: 200px;
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            position: relative;
+        }
+
+        .template-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--warning);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .template-content {
+            padding: 1.5rem;
+        }
+
+        .template-content h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        /* Stats */
+        .stats {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+            padding: 1rem;
+            z-index: 1000;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .mobile-nav-links a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 0.75rem;
+        }
+
+        .mobile-nav-links a i {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .mobile-nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links, .nav-buttons {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-nav {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .builder-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .active {
+            color: var(--primary) !important;
+        }
+
+        .page {
+            padding-top: 5rem;
+            min-height: 100vh;
+        }
+
+        .premium-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo" onclick="showPage('home')">
+                <div class="logo-emoji">🧞</div>
+                <div class="logo-text">
+                    CVGenie
+                    <span>SOUTH AFRICA</span>
+                </div>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#" class="active" onclick="showPage('home')">Home</a>
+                <a href="#" onclick="showPage('builder')">Builder</a>
+                <a href="#" onclick="showPage('templates')">Templates</a>
+                <a href="#" onclick="showPage('examples')">Examples</a>
+                <a href="#" onclick="showPage('tools')">Tools</a>
+            </nav>
+            
+            <div class="nav-buttons">
+                <button class="btn btn-outline" onclick="toggleLogin()">Sign In</button>
+                <button class="btn btn-primary" onclick="showPage('builder')">
+                    <i class="fas fa-magic"></i> Build Resume
+                </button>
+            </div>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <div class="mobile-nav-links">
+            <a href="#" class="active" onclick="showPage('home')">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a href="#" onclick="showPage('builder')">
+                <i class="fas fa-file-alt"></i>
+                Builder
+            </a>
+            <a href="#" onclick="showPage('templates')">
+                <i class="fas fa-palette"></i>
+                Templates
+            </a>
+            <a href="#" onclick="showPage('examples')">
+                <i class="fas fa-briefcase"></i>
+                Examples
+            </a>
+            <a href="#" onclick="showPage('tools')">
+                <i class="fas fa-tools"></i>
+                Tools
+            </a>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home-page" class="page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div style="background: rgba(255,255,255,0.1); display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 2rem; margin-bottom: 1rem;">
+                    <i class="fas fa-star"></i>
+                    <span>Trusted by 25,000+ job seekers</span>
+                </div>
+                <h1>Create Your Perfect Resume<br><span style="color: #dbeafe;">With CVGenie 🧞</span></h1>
+                <p>Free, professional resume builder designed for South African job seekers. ATS-optimized templates, instant PDF download, and expert guidance.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="showPage('builder')" style="font-size: 1.125rem; padding: 1rem 2rem;">
+                        <i class="fas fa-magic"></i> Build My Resume - It's Free
+                    </button>
+                    <button class="btn btn-outline" onclick="showPage('templates')" style="font-size: 1.125rem; padding: 1rem 2rem; border-color: white; color: white;">
+                        View Templates
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>25,000+</h3>
+                    <p>Resumes Created</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Success Rate</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2 min</h3>
+                    <p>Average Time</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Free Forever</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="section-title">
+                <h2>Everything You Need for Your Job Search</h2>
+                <p>Built specifically for the modern job market</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>100% Free</h3>
+                    <p>No hidden fees, no watermarks, unlimited downloads</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>ATS Optimized</h3>
+                    <p>Pass through applicant tracking systems with ease</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile First</h3>
+                    <p>Perfect experience on all devices</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>Instant PDF</h3>
+                    <p>Download professional PDF in one click</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                    <h3>South African Focus</h3>
+                    <p>Local templates, formats, and examples</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Smart Suggestions</h3>
+                    <p>AI-powered improvements and tips</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="templates" style="background: linear-gradient(to bottom, white, #f0f9ff);">
+            <div class="section-title">
+                <h2>Build Your Resume in 4 Easy Steps</h2>
+                <p>Get job-ready in minutes</p>
+            </div>
+            <div class="templates-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="feature-card" style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 1.5rem;">
+                        1
+                    </div>
+                    <h3>Choose Template</h3>
+                    <p>Select from professional designs</p>
+                </div>
+                <div class="feature-card" style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 1.5rem;">
+                        2
+                    </div>
+                    <h3>Fill Details</h3>
+                    <p>Easy step-by-step form</p>
+                </div>
+                <div class="feature-card" style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 1.5rem;">
+                        3
+                    </div>
+                    <h3>Customize</h3>
+                    <p>Edit colors, fonts, and layout</p>
+                </div>
+                <div class="feature-card" style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 1.5rem;">
+                        4
+                    </div>
+                    <h3>Download</h3>
+                    <p>Get your PDF instantly</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Job Examples -->
+        <section class="features" style="padding-top: 0;">
+            <div class="section-title">
+                <h2>Templates for Every Career</h2>
+                <p>Professionally designed for specific job roles</p>
+            </div>
+            <div class="templates-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+                <div class="feature-card" style="text-align: center; padding: 1.5rem;">
+                    <i class="fas fa-code" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h4>Software Developer</h4>
+                </div>
+                <div class="feature-card" style="text-align: center; padding: 1.5rem;">
+                    <i class="fas fa-bullhorn" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h4>Marketing Manager</h4>
+                </div>
+                <div class="feature-card" style="text-align: center; padding: 1.5rem;">
+                    <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h4>Sales Executive</h4>
+                </div>
+                <div class="feature-card" style="text-align: center; padding: 1.5rem;">
+                    <i class="fas fa-project-diagram" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h4>Project Manager</h4>
+                </div>
+                <div class="feature-card" style="text-align: center; padding: 1.5rem;">
+                    <i class="fas fa-database" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h4>Data Analyst</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="hero" style="padding: 4rem 2rem; border-radius: 1rem; margin: 2rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
+            <div class="hero-content">
+                <h2 style="font-size: 2.5rem;">Ready to Land Your Dream Job?</h2>
+                <p style="font-size: 1.125rem; margin-bottom: 2rem;">Join thousands who found success with CVGenie</p>
+                <button class="btn btn-primary" onclick="showPage('builder')" style="font-size: 1.125rem; padding: 1rem 2rem;">
+                    <i class="fas fa-magic"></i> Start Building - 100% Free
+                </button>
+                <p style="margin-top: 1rem; font-size: 0.875rem; opacity: 0.8;">
+                    No credit card required • No watermarks • Unlimited downloads
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Resume Builder Page -->
+    <div id="builder-page" class="page hidden">
+        <div class="resume-builder">
+            <div class="section-title" style="text-align: left; margin-bottom: 2rem;">
+                <h2>Resume Builder</h2>
+                <p>Fill in your details and watch your resume update in real-time</p>
+            </div>
+            
+            <div class="builder-container">
+                <!-- Left: Form -->
+                <div>
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" class="form-control" placeholder="John Doe" id="fullName">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="john@example.com" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" class="form-control" placeholder="+27 12 345 6789" id="phone">
+                            </div>
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" class="form-control" placeholder="Johannesburg, South Africa" id="location">
+                            </div>
+                            <div class="form-group">
+                                <label>LinkedIn</label>
+                                <input type="url" class="form-control" placeholder="linkedin.com/in/username" id="linkedin">
+                            </div>
+                            <div class="form-group">
+                                <label>GitHub</label>
+                                <input type="url" class="form-control" placeholder="github.com/username" id="github">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Summary -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-file-alt"></i> Professional Summary</h3>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="4" placeholder="Experienced professional with 5+ years in..." id="summary"></textarea>
+                            <small style="color: var(--gray); display: block; margin-top: 0.5rem;">Write 2-3 sentences highlighting your key achievements</small>
+                        </div>
+                    </div>
+
+                    <!-- Work Experience -->
+                    <div class="form-section">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                            <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
+                            <button class="btn btn-primary" onclick="addExperience()">
+                                <i class="fas fa-plus"></i> Add Experience
+                            </button>
+                        </div>
+                        
+                        <div id="experience-container">
+                            <div class="experience-item" style="border: 1px solid var(--border); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label>Job Title</label>
+                                        <input type="text" class="form-control" placeholder="Senior Developer" id="jobTitle1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Company</label>
+                                        <input type="text" class="form-control" placeholder="Tech Solutions Inc." id="company1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Start Date</label>
+                                        <input type="text" class="form-control" placeholder="Jan 2020" id="startDate1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>End Date</label>
+                                        <input type="text" class="form-control" placeholder="Present" id="endDate1">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" rows="3" placeholder="Describe your responsibilities and achievements..." id="description1"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Preview & Tools -->
+                <div>
+                    <!-- Template Selector -->
+                    <div class="form-section">
+                        <h3>Choose Template</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem;">
+                            <div class="template-option" style="border: 2px solid var(--primary); background: linear-gradient(135deg, #dbeafe, #e0e7ff); padding: 1rem; border-radius: 0.5rem; cursor: pointer;" onclick="selectTemplate('professional')">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span style="font-weight: 600;">Professional</span>
+                                    <span style="font-size: 0.75rem; color: var(--gray);">Free</span>
+                                </div>
+                                <div style="height: 60px; background: white; border-radius: 0.25rem;"></div>
+                            </div>
+                            <div class="template-option" style="border: 2px solid var(--border); background: linear-gradient(135deg, #dcfce7, #f0fdf4); padding: 1rem; border-radius: 0.5rem; cursor: pointer;" onclick="selectTemplate('modern')">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span style="font-weight: 600;">Modern</span>
+                                    <span style="font-size: 0.75rem; color: var(--gray);">Free</span>
+                                </div>
+                                <div style="height: 60px; background: white; border-radius: 0.25rem;"></div>
+                            </div>
+                            <div class="template-option" style="border: 2px solid var(--border); background: linear-gradient(135deg, #f3e8ff, #faf5ff); padding: 1rem; border-radius: 0.5rem; cursor: pointer;" onclick="selectTemplate('executive')">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span style="font-weight: 600;">Executive</span>
+                                    <span class="premium-badge">Premium</span>
+                                </div>
+                                <div style="height: 60px; background: white; border-radius: 0.25rem;"></div>
+                            </div>
+                            <div class="template-option" style="border: 2px solid var(--border); background: linear-gradient(135deg, #f1f5f9, #f8fafc); padding: 1rem; border-radius: 0.5rem; cursor: pointer;" onclick="selectTemplate('minimal')">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span style="font-weight: 600;">Minimal</span>
+                                    <span style="font-size: 0.75rem; color: var(--gray);">Free</span>
+                                </div>
+                                <div style="height: 60px; background: white; border-radius: 0.25rem;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="form-section">
+                        <h3>Export & Save</h3>
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <button class="btn btn-primary" onclick="downloadPDF()">
+                                <i class="fas fa-download"></i> Download PDF (Free)
+                            </button>
+                            <button class="btn btn-outline" onclick="saveResume()">
+                                <i class="fas fa-save"></i> Save Resume
+                            </button>
+                            <button class="btn" style="background: var(--light); color: var(--dark);" onclick="togglePreview()">
+                                <i class="fas fa-eye"></i> Toggle Preview
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tips -->
+                    <div class="form-section" style="background: linear-gradient(135deg, #dbeafe, #e0e7ff); border: none;">
+                        <h3 style="color: var(--primary);"><i class="fas fa-lightbulb"></i> Pro Tips</h3>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <i class="fas fa-check-circle" style="color: var(--success); margin-top: 0.25rem;"></i>
+                                <span>Use action verbs like "Managed", "Created", "Improved"</span>
+                            </li>
+                            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <i class="fas fa-check-circle" style="color: var(--success); margin-top: 0.25rem;"></i>
+                                <span>Quantify achievements with numbers</span>
+                            </li>
+                            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <i class="fas fa-check-circle" style="color: var(--success); margin-top: 0.25rem;"></i>
+                                <span>Keep it to 1-2 pages maximum</span>
+                            </li>
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <i class="fas fa-check-circle" style="color: var(--success); margin-top: 0.25rem;"></i>
+                                <span>Tailor for each job application</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Templates Page -->
+    <div id="templates-page" class="page hidden">
+        <section class="templates">
+            <div class="section-title">
+                <h2>Professional Templates</h2>
+                <p>Choose from ATS-optimized designs for every career</p>
+            </div>
+            
+            <div class="templates-grid">
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #dbeafe, #e0e7ff);">
+                        <div class="template-badge">Free</div>
+                    </div>
+                    <div class="template-content">
+                        <h4>Professional</h4>
+                        <p style="color: var(--gray); margin-bottom: 1rem;">Perfect for corporate roles and ATS systems</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="showPage('builder')">
+                            Use Template
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #dcfce7, #f0fdf4);">
+                        <div class="template-badge">Free</div>
+                    </div>
+                    <div class="template-content">
+                        <h4>Modern</h4>
+                        <p style="color: var(--gray); margin-bottom: 1rem;">Clean design with accent colors</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="showPage('builder')">
+                            Use Template
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #f3e8ff, #faf5ff);">
+                        <div class="template-badge">Premium</div>
+                    </div>
+                    <div class="template-content">
+                        <h4>Executive</h4>
+                        <p style="color: var(--gray); margin-bottom: 1rem;">Professional, dense layout for executives</p>
+                        <button class="btn btn-outline" style="width: 100%;" onclick="showPremiumModal()">
+                            <i class="fas fa-crown"></i> Upgrade to Pro
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #f1f5f9, #f8fafc);">
+                        <div class="template-badge">Free</div>
+                    </div>
+                    <div class="template-content">
+                        <h4>Minimalist</h4>
+                        <p style="color: var(--gray); margin-bottom: 1rem;">Ultra clean and simple design</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="showPage('builder')">
+                            Use Template
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #fce7f3, #fdf2f8);">
+                        <div class="template-badge">Premium</div>
+                    </div>
+                    <div class="template-content">
+                        <h4>Creative</h4>
+                        <p style="color: var(--gray); margin-bottom: 1rem;">Design-forward for creative roles</p>
+                        <button class="btn btn-outline" style="width: 100%;" onclick="showPremiumModal()">
+                            <i class="fas fa-crown"></i> Upgrade to Pro
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="logo" style="color: white; margin-bottom: 1.5rem;">
+                    <div class="logo-emoji">🧞</div>
+                    <div class="logo-text">
+                        CVGenie
+                        <span>SOUTH AFRICA</span>
+                    </div>
+                </div>
+                <p style="color: #94a3b8;">Free professional resume builder for South African job seekers.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#" onclick="showPage('builder')">Resume Builder</a></li>
+                    <li><a href="#" onclick="showPage('templates')">Templates</a></li>
+                    <li><a href="#" onclick="showPage('examples')">Examples</a></li>
+                    <li><a href="#" onclick="showPage('tools')">Tools</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">CV Writing Guide</a></li>
+                    <li><a href="#">Cover Letters</a></li>
+                    <li><a href="#">Interview Tips</a></li>
+                    <li><a href="#">Career Advice</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2024 CVGenie. All rights reserved. Designed for South African job seekers.</p>
+            <p style="margin-top: 0.5rem;">100% Free • No Credit Card Required • Unlimited Downloads</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId + '-page').classList.remove('hidden');
+            
+            // Update active nav links
+            document.querySelectorAll('.nav-links a, .mobile-nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Update URL hash
+            window.location.hash = pageId;
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Check URL hash on load
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substring(1) || 'home';
+            showPage(hash);
+        });
+
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const mobileNav = document.querySelector('.mobile-nav');
+            mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Login Toggle
+        function toggleLogin() {
+            alert('Sign In / Sign Up functionality would be implemented here.\nIn a full implementation, this would connect to a backend.');
+        }
+
+        // Resume Builder Functions
+        let experienceCount = 1;
+
+        function addExperience() {
+            experienceCount++;
+            const container = document.getElementById('experience-container');
+            const newExperience = document.createElement('div');
+            newExperience.className = 'experience-item';
+            newExperience.style.border = '1px solid var(--border)';
+            newExperience.style.padding = '1.5rem';
+            newExperience.style.borderRadius = '0.5rem';
+            newExperience.style.marginBottom = '1rem';
+            
+            newExperience.innerHTML = `
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Job Title</label>
+                        <input type="text" class="form-control" placeholder="Senior Developer" id="jobTitle${experienceCount}">
+                    </div>
+                    <div class="form-group">
+                        <label>Company</label>
+                        <input type="text" class="form-control" placeholder="Tech Solutions Inc." id="company${experienceCount}">
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="text" class="form-control" placeholder="Jan 2020" id="startDate${experienceCount}">
+                    </div>
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="text" class="form-control" placeholder="Present" id="endDate${experienceCount}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="3" placeholder="Describe your responsibilities and achievements..." id="description${experienceCount}"></textarea>
+                </div>
+                <button class="btn" style="background: #fee2e2; color: #dc2626;" onclick="removeExperience(this)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            `;
+            
+            container.appendChild(newExperience);
+        }
+
+        function removeExperience(button) {
+            if (experienceCount > 1) {
+                button.parentElement.remove();
+                experienceCount--;
+            }
+        }
+
+        function selectTemplate(templateId) {
+            // Update visual selection
+            document.querySelectorAll('.template-option').forEach(option => {
+                option.style.borderColor = 'var(--border)';
+            });
+            
+            event.currentTarget.style.borderColor = 'var(--primary)';
+            
+            // Show template selected message
+            alert(`Template "${templateId}" selected! The preview would update in a full implementation.`);
+        }
+
+        function downloadPDF() {
+            alert('Your resume PDF is being generated!\n\nIn a full implementation, this would:\n1. Generate a PDF from your data\n2. Download it automatically\n3. Be ATS-optimized and professionally formatted');
+        }
+
+        function saveResume() {
+            const name = document.getElementById('fullName').value || 'My Resume';
+            alert(`Resume "${name}" saved successfully!\n\nCreate an account to save permanently and access from any device.`);
+        }
+
+        function togglePreview() {
+            alert('Preview toggled! In a full implementation, this would show/hide the resume preview.');
+        }
+
+        function showPremiumModal() {
+            alert('✨ Premium Features ✨\n\nUpgrade to CVGenie Pro for:\n• 20+ Premium Templates\n• Advanced ATS Scanner\n• Cover Letter Generator\n• Priority Support\n• No Ads\n\nPrice: R49/month or R399/year');
+        }
+
+        // Auto-save form data
+        const formInputs = document.querySelectorAll('input, textarea');
+        formInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                // In a real app, this would save to localStorage or send to backend
+                console.log('Form updated:', this.id, this.value);
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.querySelector('.footer-bottom p').innerHTML = 
+                document.querySelector('.footer-bottom p').innerHTML.replace('2024', new Date().getFullYear());
+        });
+    </script>
+</body>
+</html>
