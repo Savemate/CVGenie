@@ -2115,7 +2115,71 @@
             currentTemplate = template;
             
             // Update template buttons
-            document.querySelectorAll('.template-btn').forEach(btn => {
+           
+// Add this function alongside your other template renderers (e.g., renderSAClassicTemplate)
+function renderProfessionalTemplate(data) {
+    return `
+        <div style="font-family: 'Inter', sans-serif; padding: 25mm; color: #333;">
+            <!-- HEADER -->
+            <div style="text-align: center; border-bottom: 2px solid #4b5563; padding-bottom: 20px; margin-bottom: 25px;">
+                <h1 style="font-size: 32px; margin: 0; color: #111827;">${data.personal.name}</h1>
+                <h2 style="font-size: 18px; font-weight: 500; margin: 8px 0 15px 0; color: #4b5563;">${data.personal.title}</h2>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; font-size: 14px; color: #6b7280;">
+                    <span>${data.personal.email}</span>
+                    <span>•</span>
+                    <span>${data.personal.phone}</span>
+                    <span>•</span>
+                    <span>${data.personal.location}</span>
+                </div>
+            </div>
+
+            <!-- PROFILE -->
+            <div style="margin-bottom: 25px;">
+                <h3 style="font-size: 16px; text-transform: uppercase; color: #111827; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; margin-bottom: 12px;">Professional Profile</h3>
+                <p style="line-height: 1.5; font-size: 14px;">${data.summary}</p>
+            </div>
+
+            <!-- EXPERIENCE -->
+            <div style="margin-bottom: 25px;">
+                <h3 style="font-size: 16px; text-transform: uppercase; color: #111827; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; margin-bottom: 12px;">Work Experience</h3>
+                ${data.experience.map(exp => `
+                    <div style="margin-bottom: 18px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <strong style="font-size: 15px;">${exp.title}</strong>
+                            <span style="color: #4b5563; font-size: 14px;">${exp.start} — ${exp.end}</span>
+                        </div>
+                        <div style="font-style: italic; color: #6b7280; font-size: 14px; margin-bottom: 8px;">${exp.company} | ${exp.location}</div>
+                        <div style="white-space: pre-line; font-size: 14px; line-height: 1.4;">${exp.description}</div>
+                    </div>
+                `).join('')}
+            </div>
+
+            <!-- SKILLS & EDUCATION SIDE-BY-SIDE -->
+            <div style="display: flex; margin-bottom: 20px;">
+                <!-- SKILLS -->
+                <div style="flex: 1; margin-right: 20px;">
+                    <h3 style="font-size: 16px; text-transform: uppercase; color: #111827; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; margin-bottom: 12px;">Core Skills</h3>
+                    ${data.skills.technical ? `
+                        <div style="font-size: 14px; line-height: 1.5;">
+                            ${data.skills.technical.split(',').map(skill => `<div>• ${skill.trim()}</div>`).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+                <!-- EDUCATION -->
+                <div style="flex: 1;">
+                    <h3 style="font-size: 16px; text-transform: uppercase; color: #111827; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; margin-bottom: 12px;">Education</h3>
+                    ${data.education.map(edu => `
+                        <div style="margin-bottom: 12px;">
+                            <strong style="font-size: 14px;">${edu.degree}</strong>
+                            <div style="font-size: 13px; color: #6b7280;">${edu.school}, ${edu.location}</div>
+                            <div style="font-size: 13px; color: #4b5563;">${edu.end}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    `;
+} document.querySelectorAll('.template-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.closest('.template-btn').classList.add('active');
