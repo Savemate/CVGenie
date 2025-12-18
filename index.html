@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e40af'/><text x='50' y='65' text-anchor='middle' font-family='Arial' font-size='40' font-weight='bold' fill='white'>9</text></svg>">
+    
+    <!-- Emergency loading fix -->
+    <style>
+        /* Ensure loading screen disappears if JS fails */
+        body.js-loaded #loading {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -628,11 +636,506 @@
     <!-- Toast Container -->
     <div class="toast" id="toast"></div>
 
-    <!-- External Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="utils.js"></script>
-    <script src="script.js"></script>
-    <script src="templates.js"></script>
+    <!-- Combined JavaScript - All in one file to prevent loading issues -->
+    <script>
+        // ====== COMBINED JAVASCRIPT FOR 9TO5 UNIVERSITY ======
+        console.log('9to5 University: Loading...');
+        
+        // ====== UTILITY FUNCTIONS ======
+        function escapeHTML(str) {
+            if (!str) return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function formatText(text) {
+            if (!text) return '';
+            return text.replace(/\n/g, '<br>');
+        }
+
+        function showToast(message, type = 'info') {
+            let toast = document.getElementById('toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast';
+                toast.className = 'toast';
+                document.body.appendChild(toast);
+            }
+            
+            toast.textContent = message;
+            toast.className = 'toast ' + type;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ====== APP STATE ======
+        let currentTab = 'personal';
+        let currentStep = 1;
+        let currentTemplate = 'professional';
+        let selectedCareerField = 'retail';
+        let resumeData = null;
+
+        // ====== INITIALIZATION ======
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            
+            // Mark body as JS loaded
+            document.body.classList.add('js-loaded');
+            
+            // Hide loading screen immediately
+            hideLoading();
+            
+            // Initialize with small delay
+            setTimeout(() => {
+                try {
+                    initCareerExamples();
+                    setupEventListeners();
+                    setupCookieConsent();
+                    showToast('Welcome to 9to5 University!', 'info');
+                } catch (error) {
+                    console.error('Initialization error:', error);
+                }
+            }, 300);
+            
+            // Scroll header effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.main-header');
+                if (header) {
+                    header.classList.toggle('scrolled', window.scrollY > 50);
+                }
+            });
+        });
+
+        // ====== LOADING SCREEN ======
+        function hideLoading() {
+            const loading = document.getElementById('loading');
+            if (loading) {
+                loading.classList.add('loaded');
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                    console.log('Loading screen hidden');
+                }, 300);
+            }
+        }
+
+        // ====== MOBILE MENU ======
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            if (mobileNav) {
+                mobileNav.classList.toggle('active');
+                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+            }
+        }
+
+        // ====== SCROLL FUNCTIONS ======
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                window.scrollTo({
+                    top: section.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // ====== START BUILDING ======
+        function startBuilding() {
+            const toddler = document.getElementById('toddler');
+            if (toddler) toddler.classList.add('active');
+            scrollToSection('builder');
+            changeTab('personal');
+            showToast('Welcome to 9to5 University Career Builder!', 'info');
+        }
+
+        // ====== CHANGE TAB ======
+        function changeTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active from all tab buttons
+            document.querySelectorAll('.tab').forEach(tabBtn => {
+                tabBtn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            const targetTab = document.getElementById(tabName + '-tab');
+            if (targetTab) targetTab.classList.add('active');
+            
+            // Activate tab button
+            document.querySelectorAll('.tab').forEach(tabBtn => {
+                if (tabBtn.getAttribute('onclick') && tabBtn.getAttribute('onclick').includes(tabName)) {
+                    tabBtn.classList.add('active');
+                }
+            });
+            
+            // Update progress
+            const steps = { personal: 1, experience: 2, education: 3, skills: 4, preview: 5 };
+            if (steps[tabName]) updateProgressTracker(steps[tabName]);
+            
+            if (tabName === 'preview') updatePreview();
+        }
+
+        // ====== UPDATE PROGRESS TRACKER ======
+        function updateProgressTracker(step) {
+            document.querySelectorAll('.toddler-step').forEach((stepEl, index) => {
+                stepEl.classList.toggle('active', index + 1 <= step);
+            });
+            
+            const progressFill = document.getElementById('progressFill');
+            if (progressFill) progressFill.style.width = `${(step / 5) * 100}%`;
+        }
+
+        // ====== CAREER FIELD SELECTION ======
+        function selectCareerField(field) {
+            selectedCareerField = field;
+            document.querySelectorAll('.field-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            updateCareerFieldExamples(field);
+        }
+
+        function updateCareerFieldExamples(field) {
+            const examples = {
+                corporate: { 
+                    title: 'Office Administrator', 
+                    skills: 'Microsoft Office, Administrative Support, Data Entry, Communication, Time Management',
+                    summary: 'Professional Office Administrator with strong organizational and communication skills.'
+                },
+                technical: { 
+                    title: 'Technical Specialist', 
+                    skills: 'Technical Support, System Administration, Troubleshooting, Network Management',
+                    summary: 'Technical professional with expertise in system administration and IT support.'
+                },
+                retail: { 
+                    title: 'Retail Manager', 
+                    skills: 'Customer Service, Team Management, Inventory Control, Sales Techniques',
+                    summary: 'Experienced Retail Manager with 5+ years in retail management.'
+                }
+            };
+            
+            const example = examples[field] || examples.retail;
+            document.getElementById('jobTitle').value = example.title;
+            document.getElementById('technicalSkills').value = example.skills;
+            document.getElementById('summary').value = example.summary;
+            updatePreview();
+        }
+
+        // ====== INITIALIZE EXAMPLES ======
+        function initCareerExamples() {
+            addExperience();
+            addEducation();
+            
+            setTimeout(() => {
+                const expSection = document.querySelector('.experience-section');
+                if (expSection) {
+                    expSection.querySelector('.exp-title').value = 'Store Manager';
+                    expSection.querySelector('.exp-company').value = 'Checkers Hyper';
+                    expSection.querySelector('.exp-location').value = 'Johannesburg';
+                    expSection.querySelector('.exp-start').value = 'March 2019';
+                    expSection.querySelector('.exp-end').value = 'Present';
+                }
+                
+                const eduSection = document.querySelector('.education-section');
+                if (eduSection) {
+                    eduSection.querySelector('.edu-degree').value = 'National Senior Certificate';
+                    eduSection.querySelector('.edu-school').value = 'Alexander High School';
+                }
+                
+                updatePreview();
+            }, 100);
+        }
+
+        // ====== ADD EXPERIENCE ======
+        function addExperience() {
+            const container = document.getElementById('experience-container');
+            if (!container) return;
+            
+            const id = Date.now();
+            container.insertAdjacentHTML('beforeend', `
+                <div class="form-section experience-section" id="exp-${id}">
+                    <div class="form-section-header">
+                        <h4><i class="fas fa-briefcase"></i> Work Experience</h4>
+                        <button class="btn btn-outline" onclick="removeSection('exp-${id}')">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Job Title *</label>
+                            <input type="text" class="form-control exp-title" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>Company</label>
+                            <input type="text" class="form-control exp-company" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input type="text" class="form-control exp-start" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input type="text" class="form-control exp-end" oninput="updatePreview()">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Responsibilities</label>
+                        <textarea class="form-control exp-desc" rows="3" oninput="updatePreview()"></textarea>
+                    </div>
+                </div>
+            `);
+        }
+
+        // ====== ADD EDUCATION ======
+        function addEducation() {
+            const container = document.getElementById('education-container');
+            if (!container) return;
+            
+            const id = Date.now();
+            container.insertAdjacentHTML('beforeend', `
+                <div class="form-section education-section" id="edu-${id}">
+                    <div class="form-section-header">
+                        <h4><i class="fas fa-graduation-cap"></i> Education</h4>
+                        <button class="btn btn-outline" onclick="removeSection('edu-${id}')">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Qualification *</label>
+                            <input type="text" class="form-control edu-degree" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>Institution</label>
+                            <input type="text" class="form-control edu-school" oninput="updatePreview()">
+                        </div>
+                        <div class="form-group">
+                            <label>Year Completed</label>
+                            <input type="text" class="form-control edu-end" oninput="updatePreview()">
+                        </div>
+                    </div>
+                </div>
+            `);
+        }
+
+        // ====== REMOVE SECTION ======
+        function removeSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.remove();
+                updatePreview();
+                showToast('Section removed', 'info');
+            }
+        }
+
+        // ====== UPDATE PREVIEW ======
+        function updatePreview() {
+            // Collect basic data
+            resumeData = {
+                personal: {
+                    name: document.getElementById('fullName')?.value || 'Your Name',
+                    title: document.getElementById('jobTitle')?.value || 'Professional Title',
+                    email: document.getElementById('email')?.value || 'email@example.com',
+                    phone: document.getElementById('phone')?.value || '+27 00 000 0000',
+                    location: document.getElementById('location')?.value || 'City, Province'
+                },
+                summary: document.getElementById('summary')?.value || '',
+                skills: {
+                    technical: document.getElementById('technicalSkills')?.value || '',
+                    soft: document.getElementById('softSkills')?.value || '',
+                    certifications: document.getElementById('certifications')?.value || ''
+                },
+                experience: [],
+                education: []
+            };
+
+            // Collect experience
+            document.querySelectorAll('.experience-section').forEach(section => {
+                const title = section.querySelector('.exp-title')?.value;
+                if (title) {
+                    resumeData.experience.push({
+                        title: title,
+                        company: section.querySelector('.exp-company')?.value || '',
+                        start: section.querySelector('.exp-start')?.value || '',
+                        end: section.querySelector('.exp-end')?.value || '',
+                        description: section.querySelector('.exp-desc')?.value || ''
+                    });
+                }
+            });
+
+            // Collect education
+            document.querySelectorAll('.education-section').forEach(section => {
+                const degree = section.querySelector('.edu-degree')?.value;
+                if (degree) {
+                    resumeData.education.push({
+                        degree: degree,
+                        school: section.querySelector('.edu-school')?.value || '',
+                        end: section.querySelector('.edu-end')?.value || ''
+                    });
+                }
+            });
+
+            // Render preview
+            renderResumePreview();
+        }
+
+        // ====== RENDER RESUME PREVIEW ======
+        function renderResumePreview() {
+            const container = document.getElementById('resumeContent');
+            if (!container) return;
+            
+            const data = resumeData;
+            container.innerHTML = `
+                <div style="padding: 20px; font-family: 'Inter', sans-serif;">
+                    <h1 style="color: #1e40af; margin-bottom: 5px;">${escapeHTML(data.personal.name)}</h1>
+                    <h3 style="color: #0ea5e9; margin-top: 0;">${escapeHTML(data.personal.title)}</h3>
+                    
+                    <div style="margin-bottom: 20px; color: #666;">
+                        <div>${escapeHTML(data.personal.email)}</div>
+                        <div>${escapeHTML(data.personal.phone)}</div>
+                        <div>${escapeHTML(data.personal.location)}</div>
+                    </div>
+                    
+                    ${data.summary ? `<div style="margin-bottom: 20px;"><h4>Summary</h4><p>${formatText(data.summary)}</p></div>` : ''}
+                    
+                    ${data.experience.length > 0 ? `
+                        <div style="margin-bottom: 20px;">
+                            <h4>Work Experience</h4>
+                            ${data.experience.map(exp => `
+                                <div style="margin-bottom: 15px;">
+                                    <strong>${escapeHTML(exp.title)}</strong>
+                                    ${exp.company ? `<div>${escapeHTML(exp.company)}</div>` : ''}
+                                    ${exp.start || exp.end ? `<div style="color: #666; font-size: 0.9em;">${escapeHTML(exp.start)} - ${escapeHTML(exp.end)}</div>` : ''}
+                                    ${exp.description ? `<div style="margin-top: 5px;">${formatText(exp.description)}</div>` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    ${data.education.length > 0 ? `
+                        <div style="margin-bottom: 20px;">
+                            <h4>Education</h4>
+                            ${data.education.map(edu => `
+                                <div style="margin-bottom: 10px;">
+                                    <strong>${escapeHTML(edu.degree)}</strong>
+                                    ${edu.school ? `<div>${escapeHTML(edu.school)}</div>` : ''}
+                                    ${edu.end ? `<div style="color: #666;">${escapeHTML(edu.end)}</div>` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    ${data.skills.technical ? `
+                        <div style="margin-bottom: 20px;">
+                            <h4>Skills</h4>
+                            <p>${formatText(data.skills.technical)}</p>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        // ====== TEMPLATE SELECTION ======
+        function selectTemplate(template) {
+            currentTemplate = template;
+            document.querySelectorAll('.template-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            showToast(`Template selected: ${template}`, 'info');
+            // In a full implementation, this would switch templates
+        }
+
+        // ====== PDF DOWNLOAD (Simulated) ======
+        function downloadPDF() {
+            showToast('PDF download would start here. In production, this would generate a PDF.', 'info');
+        }
+
+        // ====== EVENT LISTENERS SETUP ======
+        function setupEventListeners() {
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            window.scrollTo({
+                                top: target.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Cookie consent buttons
+            document.getElementById('acceptCookies')?.addEventListener('click', () => {
+                document.getElementById('cookieConsent').classList.remove('show');
+                showToast('Cookies accepted', 'success');
+            });
+            
+            document.getElementById('rejectCookies')?.addEventListener('click', () => {
+                document.getElementById('cookieConsent').classList.remove('show');
+                showToast('Cookies rejected', 'info');
+            });
+            
+            document.getElementById('customizeCookies')?.addEventListener('click', () => {
+                showToast('Cookie customization would open here', 'info');
+            });
+
+            // Select retail career field by default
+            const retailBtn = document.querySelector('.field-btn[onclick*="retail"]');
+            if (retailBtn) retailBtn.classList.add('active');
+        }
+
+        // ====== COOKIE CONSENT ======
+        function setupCookieConsent() {
+            setTimeout(() => {
+                const consent = document.getElementById('cookieConsent');
+                if (consent) {
+                    consent.classList.add('show');
+                }
+            }, 1500);
+        }
+
+        // ====== MODAL FUNCTIONS ======
+        function showLoginModal() {
+            document.getElementById('loginModal')?.classList.add('active');
+        }
+
+        function hideLoginModal() {
+            document.getElementById('loginModal')?.classList.remove('active');
+        }
+
+        function showSaveModal() {
+            document.getElementById('saveModal')?.classList.add('active');
+        }
+
+        function hideSaveModal() {
+            document.getElementById('saveModal')?.classList.remove('active');
+        }
+
+        // ====== EMERGENCY LOADING FIX ======
+        // Force hide loading screen after 5 seconds max
+        setTimeout(() => {
+            const loading = document.getElementById('loading');
+            if (loading && loading.style.display !== 'none') {
+                loading.style.display = 'none';
+                console.log('Emergency: Loading screen force-hidden');
+            }
+        }, 5000);
+
+        console.log('9to5 University: JavaScript loaded successfully');
+    </script>
+
+    <!-- External libraries (non-critical, load async) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" async></script>
 </body>
 </html>
