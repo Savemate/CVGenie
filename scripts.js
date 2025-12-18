@@ -7,75 +7,58 @@ let resumeData = null;
 
 // ====== INITIALIZATION ======
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize with career examples
+    console.log('9to5 University: Initializing...');
+    
+    // Set a timeout to ensure everything loads
     setTimeout(() => {
-        initCareerExamples();
-        setupEventListeners();
-        hideLoading();
-        setupCookieConsent();
-    }, 1000);
+        try {
+            initCareerExamples();
+            setupEventListeners();
+            hideLoading();
+            setupCookieConsent();
+            console.log('9to5 University: Initialization complete');
+        } catch (error) {
+            console.error('Initialization error:', error);
+            // Force hide loading screen on error
+            document.getElementById('loading').style.display = 'none';
+        }
+    }, 800); // Reduced from 1000ms to 800ms
     
     // Scroll header effect
     window.addEventListener('scroll', function() {
         const header = document.querySelector('.main-header');
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        if (header) {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         }
     });
 });
 
 // ====== LOADING ======
 function hideLoading() {
+    console.log('Hiding loading screen...');
     const loading = document.getElementById('loading');
-    loading.classList.add('loaded');
-    setTimeout(() => {
-        loading.style.display = 'none';
-    }, 300);
+    if (loading) {
+        loading.classList.add('loaded');
+        setTimeout(() => {
+            loading.style.display = 'none';
+            console.log('Loading screen hidden');
+        }, 300);
+    } else {
+        console.warn('Loading element not found');
+    }
 }
-
-// ====== COOKIE CONSENT ======
-function setupCookieConsent() {
-    setTimeout(() => {
-        const consent = getCookie('cookie_consent');
-        if (!consent) {
-            showCookieConsent();
-        }
-    }, 2000);
-}
-
-function showCookieConsent() {
-    const consent = document.getElementById('cookieConsent');
-    setTimeout(() => {
-        consent.classList.add('show');
-    }, 1000);
-}
-
-function hideCookieConsent() {
-    const consent = document.getElementById('cookieConsent');
-    consent.classList.remove('show');
-}
-
-// Setup cookie consent buttons
-document.addEventListener('DOMContentLoaded', function() {
-    const acceptBtn = document.getElementById('acceptCookies');
-    const rejectBtn = document.getElementById('rejectCookies');
-    const customizeBtn = document.getElementById('customizeCookies');
-    
-    if (acceptBtn) acceptBtn.addEventListener('click', acceptCookies);
-    if (rejectBtn) rejectBtn.addEventListener('click', rejectCookies);
-    if (customizeBtn) customizeBtn.addEventListener('click', () => {
-        hideCookieConsent();
-        showToast('Cookie customization would open here', 'info');
-    });
-});
 
 // ====== MOBILE MENU ======
 function toggleMobileMenu() {
     const mobileNav = document.getElementById('mobileNav');
-    mobileNav.classList.toggle('active');
-    document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    if (mobileNav) {
+        mobileNav.classList.toggle('active');
+        document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    }
 }
 
 // ====== SCROLL FUNCTIONS ======
@@ -91,11 +74,13 @@ function scrollToSection(sectionId) {
 
 // ====== SETUP EVENT LISTENERS ======
 function setupEventListeners() {
+    console.log('Setting up event listeners...');
+    
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
-            if (href !== '#') {
+            if (href !== '#' && href !== '#!') {
                 e.preventDefault();
                 const target = document.querySelector(href);
                 if (target) {
@@ -109,27 +94,46 @@ function setupEventListeners() {
     });
     
     // Initialize career field selection
-    selectCareerField('retail');
+    if (document.querySelector('.field-btn')) {
+        selectCareerField('retail');
+    }
     
-    // Close modals when clicking outside
-    window.addEventListener('click', function(event) {
-        const loginModal = document.getElementById('loginModal');
-        const saveModal = document.getElementById('saveModal');
-        
-        if (event.target === loginModal) {
-            hideLoginModal();
-        }
-        
-        if (event.target === saveModal) {
-            hideSaveModal();
-        }
-    });
+    // Cookie consent buttons
+    const acceptBtn = document.getElementById('acceptCookies');
+    const rejectBtn = document.getElementById('rejectCookies');
+    const customizeBtn = document.getElementById('customizeCookies');
+    
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function() {
+            setCookie('cookie_consent', 'accepted', 365);
+            hideCookieConsent();
+            showToast('Cookie preferences saved to 9to5 University', 'success');
+        });
+    }
+    
+    if (rejectBtn) {
+        rejectBtn.addEventListener('click', function() {
+            setCookie('cookie_consent', 'rejected', 365);
+            hideCookieConsent();
+            showToast('Cookie preferences updated', 'info');
+        });
+    }
+    
+    if (customizeBtn) {
+        customizeBtn.addEventListener('click', function() {
+            hideCookieConsent();
+            showToast('Cookie customization would open here', 'info');
+        });
+    }
 }
 
 // ====== START BUILDING ======
 function startBuilding() {
     // Show progress tracker
-    document.getElementById('toddler').classList.add('active');
+    const toddler = document.getElementById('toddler');
+    if (toddler) {
+        toddler.classList.add('active');
+    }
     
     // Scroll to builder section
     scrollToSection('builder');
@@ -142,6 +146,8 @@ function startBuilding() {
 
 // ====== CHANGE TAB ======
 function changeTab(tabName) {
+    currentTab = tabName;
+    
     // Hide all tabs
     document.querySelectorAll('.tab-content').forEach(tab => {
         tab.classList.remove('active');
@@ -161,7 +167,7 @@ function changeTab(tabName) {
     // Activate corresponding tab button
     document.querySelectorAll('.tab').forEach(tabBtn => {
         if (tabBtn.textContent.includes(tabName.charAt(0).toUpperCase() + tabName.slice(1)) || 
-            tabBtn.getAttribute('onclick')?.includes(tabName)) {
+            (tabBtn.getAttribute('onclick') && tabBtn.getAttribute('onclick').includes(tabName))) {
             tabBtn.classList.add('active');
         }
     });
@@ -178,8 +184,6 @@ function changeTab(tabName) {
     if (steps[tabName]) {
         updateProgressTracker(steps[tabName]);
     }
-    
-    currentTab = tabName;
     
     // Update preview if we're on the preview tab
     if (tabName === 'preview') {
@@ -202,7 +206,10 @@ function updateProgressTracker(step) {
     
     // Update progress bar
     const progress = (step / 5) * 100;
-    document.getElementById('progressFill').style.width = `${progress}%`;
+    const progressFill = document.getElementById('progressFill');
+    if (progressFill) {
+        progressFill.style.width = `${progress}%`;
+    }
 }
 
 // ====== SELECT CAREER FIELD ======
@@ -213,7 +220,9 @@ function selectCareerField(field) {
     });
     
     // Find and activate the clicked button
-    event.target.classList.add('active');
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
     
     // Update form examples based on field
     updateCareerFieldExamples(field);
@@ -260,15 +269,22 @@ function updateCareerFieldExamples(field) {
     };
     
     const example = examples[field] || examples.retail;
-    document.getElementById('jobTitle').value = example.title;
-    document.getElementById('technicalSkills').value = example.skills;
-    document.getElementById('summary').value = example.summary;
+    
+    const jobTitle = document.getElementById('jobTitle');
+    const technicalSkills = document.getElementById('technicalSkills');
+    const summary = document.getElementById('summary');
+    
+    if (jobTitle) jobTitle.value = example.title;
+    if (technicalSkills) technicalSkills.value = example.skills;
+    if (summary) summary.value = example.summary;
     
     updatePreview();
 }
 
 // ====== INITIALIZE CAREER EXAMPLES ======
 function initCareerExamples() {
+    console.log('Initializing career examples...');
+    
     // Add initial experience section
     addExperience();
     
@@ -304,6 +320,8 @@ function initCareerExamples() {
 // ====== ADD EXPERIENCE ======
 function addExperience() {
     const container = document.getElementById('experience-container');
+    if (!container) return;
+    
     const id = Date.now();
     
     const html = `
@@ -355,6 +373,8 @@ function addExperience() {
 // ====== ADD EDUCATION ======
 function addEducation() {
     const container = document.getElementById('education-container');
+    if (!container) return;
+    
     const id = Date.now();
     
     const html = `
@@ -407,20 +427,32 @@ function removeSection(sectionId) {
 
 // ====== UPDATE PREVIEW ======
 function updatePreview() {
+    // Collect data
+    const fullName = document.getElementById('fullName');
+    const jobTitle = document.getElementById('jobTitle');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const location = document.getElementById('location');
+    const linkedin = document.getElementById('linkedin');
+    const summary = document.getElementById('summary');
+    const technicalSkills = document.getElementById('technicalSkills');
+    const softSkills = document.getElementById('softSkills');
+    const certifications = document.getElementById('certifications');
+    
     resumeData = {
         personal: {
-            name: document.getElementById('fullName').value || 'Your Name',
-            title: document.getElementById('jobTitle').value || 'Professional Title',
-            email: document.getElementById('email').value || 'email@example.com',
-            phone: document.getElementById('phone').value || '+27 00 000 0000',
-            location: document.getElementById('location').value || 'City, Province',
-            linkedin: document.getElementById('linkedin')?.value || ''
+            name: fullName ? fullName.value || 'Your Name' : 'Your Name',
+            title: jobTitle ? jobTitle.value || 'Professional Title' : 'Professional Title',
+            email: email ? email.value || 'email@example.com' : 'email@example.com',
+            phone: phone ? phone.value || '+27 00 000 0000' : '+27 00 000 0000',
+            location: location ? location.value || 'City, Province' : 'City, Province',
+            linkedin: linkedin ? linkedin.value || '' : ''
         },
-        summary: document.getElementById('summary').value || 'Professional summary goes here...',
+        summary: summary ? summary.value || 'Professional summary goes here...' : 'Professional summary goes here...',
         skills: {
-            technical: document.getElementById('technicalSkills').value || '',
-            soft: document.getElementById('softSkills').value || '',
-            certifications: document.getElementById('certifications').value || ''
+            technical: technicalSkills ? technicalSkills.value || '' : '',
+            soft: softSkills ? softSkills.value || '' : '',
+            certifications: certifications ? certifications.value || '' : ''
         },
         experience: [],
         education: []
@@ -455,6 +487,7 @@ function updatePreview() {
         }
     });
 
+    // Render the resume
     renderResume(resumeData);
 }
 
@@ -471,25 +504,33 @@ function renderResume(data) {
     
     let html = '';
     
-    // Render based on selected template
-    switch(currentTemplate) {
-        case 'professional':
-            html = renderProfessionalTemplate(data);
-            break;
-        case 'modern':
-            html = renderModernTemplate(data);
-            break;
-        case 'jobjack':
-            html = renderJobJackTemplate(data);
-            break;
-        case 'executive':
-            html = renderExecutiveTemplate(data);
-            break;
-        case 'simple':
-            html = renderSimpleTemplate(data);
-            break;
-        default:
-            html = renderProfessionalTemplate(data);
+    // Use default professional template if templates not loaded
+    if (typeof renderProfessionalTemplate !== 'function') {
+        html = `<div style="padding: 20px; text-align: center;">
+                   <h2>Resume Preview</h2>
+                   <p>Loading template...</p>
+                </div>`;
+    } else {
+        // Render based on selected template
+        switch(currentTemplate) {
+            case 'professional':
+                html = renderProfessionalTemplate(data);
+                break;
+            case 'modern':
+                html = renderModernTemplate(data);
+                break;
+            case 'jobjack':
+                html = renderJobJackTemplate(data);
+                break;
+            case 'executive':
+                html = renderExecutiveTemplate(data);
+                break;
+            case 'simple':
+                html = renderSimpleTemplate(data);
+                break;
+            default:
+                html = renderProfessionalTemplate(data);
+        }
     }
     
     container.innerHTML = html;
@@ -503,7 +544,10 @@ function selectTemplate(template) {
     document.querySelectorAll('.template-btn').forEach(btn => {
         btn.classList.remove('active');
     });
-    event.target.closest('.template-btn').classList.add('active');
+    
+    if (event && event.target && event.target.closest('.template-btn')) {
+        event.target.closest('.template-btn').classList.add('active');
+    }
     
     updatePreview();
     
@@ -523,12 +567,14 @@ function selectTemplate(template) {
 async function downloadPDF() {
     try {
         const downloadBtn = document.getElementById('downloadBtn');
-        const originalText = downloadBtn.innerHTML;
-        downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating PDF...';
-        downloadBtn.disabled = true;
+        if (downloadBtn) {
+            const originalText = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating PDF...';
+            downloadBtn.disabled = true;
+        }
         
         // Check if jsPDF is available
-        if (!window.jspdf) {
+        if (!window.jspdf || !window.jspdf.jsPDF) {
             throw new Error('PDF library not loaded');
         }
         
@@ -549,6 +595,7 @@ async function downloadPDF() {
         const originalWidth = resumeElement.style.width;
         const originalHeight = resumeElement.style.height;
         const originalMargin = resumeElement.style.margin;
+        const originalBoxShadow = resumeElement.style.boxShadow;
         
         // Set temporary styles for PDF generation
         resumeElement.style.width = '210mm';
@@ -556,21 +603,24 @@ async function downloadPDF() {
         resumeElement.style.margin = '0';
         resumeElement.style.boxShadow = 'none';
         
+        // Wait for html2canvas to load
+        if (typeof html2canvas !== 'function') {
+            throw new Error('html2canvas not loaded');
+        }
+        
         // Create canvas
         const canvas = await html2canvas(resumeElement, {
             scale: 2,
             useCORS: true,
             backgroundColor: '#ffffff',
-            logging: false,
-            width: 210 * 2.83465,
-            height: 297 * 2.83465
+            logging: false
         });
         
         // Restore original styles
         resumeElement.style.width = originalWidth;
         resumeElement.style.height = originalHeight;
         resumeElement.style.margin = originalMargin;
-        resumeElement.style.boxShadow = '';
+        resumeElement.style.boxShadow = originalBoxShadow;
         
         const imgData = canvas.toDataURL('image/png');
         const imgWidth = 190;
@@ -585,8 +635,9 @@ async function downloadPDF() {
         doc.text('Created with 9to5 University - Career Education Platform', 105, 285, { align: 'center' });
         
         // Generate filename
-        const fileName = document.getElementById('fullName').value 
-            ? `${document.getElementById('fullName').value.replace(/\s+/g, '_')}_9to5_University_Resume.pdf`
+        const fullName = document.getElementById('fullName');
+        const fileName = fullName && fullName.value 
+            ? `${fullName.value.replace(/\s+/g, '_')}_9to5_University_Resume.pdf`
             : '9to5_University_Professional_Resume.pdf';
         
         // Save the PDF
@@ -647,36 +698,133 @@ function printResume() {
     
     // Open print window
     const printWindow = window.open('', '_blank');
-    printWindow.document.write(printContent);
-    printWindow.document.close();
+    if (printWindow) {
+        printWindow.document.write(printContent);
+        printWindow.document.close();
+        
+        // Wait for content to load, then print
+        printWindow.onload = function() {
+            printWindow.focus();
+            printWindow.print();
+            setTimeout(() => {
+                printWindow.close();
+            }, 100);
+        };
+    }
+}
+
+// ====== COOKIE CONSENT ======
+function setupCookieConsent() {
+    setTimeout(() => {
+        const consent = getCookie('cookie_consent');
+        if (!consent) {
+            showCookieConsent();
+        }
+    }, 2000);
+}
+
+function showCookieConsent() {
+    const consent = document.getElementById('cookieConsent');
+    if (consent) {
+        setTimeout(() => {
+            consent.classList.add('show');
+        }, 1000);
+    }
+}
+
+function hideCookieConsent() {
+    const consent = document.getElementById('cookieConsent');
+    if (consent) {
+        consent.classList.remove('show');
+    }
+}
+
+function getCookie(name) {
+    const cookies = document.cookie.split('; ');
+    for (let cookie of cookies) {
+        const [key, value] = cookie.split('=');
+        if (key === name) return value;
+    }
+    return null;
+}
+
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
+}
+
+// ====== TOAST ======
+function showToast(message, type = 'info') {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
     
-    // Wait for content to load, then print
-    printWindow.onload = function() {
-        printWindow.focus();
-        printWindow.print();
-        printWindow.close();
-    };
+    // Clear existing timeout
+    if (toast.timeoutId) {
+        clearTimeout(toast.timeoutId);
+    }
+    
+    // Set message and type
+    toast.textContent = message;
+    toast.className = 'toast';
+    toast.classList.add(type);
+    
+    // Add icon based on type
+    let icon = 'info-circle';
+    switch(type) {
+        case 'success':
+            icon = 'check-circle';
+            break;
+        case 'error':
+            icon = 'exclamation-circle';
+            break;
+        case 'warning':
+            icon = 'exclamation-triangle';
+            break;
+    }
+    
+    toast.innerHTML = `<i class="fas fa-${icon}"></i> ${message}`;
+    
+    // Show toast
+    toast.classList.add('show');
+    
+    // Auto hide after 3 seconds
+    toast.timeoutId = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
 }
 
 // ====== MODAL FUNCTIONS ======
 function showLoginModal() {
-    document.getElementById('loginModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
+    const modal = document.getElementById('loginModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function hideLoginModal() {
-    document.getElementById('loginModal').classList.remove('active');
-    document.body.style.overflow = '';
+    const modal = document.getElementById('loginModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
 
 function showSaveModal() {
-    document.getElementById('saveModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
+    const modal = document.getElementById('saveModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function hideSaveModal() {
-    document.getElementById('saveModal').classList.remove('active');
-    document.body.style.overflow = '';
+    const modal = document.getElementById('saveModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
 
 // ====== KEYBOARD SHORTCUTS ======
@@ -693,3 +841,16 @@ document.addEventListener('keydown', function(e) {
         hideSaveModal();
     }
 });
+
+// ====== FALLBACK LOADING ======
+// If loading takes too long, force hide after 5 seconds
+setTimeout(() => {
+    const loading = document.getElementById('loading');
+    if (loading && !loading.classList.contains('loaded')) {
+        console.warn('Forcing loading screen to hide after timeout');
+        loading.classList.add('loaded');
+        setTimeout(() => {
+            loading.style.display = 'none';
+        }, 300);
+    }
+}, 5000);
