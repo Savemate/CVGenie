@@ -1,50 +1,19 @@
 // ====== APP STATE ======
 let currentTab = 'personal';
 let currentStep = 1;
-let currentTemplate = 'sa-classic';
-let selectedSector = 'retail';
+let currentTemplate = 'professional';
+let selectedCareerField = 'retail';
 let resumeData = null;
-
-// ====== UTILITY FUNCTIONS ======
-function showToast(message, type = 'info') {
-    const toast = document.getElementById('toast');
-    if (!toast) return;
-    
-    // Clear existing timeout
-    if (toast.timeoutId) {
-        clearTimeout(toast.timeoutId);
-    }
-    
-    // Set message and type
-    toast.textContent = message;
-    toast.className = 'toast';
-    toast.classList.add(type);
-    
-    // Add icon based on type
-    let icon = 'info-circle';
-    switch(type) {
-        case 'success': icon = 'check-circle'; break;
-        case 'error': icon = 'exclamation-circle'; break;
-        case 'warning': icon = 'exclamation-triangle'; break;
-    }
-    
-    toast.innerHTML = `<i class="fas fa-${icon}"></i> ${message}`;
-    
-    // Show toast
-    toast.classList.add('show');
-    
-    // Auto hide after 3 seconds
-    toast.timeoutId = setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
-}
 
 // ====== INITIALIZATION ======
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize with South African examples
-    initSouthAfricanExamples();
-    setupEventListeners();
-    setupCookieConsent();
+    // Initialize with career examples
+    setTimeout(() => {
+        initCareerExamples();
+        setupEventListeners();
+        hideLoading();
+        setupCookieConsent();
+    }, 1000);
     
     // Scroll header effect
     window.addEventListener('scroll', function() {
@@ -57,58 +26,47 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// ====== LOADING ======
+function hideLoading() {
+    const loading = document.getElementById('loading');
+    loading.classList.add('loaded');
+    setTimeout(() => {
+        loading.style.display = 'none';
+    }, 300);
+}
+
 // ====== COOKIE CONSENT ======
 function setupCookieConsent() {
-    // Check if CookieYes is loaded
-    if (!window.cookieyes) {
-        // Show our fallback consent after 2 seconds
-        setTimeout(() => {
-            const consent = getCookie('cookie_consent');
-            if (!consent) {
-                showCookieConsent();
-            }
-        }, 2000);
-    }
-    
-    // Setup cookie consent buttons
-    const acceptBtn = document.getElementById('acceptCookies');
-    const rejectBtn = document.getElementById('rejectCookies');
-    const customizeBtn = document.getElementById('customizeCookies');
-    
-    if (acceptBtn) acceptBtn.addEventListener('click', acceptCookies);
-    if (rejectBtn) rejectBtn.addEventListener('click', rejectCookies);
-    if (customizeBtn) customizeBtn.addEventListener('click', () => {
-        hideCookieConsent();
-        showToast('Cookie customization would open here in a real implementation', 'info');
-    });
+    setTimeout(() => {
+        const consent = getCookie('cookie_consent');
+        if (!consent) {
+            showCookieConsent();
+        }
+    }, 2000);
 }
 
 function showCookieConsent() {
     const consent = document.getElementById('cookieConsent');
-    if (consent) {
-        setTimeout(() => {
-            consent.classList.add('show');
-        }, 1000);
-    }
+    setTimeout(() => {
+        consent.classList.add('show');
+    }, 1000);
 }
 
 function hideCookieConsent() {
     const consent = document.getElementById('cookieConsent');
-    if (consent) {
-        consent.classList.remove('show');
-    }
+    consent.classList.remove('show');
 }
 
 function acceptCookies() {
     setCookie('cookie_consent', 'accepted', 365);
     hideCookieConsent();
-    showToast('Cookie preferences saved', 'success');
+    showToast('Cookie preferences saved to 9to5 University', 'success');
 }
 
 function rejectCookies() {
     setCookie('cookie_consent', 'rejected', 365);
     hideCookieConsent();
-    showToast('Cookie preferences saved', 'info');
+    showToast('Cookie preferences updated', 'info');
 }
 
 function getCookie(name) {
@@ -125,6 +83,20 @@ function setCookie(name, value, days) {
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
 }
+
+// Setup cookie consent buttons
+document.addEventListener('DOMContentLoaded', function() {
+    const acceptBtn = document.getElementById('acceptCookies');
+    const rejectBtn = document.getElementById('rejectCookies');
+    const customizeBtn = document.getElementById('customizeCookies');
+    
+    if (acceptBtn) acceptBtn.addEventListener('click', acceptCookies);
+    if (rejectBtn) rejectBtn.addEventListener('click', rejectCookies);
+    if (customizeBtn) customizeBtn.addEventListener('click', () => {
+        hideCookieConsent();
+        showToast('Cookie customization would open here', 'info');
+    });
+});
 
 // ====== MOBILE MENU ======
 function toggleMobileMenu() {
@@ -163,18 +135,8 @@ function setupEventListeners() {
         });
     });
     
-    // Initialize sector selection
-    selectSector('retail');
-    
-    // Contact form submission
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            showToast('Message sent successfully!', 'success');
-            this.reset();
-        });
-    }
+    // Initialize career field selection
+    selectCareerField('retail');
     
     // Close modals when clicking outside
     window.addEventListener('click', function(event) {
@@ -189,33 +151,11 @@ function setupEventListeners() {
             hideSaveModal();
         }
     });
-    
-    // Keyboard shortcuts
-    document.addEventListener('keydown', function(e) {
-        // Ctrl/Cmd + S to save
-        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-            e.preventDefault();
-            showSaveModal();
-        }
-        
-        // Escape to close modals
-        if (e.key === 'Escape') {
-            hideLoginModal();
-            hideSaveModal();
-        }
-    });
-    
-    // Update preview on all input changes
-    document.querySelectorAll('input, textarea').forEach(input => {
-        if (!input.classList.contains('exp-title') && !input.classList.contains('edu-degree')) {
-            input.addEventListener('input', updatePreview);
-        }
-    });
 }
 
 // ====== START BUILDING ======
 function startBuilding() {
-    // Show toddler
+    // Show progress tracker
     document.getElementById('toddler').classList.add('active');
     
     // Scroll to builder section
@@ -224,7 +164,7 @@ function startBuilding() {
     // Show first tab
     changeTab('personal');
     
-    showToast('Welcome to CVGenie! Start building your professional resume.', 'info');
+    showToast('Welcome to 9to5 University Career Builder!', 'info');
 }
 
 // ====== CHANGE TAB ======
@@ -253,7 +193,7 @@ function changeTab(tabName) {
         }
     });
     
-    // Update toddler progress
+    // Update progress tracker
     const steps = {
         'personal': 1,
         'experience': 2,
@@ -263,7 +203,7 @@ function changeTab(tabName) {
     };
     
     if (steps[tabName]) {
-        updateToddler(steps[tabName]);
+        updateProgressTracker(steps[tabName]);
     }
     
     currentTab = tabName;
@@ -274,12 +214,12 @@ function changeTab(tabName) {
     }
 }
 
-// ====== UPDATE TODDLER ======
-function updateToddler(step) {
+// ====== UPDATE PROGRESS TRACKER ======
+function updateProgressTracker(step) {
     currentStep = step;
     
     // Update step circles
-    document.querySelectorAll('.toddler-step').forEach((stepEl, index) => {
+    document.querySelectorAll('.toddler-step').forEach((stepEl, index) {
         if (index + 1 <= step) {
             stepEl.classList.add('active');
         } else {
@@ -289,67 +229,64 @@ function updateToddler(step) {
     
     // Update progress bar
     const progress = (step / 5) * 100;
-    const progressFill = document.getElementById('progressFill');
-    if (progressFill) {
-        progressFill.style.width = `${progress}%`;
-    }
+    document.getElementById('progressFill').style.width = `${progress}%`;
 }
 
-// ====== SELECT JOB SECTOR ======
-function selectSector(sector) {
-    selectedSector = sector;
-    document.querySelectorAll('.sector-btn').forEach(btn => {
+// ====== SELECT CAREER FIELD ======
+function selectCareerField(field) {
+    selectedCareerField = field;
+    document.querySelectorAll('.field-btn').forEach(btn => {
         btn.classList.remove('active');
     });
     
     // Find and activate the clicked button
     event.target.classList.add('active');
     
-    // Update form examples based on sector
-    updateSectorExamples(sector);
+    // Update form examples based on field
+    updateCareerFieldExamples(field);
 }
 
-// ====== UPDATE SECTOR EXAMPLES ======
-function updateSectorExamples(sector) {
+// ====== UPDATE CAREER FIELD EXAMPLES ======
+function updateCareerFieldExamples(field) {
     const examples = {
         'corporate': { 
             title: 'Office Administrator', 
             skills: 'Microsoft Office, Administrative Support, Data Entry, Communication, Time Management',
-            summary: 'Experienced Office Administrator with strong organizational and communication skills. Proven ability to manage multiple tasks efficiently while maintaining attention to detail.'
+            summary: 'Professional Office Administrator with strong organizational and communication skills. Committed to efficient office management and supporting team productivity.'
         },
         'technical': { 
-            title: 'Electrician', 
-            skills: 'Electrical Installations, Circuit Testing, Safety Compliance, Problem Solving, Wiring Diagrams',
-            summary: 'Qualified Electrician with extensive experience in residential and commercial electrical systems. Strong focus on safety standards and quality workmanship.'
+            title: 'Technical Specialist', 
+            skills: 'Technical Support, System Administration, Troubleshooting, Network Management, IT Security',
+            summary: 'Technical professional with expertise in system administration and IT support. Focused on maintaining optimal system performance and user satisfaction.'
         },
         'healthcare': { 
-            title: 'Enrolled Nurse', 
-            skills: 'Patient Care, Medication Administration, Vital Signs, Infection Control, Wound Care',
-            summary: 'Compassionate Enrolled Nurse with experience in hospital and clinic settings. Dedicated to providing high-quality patient care and support.'
+            title: 'Healthcare Professional', 
+            skills: 'Patient Care, Medical Terminology, Healthcare Administration, Clinical Skills, EHR Systems',
+            summary: 'Dedicated healthcare professional committed to providing quality patient care and supporting medical team operations.'
         },
         'education': { 
-            title: 'Foundation Phase Teacher', 
-            skills: 'Lesson Planning, Classroom Management, Child Development, Assessment, Curriculum Development',
-            summary: 'Dedicated Foundation Phase Teacher with a passion for early childhood education. Experienced in creating engaging learning environments.'
+            title: 'Education Professional', 
+            skills: 'Curriculum Development, Classroom Management, Educational Technology, Student Assessment, Lesson Planning',
+            summary: 'Passionate education professional focused on creating engaging learning environments and supporting student development.'
         },
         'retail': { 
-            title: 'Store Manager', 
+            title: 'Retail Manager', 
             skills: 'Customer Service, Team Management, Inventory Control, Sales Techniques, Visual Merchandising',
-            summary: 'Experienced Store Manager with 5+ years in retail management. Skilled in team leadership, inventory management, and customer service excellence.'
+            summary: 'Experienced Retail Manager with 5+ years in retail management. Skilled in team leadership, inventory management, and driving store profitability.'
         },
-        'hospitality': { 
-            title: 'Hotel Supervisor', 
-            skills: 'Guest Services, Staff Coordination, Reservation Management, Quality Control, Event Planning',
-            summary: 'Hospitality professional with experience in hotel operations and guest services. Committed to delivering exceptional customer experiences.'
+        'creative': { 
+            title: 'Creative Professional', 
+            skills: 'Graphic Design, Content Creation, Digital Media, Brand Development, Creative Strategy',
+            summary: 'Creative professional with expertise in visual design and content development. Focused on creating compelling brand experiences.'
         },
         'skilled': { 
-            title: 'Automotive Technician', 
-            skills: 'Vehicle Maintenance, Diagnostic Testing, Repair Work, Customer Service, Parts Management',
-            summary: 'Skilled Automotive Technician with expertise in vehicle diagnostics and repair. Committed to providing quality service and customer satisfaction.'
+            title: 'Skilled Trade Professional', 
+            skills: 'Technical Expertise, Quality Control, Safety Compliance, Equipment Operation, Project Management',
+            summary: 'Skilled trade professional committed to quality workmanship and adherence to safety standards.'
         }
     };
     
-    const example = examples[sector] || examples.retail;
+    const example = examples[field] || examples.retail;
     document.getElementById('jobTitle').value = example.title;
     document.getElementById('technicalSkills').value = example.skills;
     document.getElementById('summary').value = example.summary;
@@ -357,15 +294,15 @@ function updateSectorExamples(sector) {
     updatePreview();
 }
 
-// ====== INITIALIZE EXAMPLES ======
-function initSouthAfricanExamples() {
+// ====== INITIALIZE CAREER EXAMPLES ======
+function initCareerExamples() {
     // Add initial experience section
     addExperience();
     
     // Add initial education section
     addEducation();
     
-    // Set South African examples
+    // Set career examples
     setTimeout(() => {
         const expSection = document.querySelector('.experience-section');
         if (expSection) {
@@ -387,6 +324,8 @@ function initSouthAfricanExamples() {
         
         updatePreview();
     }, 100);
+    
+    showToast('Welcome to 9to5 University Career Platform', 'info');
 }
 
 // ====== ADD EXPERIENCE ======
@@ -398,7 +337,7 @@ function addExperience() {
         <div class="form-section experience-section" id="exp-${id}">
             <div class="form-section-header">
                 <h4><i class="fas fa-briefcase"></i> Work Experience</h4>
-                <button type="button" class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="removeSection('exp-${id}')">
+                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="removeSection('exp-${id}')">
                     <i class="fas fa-trash"></i> Remove
                 </button>
             </div>
@@ -437,7 +376,7 @@ function addExperience() {
     `;
     
     container.insertAdjacentHTML('beforeend', html);
-    showToast('Experience section added', 'success');
+    showToast('Experience section added to your career profile', 'success');
 }
 
 // ====== ADD EDUCATION ======
@@ -449,7 +388,7 @@ function addEducation() {
         <div class="form-section education-section" id="edu-${id}">
             <div class="form-section-header">
                 <h4><i class="fas fa-graduation-cap"></i> Education & Training</h4>
-                <button type="button" class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="removeSection('edu-${id}')">
+                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="removeSection('edu-${id}')">
                     <i class="fas fa-trash"></i> Remove
                 </button>
             </div>
@@ -480,7 +419,7 @@ function addEducation() {
     `;
     
     container.insertAdjacentHTML('beforeend', html);
-    showToast('Education section added', 'success');
+    showToast('Education section added to your career profile', 'success');
 }
 
 // ====== REMOVE SECTION ======
@@ -489,7 +428,7 @@ function removeSection(sectionId) {
     if (section) {
         section.remove();
         updatePreview();
-        showToast('Section removed', 'info');
+        showToast('Section removed from your career profile', 'info');
     }
 }
 
@@ -504,7 +443,7 @@ function updatePreview() {
             location: document.getElementById('location').value || 'City, Province',
             linkedin: document.getElementById('linkedin')?.value || ''
         },
-        summary: document.getElementById('summary').value || 'Professional profile goes here...',
+        summary: document.getElementById('summary').value || 'Professional summary goes here...',
         skills: {
             technical: document.getElementById('technicalSkills').value || '',
             soft: document.getElementById('softSkills').value || '',
@@ -561,8 +500,8 @@ function renderResume(data) {
     
     // Render based on selected template
     switch(currentTemplate) {
-        case 'sa-classic':
-            html = renderSAClassicTemplate(data);
+        case 'professional':
+            html = renderProfessionalTemplate(data);
             break;
         case 'modern':
             html = renderModernTemplate(data);
@@ -577,7 +516,7 @@ function renderResume(data) {
             html = renderSimpleTemplate(data);
             break;
         default:
-            html = renderSAClassicTemplate(data);
+            html = renderProfessionalTemplate(data);
     }
     
     container.innerHTML = html;
@@ -597,14 +536,14 @@ function selectTemplate(template) {
     
     // Show appropriate toast message
     const templateNames = {
-        'sa-classic': 'South African Classic',
-        'modern': 'Modern Professional',
-        'jobjack': 'JobJack Style',
-        'executive': 'Executive',
-        'simple': 'Simple & Clean'
+        'professional': 'Professional University Template',
+        'modern': 'Modern Template',
+        'jobjack': 'JobJack Style Template',
+        'executive': 'Executive Template',
+        'simple': 'Simple Template'
     };
     
-    showToast(`${templateNames[template]} template selected`, 'info');
+    showToast(`${templateNames[template]} selected for your resume`, 'info');
 }
 
 // ====== DOWNLOAD PDF ======
@@ -616,8 +555,8 @@ async function downloadPDF() {
         downloadBtn.disabled = true;
         
         // Check if jsPDF is available
-        if (typeof window.jspdf === 'undefined') {
-            throw new Error('PDF library not loaded. Please refresh the page.');
+        if (!window.jspdf) {
+            throw new Error('PDF library not loaded');
         }
         
         const { jsPDF } = window.jspdf;
@@ -637,9 +576,8 @@ async function downloadPDF() {
         const originalWidth = resumeElement.style.width;
         const originalHeight = resumeElement.style.height;
         const originalMargin = resumeElement.style.margin;
-        const originalBoxShadow = resumeElement.style.boxShadow;
         
-        // Set A4 size for PDF generation
+        // Set temporary styles for PDF generation
         resumeElement.style.width = '210mm';
         resumeElement.style.height = '297mm';
         resumeElement.style.margin = '0';
@@ -651,37 +589,37 @@ async function downloadPDF() {
             useCORS: true,
             backgroundColor: '#ffffff',
             logging: false,
-            width: 210 * 3.78, // Convert mm to pixels (96dpi)
-            height: 297 * 3.78
+            width: 210 * 2.83465,
+            height: 297 * 2.83465
         });
         
         // Restore original styles
         resumeElement.style.width = originalWidth;
         resumeElement.style.height = originalHeight;
         resumeElement.style.margin = originalMargin;
-        resumeElement.style.boxShadow = originalBoxShadow;
+        resumeElement.style.boxShadow = '';
         
         const imgData = canvas.toDataURL('image/png');
-        const imgWidth = 190; // Leave margins
+        const imgWidth = 190;
         const imgHeight = canvas.height * imgWidth / canvas.width;
         
         // Add the image
         doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
         
-        // Add footer with CVGenie branding
+        // Add footer with 9to5 University branding
         doc.setFontSize(9);
         doc.setTextColor(100, 100, 100);
-        doc.text('Created with CVGenie - Professional Resume Builder for South Africa', 105, 285, { align: 'center' });
+        doc.text('Created with 9to5 University - Career Education Platform', 105, 285, { align: 'center' });
         
         // Generate filename
         const fileName = document.getElementById('fullName').value 
-            ? `${document.getElementById('fullName').value.replace(/\s+/g, '_')}_Professional_CV.pdf`
-            : 'My_Professional_CV.pdf';
+            ? `${document.getElementById('fullName').value.replace(/\s+/g, '_')}_9to5_University_Resume.pdf`
+            : '9to5_University_Professional_Resume.pdf';
         
         // Save the PDF
         doc.save(fileName);
         
-        showToast('Professional resume downloaded successfully!', 'success');
+        showToast('Professional resume downloaded from 9to5 University!', 'success');
     } catch (error) {
         console.error('PDF generation error:', error);
         showToast('Error generating PDF. Please try again or use the print option.', 'error');
@@ -710,7 +648,7 @@ function printResume() {
         <!DOCTYPE html>
         <html>
         <head>
-            <title>Print Resume</title>
+            <title>Print Resume - 9to5 University</title>
             <style>
                 @media print {
                     @page {
@@ -721,20 +659,15 @@ function printResume() {
                         font-family: 'Inter', sans-serif;
                         margin: 0;
                         padding: 0;
-                        background: white;
-                        color: black;
                     }
                     * {
                         box-sizing: border-box;
                     }
                 }
-                body {
-                    padding: 20mm;
-                }
             </style>
         </head>
         <body>
-            ${resumeElement.innerHTML}
+            ${resumeElement.outerHTML}
         </body>
         </html>
     `;
@@ -750,6 +683,46 @@ function printResume() {
         printWindow.print();
         printWindow.close();
     };
+}
+
+// ====== SHOW TOAST ======
+function showToast(message, type = 'info') {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    
+    // Clear existing timeout
+    if (toast.timeoutId) {
+        clearTimeout(toast.timeoutId);
+    }
+    
+    // Set message and type
+    toast.textContent = message;
+    toast.className = 'toast';
+    toast.classList.add(type);
+    
+    // Add icon based on type
+    let icon = 'info-circle';
+    switch(type) {
+        case 'success':
+            icon = 'check-circle';
+            break;
+        case 'error':
+            icon = 'exclamation-circle';
+            break;
+        case 'warning':
+            icon = 'exclamation-triangle';
+            break;
+    }
+    
+    toast.innerHTML = `<i class="fas fa-${icon}"></i> ${message}`;
+    
+    // Show toast
+    toast.classList.add('show');
+    
+    // Auto hide after 3 seconds
+    toast.timeoutId = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
 }
 
 // ====== MODAL FUNCTIONS ======
@@ -773,91 +746,17 @@ function hideSaveModal() {
     document.body.style.overflow = '';
 }
 
-// ====== BASIC TEMPLATE FUNCTIONS (fallback if templates.js fails) ======
-function renderSAClassicTemplate(data) {
-    return `
-        <div class="resume-header">
-            <div class="name">${escapeHTML(data.personal.name)}</div>
-            <div class="title">${escapeHTML(data.personal.title)}</div>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i> ${escapeHTML(data.personal.email)}
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i> ${escapeHTML(data.personal.phone)}
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i> ${escapeHTML(data.personal.location)}
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <div class="section-title">PROFESSIONAL PROFILE</div>
-            <p>${formatText(data.summary)}</p>
-        </div>
-        
-        ${data.experience.length > 0 ? `
-            <div class="section">
-                <div class="section-title">WORK EXPERIENCE</div>
-                ${data.experience.map(exp => `
-                    <div style="margin-bottom: 20px;">
-                        <div>
-                            <strong>${escapeHTML(exp.title)}</strong>
-                            <span style="float: right;">${escapeHTML(exp.start)} - ${escapeHTML(exp.end)}</span>
-                        </div>
-                        <div>${escapeHTML(exp.company)} | ${escapeHTML(exp.location)}</div>
-                        <div style="white-space: pre-line;">${formatText(exp.description)}</div>
-                    </div>
-                `).join('')}
-            </div>
-        ` : ''}
-        
-        ${data.education.length > 0 ? `
-            <div class="section">
-                <div class="section-title">EDUCATION</div>
-                ${data.education.map(edu => `
-                    <div style="margin-bottom: 15px;">
-                        <div>
-                            <strong>${escapeHTML(edu.degree)}</strong>
-                            <span style="float: right;">${escapeHTML(edu.end)}</span>
-                        </div>
-                        <div>${escapeHTML(edu.school)} | ${escapeHTML(edu.location)}</div>
-                    </div>
-                `).join('')}
-            </div>
-        ` : ''}
-    `;
-}
-
-function escapeHTML(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-}
-
-function formatText(text) {
-    if (!text) return '';
-    return escapeHTML(text).replace(/\n/g, '<br>');
-}
-
-// Make functions globally available
-window.startBuilding = startBuilding;
-window.changeTab = changeTab;
-window.selectSector = selectSector;
-window.addExperience = addExperience;
-window.addEducation = addEducation;
-window.removeSection = removeSection;
-window.selectTemplate = selectTemplate;
-window.downloadPDF = downloadPDF;
-window.printResume = printResume;
-window.toggleMobileMenu = toggleMobileMenu;
-window.scrollToSection = scrollToSection;
-window.showLoginModal = showLoginModal;
-window.hideLoginModal = hideLoginModal;
-window.showSaveModal = showSaveModal;
-window.hideSaveModal = hideSaveModal;
-window.showToast = showToast;
-
-console.log('CVGenie scripts loaded successfully');
+// ====== KEYBOARD SHORTCUTS ======
+document.addEventListener('keydown', function(e) {
+    // Ctrl/Cmd + S to save
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        showSaveModal();
+    }
+    
+    // Escape to close modals
+    if (e.key === 'Escape') {
+        hideLoginModal();
+        hideSaveModal();
+    }
+});
