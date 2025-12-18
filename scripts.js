@@ -5,15 +5,46 @@ let currentTemplate = 'sa-classic';
 let selectedSector = 'retail';
 let resumeData = null;
 
+// ====== UTILITY FUNCTIONS ======
+function showToast(message, type = 'info') {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    
+    // Clear existing timeout
+    if (toast.timeoutId) {
+        clearTimeout(toast.timeoutId);
+    }
+    
+    // Set message and type
+    toast.textContent = message;
+    toast.className = 'toast';
+    toast.classList.add(type);
+    
+    // Add icon based on type
+    let icon = 'info-circle';
+    switch(type) {
+        case 'success': icon = 'check-circle'; break;
+        case 'error': icon = 'exclamation-circle'; break;
+        case 'warning': icon = 'exclamation-triangle'; break;
+    }
+    
+    toast.innerHTML = `<i class="fas fa-${icon}"></i> ${message}`;
+    
+    // Show toast
+    toast.classList.add('show');
+    
+    // Auto hide after 3 seconds
+    toast.timeoutId = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
 // ====== INITIALIZATION ======
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize with South African examples
-    setTimeout(() => {
-        initSouthAfricanExamples();
-        setupEventListeners();
-        hideLoading();
-        setupCookieConsent();
-    }, 1000);
+    initSouthAfricanExamples();
+    setupEventListeners();
+    setupCookieConsent();
     
     // Scroll header effect
     window.addEventListener('scroll', function() {
@@ -26,19 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ====== LOADING ======
-function hideLoading() {
-    const loading = document.getElementById('loading');
-    loading.classList.add('loaded');
-    setTimeout(() => {
-        loading.style.display = 'none';
-    }, 300);
-}
-
 // ====== COOKIE CONSENT ======
 function setupCookieConsent() {
     // Check if CookieYes is loaded
     if (!window.cookieyes) {
+        // Show our fallback consent after 2 seconds
         setTimeout(() => {
             const consent = getCookie('cookie_consent');
             if (!consent) {
@@ -46,30 +69,46 @@ function setupCookieConsent() {
             }
         }, 2000);
     }
+    
+    // Setup cookie consent buttons
+    const acceptBtn = document.getElementById('acceptCookies');
+    const rejectBtn = document.getElementById('rejectCookies');
+    const customizeBtn = document.getElementById('customizeCookies');
+    
+    if (acceptBtn) acceptBtn.addEventListener('click', acceptCookies);
+    if (rejectBtn) rejectBtn.addEventListener('click', rejectCookies);
+    if (customizeBtn) customizeBtn.addEventListener('click', () => {
+        hideCookieConsent();
+        showToast('Cookie customization would open here in a real implementation', 'info');
+    });
 }
 
 function showCookieConsent() {
     const consent = document.getElementById('cookieConsent');
-    setTimeout(() => {
-        consent.classList.add('show');
-    }, 1000);
+    if (consent) {
+        setTimeout(() => {
+            consent.classList.add('show');
+        }, 1000);
+    }
 }
 
 function hideCookieConsent() {
     const consent = document.getElementById('cookieConsent');
-    consent.classList.remove('show');
+    if (consent) {
+        consent.classList.remove('show');
+    }
 }
 
 function acceptCookies() {
     setCookie('cookie_consent', 'accepted', 365);
     hideCookieConsent();
-    showToast('Cookie preferences saved');
+    showToast('Cookie preferences saved', 'success');
 }
 
 function rejectCookies() {
     setCookie('cookie_consent', 'rejected', 365);
     hideCookieConsent();
-    showToast('Cookie preferences saved');
+    showToast('Cookie preferences saved', 'info');
 }
 
 function getCookie(name) {
@@ -86,20 +125,6 @@ function setCookie(name, value, days) {
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
 }
-
-// Setup cookie consent buttons
-document.addEventListener('DOMContentLoaded', function() {
-    const acceptBtn = document.getElementById('acceptCookies');
-    const rejectBtn = document.getElementById('rejectCookies');
-    const customizeBtn = document.getElementById('customizeCookies');
-    
-    if (acceptBtn) acceptBtn.addEventListener('click', acceptCookies);
-    if (rejectBtn) rejectBtn.addEventListener('click', rejectCookies);
-    if (customizeBtn) customizeBtn.addEventListener('click', () => {
-        hideCookieConsent();
-        showToast('Cookie customization would open here in a real implementation');
-    });
-});
 
 // ====== MOBILE MENU ======
 function toggleMobileMenu() {
@@ -162,6 +187,28 @@ function setupEventListeners() {
         
         if (event.target === saveModal) {
             hideSaveModal();
+        }
+    });
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // Ctrl/Cmd + S to save
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            e.preventDefault();
+            showSaveModal();
+        }
+        
+        // Escape to close modals
+        if (e.key === 'Escape') {
+            hideLoginModal();
+            hideSaveModal();
+        }
+    });
+    
+    // Update preview on all input changes
+    document.querySelectorAll('input, textarea').forEach(input => {
+        if (!input.classList.contains('exp-title') && !input.classList.contains('edu-degree')) {
+            input.addEventListener('input', updatePreview);
         }
     });
 }
@@ -242,7 +289,10 @@ function updateToddler(step) {
     
     // Update progress bar
     const progress = (step / 5) * 100;
-    document.getElementById('progressFill').style.width = `${progress}%`;
+    const progressFill = document.getElementById('progressFill');
+    if (progressFill) {
+        progressFill.style.width = `${progress}%`;
+    }
 }
 
 // ====== SELECT JOB SECTOR ======
@@ -348,7 +398,7 @@ function addExperience() {
         <div class="form-section experience-section" id="exp-${id}">
             <div class="form-section-header">
                 <h4><i class="fas fa-briefcase"></i> Work Experience</h4>
-                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="removeSection('exp-${id}')">
+                <button type="button" class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="removeSection('exp-${id}')">
                     <i class="fas fa-trash"></i> Remove
                 </button>
             </div>
@@ -399,7 +449,7 @@ function addEducation() {
         <div class="form-section education-section" id="edu-${id}">
             <div class="form-section-header">
                 <h4><i class="fas fa-graduation-cap"></i> Education & Training</h4>
-                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="removeSection('edu-${id}')">
+                <button type="button" class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="removeSection('edu-${id}')">
                     <i class="fas fa-trash"></i> Remove
                 </button>
             </div>
@@ -566,8 +616,8 @@ async function downloadPDF() {
         downloadBtn.disabled = true;
         
         // Check if jsPDF is available
-        if (!window.jspdf) {
-            throw new Error('PDF library not loaded');
+        if (typeof window.jspdf === 'undefined') {
+            throw new Error('PDF library not loaded. Please refresh the page.');
         }
         
         const { jsPDF } = window.jspdf;
@@ -587,8 +637,9 @@ async function downloadPDF() {
         const originalWidth = resumeElement.style.width;
         const originalHeight = resumeElement.style.height;
         const originalMargin = resumeElement.style.margin;
+        const originalBoxShadow = resumeElement.style.boxShadow;
         
-        // Set temporary styles for PDF generation
+        // Set A4 size for PDF generation
         resumeElement.style.width = '210mm';
         resumeElement.style.height = '297mm';
         resumeElement.style.margin = '0';
@@ -600,15 +651,15 @@ async function downloadPDF() {
             useCORS: true,
             backgroundColor: '#ffffff',
             logging: false,
-            width: 210 * 2.83465, // Convert mm to pixels (1mm = 2.83465px at 72dpi)
-            height: 297 * 2.83465
+            width: 210 * 3.78, // Convert mm to pixels (96dpi)
+            height: 297 * 3.78
         });
         
         // Restore original styles
         resumeElement.style.width = originalWidth;
         resumeElement.style.height = originalHeight;
         resumeElement.style.margin = originalMargin;
-        resumeElement.style.boxShadow = '';
+        resumeElement.style.boxShadow = originalBoxShadow;
         
         const imgData = canvas.toDataURL('image/png');
         const imgWidth = 190; // Leave margins
@@ -670,15 +721,20 @@ function printResume() {
                         font-family: 'Inter', sans-serif;
                         margin: 0;
                         padding: 0;
+                        background: white;
+                        color: black;
                     }
                     * {
                         box-sizing: border-box;
                     }
                 }
+                body {
+                    padding: 20mm;
+                }
             </style>
         </head>
         <body>
-            ${resumeElement.outerHTML}
+            ${resumeElement.innerHTML}
         </body>
         </html>
     `;
@@ -694,46 +750,6 @@ function printResume() {
         printWindow.print();
         printWindow.close();
     };
-}
-
-// ====== SHOW TOAST ======
-function showToast(message, type = 'info') {
-    const toast = document.getElementById('toast');
-    if (!toast) return;
-    
-    // Clear existing timeout
-    if (toast.timeoutId) {
-        clearTimeout(toast.timeoutId);
-    }
-    
-    // Set message and type
-    toast.textContent = message;
-    toast.className = 'toast';
-    toast.classList.add(type);
-    
-    // Add icon based on type
-    let icon = 'info-circle';
-    switch(type) {
-        case 'success':
-            icon = 'check-circle';
-            break;
-        case 'error':
-            icon = 'exclamation-circle';
-            break;
-        case 'warning':
-            icon = 'exclamation-triangle';
-            break;
-    }
-    
-    toast.innerHTML = `<i class="fas fa-${icon}"></i> ${message}`;
-    
-    // Show toast
-    toast.classList.add('show');
-    
-    // Auto hide after 3 seconds
-    toast.timeoutId = setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
 }
 
 // ====== MODAL FUNCTIONS ======
@@ -757,18 +773,91 @@ function hideSaveModal() {
     document.body.style.overflow = '';
 }
 
-// ====== KEYBOARD SHORTCUTS ======
-document.addEventListener('keydown', function(e) {
-    // Ctrl/Cmd + S to save
-    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-        e.preventDefault();
-        showSaveModal();
-    }
-    
-    // Escape to close modals
-    if (e.key === 'Escape') {
-        hideLoginModal();
-        hideSaveModal();
-    }
-});
+// ====== BASIC TEMPLATE FUNCTIONS (fallback if templates.js fails) ======
+function renderSAClassicTemplate(data) {
+    return `
+        <div class="resume-header">
+            <div class="name">${escapeHTML(data.personal.name)}</div>
+            <div class="title">${escapeHTML(data.personal.title)}</div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i> ${escapeHTML(data.personal.email)}
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i> ${escapeHTML(data.personal.phone)}
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i> ${escapeHTML(data.personal.location)}
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">PROFESSIONAL PROFILE</div>
+            <p>${formatText(data.summary)}</p>
+        </div>
+        
+        ${data.experience.length > 0 ? `
+            <div class="section">
+                <div class="section-title">WORK EXPERIENCE</div>
+                ${data.experience.map(exp => `
+                    <div style="margin-bottom: 20px;">
+                        <div>
+                            <strong>${escapeHTML(exp.title)}</strong>
+                            <span style="float: right;">${escapeHTML(exp.start)} - ${escapeHTML(exp.end)}</span>
+                        </div>
+                        <div>${escapeHTML(exp.company)} | ${escapeHTML(exp.location)}</div>
+                        <div style="white-space: pre-line;">${formatText(exp.description)}</div>
+                    </div>
+                `).join('')}
+            </div>
+        ` : ''}
+        
+        ${data.education.length > 0 ? `
+            <div class="section">
+                <div class="section-title">EDUCATION</div>
+                ${data.education.map(edu => `
+                    <div style="margin-bottom: 15px;">
+                        <div>
+                            <strong>${escapeHTML(edu.degree)}</strong>
+                            <span style="float: right;">${escapeHTML(edu.end)}</span>
+                        </div>
+                        <div>${escapeHTML(edu.school)} | ${escapeHTML(edu.location)}</div>
+                    </div>
+                `).join('')}
+            </div>
+        ` : ''}
+    `;
+}
 
+function escapeHTML(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function formatText(text) {
+    if (!text) return '';
+    return escapeHTML(text).replace(/\n/g, '<br>');
+}
+
+// Make functions globally available
+window.startBuilding = startBuilding;
+window.changeTab = changeTab;
+window.selectSector = selectSector;
+window.addExperience = addExperience;
+window.addEducation = addEducation;
+window.removeSection = removeSection;
+window.selectTemplate = selectTemplate;
+window.downloadPDF = downloadPDF;
+window.printResume = printResume;
+window.toggleMobileMenu = toggleMobileMenu;
+window.scrollToSection = scrollToSection;
+window.showLoginModal = showLoginModal;
+window.hideLoginModal = hideLoginModal;
+window.showSaveModal = showSaveModal;
+window.hideSaveModal = hideSaveModal;
+window.showToast = showToast;
+
+console.log('CVGenie scripts loaded successfully');
