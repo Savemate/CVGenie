@@ -7,7 +7,24 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e40af'/><text x='50' y='65' text-anchor='middle' font-family='Arial' font-size='40' font-weight='bold' fill='white'>9</text></svg>">
+    <style>
+        .legal-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .legal-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .legal-header h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -29,162 +46,34 @@
                 </div>
             </a>
 
-            <nav class="main-nav">
-                <div class="nav-links">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="index.html#courses" class="nav-link">Courses</a>
-                    <a href="index.html#builder" class="nav-link">Resume Builder</a>
-                    <a href="index.html#resources" class="nav-link">Resources</a>
-                    <a href="index.html#about" class="nav-link">About</a>
-                </div>
-            </nav>
-
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
+            <button class="mobile-menu-btn" onclick="window.location.href='index.html'">
+                <i class="fas fa-home"></i> Back Home
             </button>
         </div>
     </header>
-
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <div class="mobile-nav-header">
-            <div class="logo">
-                <div class="logo-icon">9to5</div>
-                <div class="logo-text">
-                    <h1>9to5 University</h1>
-                </div>
-            </div>
-            <button onclick="toggleMobileMenu()" class="mobile-close">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <div class="mobile-nav-links">
-            <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
-            <a href="index.html#courses" class="mobile-nav-link" onclick="toggleMobileMenu()">Courses</a>
-            <a href="index.html#builder" class="mobile-nav-link" onclick="toggleMobileMenu()">Resume Builder</a>
-            <a href="index.html#resources" class="mobile-nav-link" onclick="toggleMobileMenu()">Resources</a>
-            <a href="index.html#about" class="mobile-nav-link" onclick="toggleMobileMenu()">About</a>
-            <div class="mobile-nav-divider"></div>
-            <a href="terms.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Terms & Conditions</a>
-            <a href="privacy.html" class="mobile-nav-link active" onclick="toggleMobileMenu()">Privacy Policy</a>
-            <a href="cookies.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Cookie Policy</a>
-        </div>
-    </div>
 
     <!-- Privacy Policy Content -->
     <section class="legal-section">
         <div class="container">
             <div class="legal-header">
                 <h1>Privacy Policy</h1>
-                <p class="legal-subtitle"><strong>9to5 University</strong> | Last Updated: January 2024</p>
+                <p><strong>9to5 University</strong> | Last Updated: January 2024</p>
             </div>
             
-            <div class="legal-content">
-                <div class="legal-section">
-                    <h2>1. Introduction</h2>
-                    <p>Welcome to 9to5 University. We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our career education platform.</p>
-                </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>1. Introduction</h2>
+                <p>We are committed to protecting your personal information and your right to privacy.</p>
                 
-                <div class="legal-section">
-                    <h2>2. Information We Collect</h2>
-                    
-                    <h3>2.1 Personal Information</h3>
-                    <p>When you use our career builder and learning platform, we collect information that you voluntarily provide to us:</p>
-                    <ul>
-                        <li>Name and contact information (email, phone number)</li>
-                        <li>Professional information (work experience, education, skills)</li>
-                        <li>Location information for South African context</li>
-                        <li>Resume content and career profile data</li>
-                        <li>Course progress and learning activity</li>
-                    </ul>
-                    
-                    <h3>2.2 Automatically Collected Information</h3>
-                    <p>We automatically collect certain information when you visit our platform:</p>
-                    <ul>
-                        <li>Device and usage information</li>
-                        <li>IP address and browser type</li>
-                        <li>Pages visited and learning progress</li>
-                        <li>Cookies and similar tracking technologies</li>
-                    </ul>
-                </div>
+                <h2>2. Information We Collect</h2>
+                <p>We collect information you voluntarily provide for career education purposes.</p>
                 
-                <div class="legal-section">
-                    <h2>3. How We Use Your Information</h2>
-                    <p>We use the information we collect for educational and career development purposes:</p>
-                    <ul>
-                        <li>To provide and maintain our career education services</li>
-                        <li>To create and manage your professional profiles and resumes</li>
-                        <li>To track your learning progress and course completion</li>
-                        <li>To improve and personalize your educational experience</li>
-                        <li>To communicate with you about course updates and career resources</li>
-                        <li>To comply with legal obligations (including POPIA in South Africa)</li>
-                        <li>To protect against fraud and abuse of educational resources</li>
-                    </ul>
-                </div>
+                <h2>3. Data Security</h2>
+                <p>We implement appropriate security measures to protect your information.</p>
                 
-                <div class="legal-section">
-                    <h2>4. Data Storage and Security</h2>
-                    <p>We implement appropriate technical and organizational security measures to protect your personal information in accordance with South African data protection laws (POPIA).</p>
-                    <p>Your resume data and course progress are primarily stored in your browser's local storage and are not transmitted to our servers unless you choose to save your progress for cross-device access.</p>
-                </div>
-                
-                <div class="legal-section">
-                    <h2>5. Data Retention</h2>
-                    <p>We retain your personal information only for as long as necessary to fulfill the educational purposes outlined in this Privacy Policy. Career profile data stored in your browser's local storage will remain until you clear your browser data or use our data deletion feature.</p>
-                </div>
-                
-                <div class="legal-section">
-                    <h2>6. Your Data Rights (POPIA Compliance)</h2>
-                    <p>Under the Protection of Personal Information Act (POPIA) in South Africa, you have the following rights regarding your personal information:</p>
-                    <ul>
-                        <li>The right to access your personal information</li>
-                        <li>The right to correct inaccurate information</li>
-                        <li>The right to delete your personal information</li>
-                        <li>The right to restrict processing of your information</li>
-                        <li>The right to object to processing</li>
-                        <li>The right to data portability</li>
-                        <li>The right to lodge a complaint with the Information Regulator</li>
-                    </ul>
-                    <p>To exercise these rights, please contact us at privacy@9to5university.co.za</p>
-                </div>
-                
-                <div class="legal-section">
-                    <h2>7. Cookies and Tracking Technologies</h2>
-                    <p>We use cookies and similar tracking technologies to track learning activity on our platform and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</p>
-                    <p>For more information about our use of cookies, please see our <a href="cookies.html">Cookie Policy</a>.</p>
-                </div>
-                
-                <div class="legal-section">
-                    <h2>8. Third-Party Services</h2>
-                    <p>We may employ third-party companies and individuals to facilitate our educational services, provide the services on our behalf, perform service-related services, or assist us in analyzing how our platform is used.</p>
-                    <p>These third parties have access to your personal information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>
-                </div>
-                
-                <div class="legal-section">
-                    <h2>9. Children's Privacy</h2>
-                    <p>Our platform does not address anyone under the age of 16. We do not knowingly collect personally identifiable information from anyone under the age of 16. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us.</p>
-                </div>
-                
-                <div class="legal-section">
-                    <h2>10. Changes to This Privacy Policy</h2>
-                    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
-                    <p>We will also notify registered users via email of any material changes to this Privacy Policy.</p>
-                </div>
-                
-                <div class="legal-section">
-                    <h2>11. Contact Us</h2>
-                    <p>If you have any questions about this Privacy Policy or our data practices, please contact our Information Officer:</p>
-                    <p><strong>Information Officer:</strong> Privacy Team<br>
-                    <strong>Email:</strong> privacy@9to5university.co.za<br>
-                    <strong>Physical Address:</strong> Johannesburg, South Africa<br>
-                    <strong>Phone:</strong> Available upon request for registered users</p>
-                    
-                    <p>For POPIA-related complaints, you may also contact the Information Regulator of South Africa:</p>
-                    <p><strong>Information Regulator (South Africa)</strong><br>
-                    JD House, 27 Stiemens Street, Braamfontein, Johannesburg, 2001<br>
-                    P.O Box 31533, Braamfontein, Johannesburg, 2017<br>
-                    complaints.IR@justice.gov.za</p>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </a>
                 </div>
             </div>
         </div>
@@ -199,39 +88,6 @@
                     <h3>9to5 University</h3>
                     <p style="color: rgba(255, 255, 255, 0.8); margin-top: 15px;">Career Education & Professional Development</p>
                 </div>
-                
-                <div class="footer-links">
-                    <h4>Learning Paths</h4>
-                    <ul>
-                        <li><a href="index.html#courses">Career Courses</a></li>
-                        <li><a href="index.html#builder">Resume Builder</a></li>
-                        <li><a href="index.html#resources">Resources</a></li>
-                        <li><a href="#">Skill Assessment</a></li>
-                        <li><a href="#">Career Planning</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">CV Writing Guide</a></li>
-                        <li><a href="#">Interview Preparation</a></li>
-                        <li><a href="#">Career Advice</a></li>
-                        <li><a href="#">Industry Insights</a></li>
-                        <li><a href="#">SA Job Market</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="terms.html">Terms & Conditions</a></li>
-                        <li><a href="privacy.html" class="active">Privacy Policy</a></li>
-                        <li><a href="cookies.html">Cookie Policy</a></li>
-                        <li><a href="#">Accessibility</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
             </div>
             
             <div class="footer-bottom">
@@ -243,28 +99,27 @@
         </div>
     </footer>
 
-    <!-- Toast Container -->
-    <div class="toast" id="toast"></div>
-
-    <script src="utils.js"></script>
-    <script src="script.js"></script>
     <script>
         // Simple loading handler
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
-                document.getElementById('loading').classList.add('loaded');
-                setTimeout(() => {
-                    document.getElementById('loading').style.display = 'none';
-                }, 300);
+                const loading = document.getElementById('loading');
+                if (loading) {
+                    loading.classList.add('loaded');
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                    }, 300);
+                }
             }, 500);
         });
         
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const mobileNav = document.getElementById('mobileNav');
-            mobileNav.classList.toggle('active');
-            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-        }
+        // Force hide after 3 seconds
+        setTimeout(() => {
+            const loading = document.getElementById('loading');
+            if (loading && loading.style.display !== 'none') {
+                loading.style.display = 'none';
+            }
+        }, 3000);
     </script>
 </body>
 </html>
