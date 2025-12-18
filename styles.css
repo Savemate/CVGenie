@@ -1,10 +1,10 @@
 /* ====== GRAY THEME VARIABLES ====== */
 :root {
-    --primary: #4b5563;        /* Main brand color */
-    --primary-dark: #374151;   /* Darker shade */
-    --primary-light: #9ca3af;  /* Lighter shade */
-    --secondary: #d97706;      /* Accent color */
-}
+  /* Primary Gray Theme */
+  --primary: #4b5563; /* Gray-600 */
+  --primary-dark: #374151; /* Gray-700 */
+  --primary-light: #9ca3af; /* Gray-400 */
+  --secondary: #d97706; /* Keeping SA Gold as accent */
   --accent: #ffffff;
   --light: #f9fafb; /* Gray-50 */
   --dark: #111827; /* Gray-900 */
