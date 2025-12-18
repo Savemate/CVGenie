@@ -28,23 +28,597 @@
             --radius-lg: 12px;
         }
 
-        /* ====== UPDATED HEADER ====== */
-        .logo-text span {
-            display: none; /* Remove slogan */
+        /* ====== BASE STYLES ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .nav-actions .btn-outline {
-            padding: 8px 16px; /* Smaller sign in button */
-            font-size: 13px;
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
         }
 
-        .nav-actions .btn-primary {
-            display: none; /* Remove Build Now button */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        /* ====== UPDATED TODDLER ====== */
+        /* ====== HEADER STYLES ====== */
+        .main-header {
+            background: white;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--dark);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* ====== NAVIGATION ====== */
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        /* ====== BUTTONS ====== */
+        .btn {
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-accent {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background: #b45309;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ====== HERO SECTION ====== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ====== TODDLER ====== */
+        .toddler-container {
+            background: white;
+            padding: 20px 0;
+            box-shadow: var(--shadow-sm);
+            display: none;
+        }
+
         .toddler-container.active {
             display: block;
+        }
+
+        .toddler {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .toddler-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+        }
+
+        .toddler-step.active .step-circle {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray);
+        }
+
+        .toddler-step.active .step-label {
+            color: var(--primary);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 2px;
+            width: 20%;
+            transition: width 0.3s;
+        }
+
+        /* ====== BUILDER SECTION ====== */
+        .builder-section {
+            padding: 80px 0;
+            background: var(--light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .builder-container {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .builder-tabs {
+            display: flex;
+            background: var(--light);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 20px;
+            background: none;
+            border: none;
+            border-right: 1px solid var(--border);
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .tab:last-child {
+            border-right: none;
+        }
+
+        .tab:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .tab.active {
+            background: white;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .builder-content {
+            padding: 30px;
+            min-height: 600px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ====== FORM STYLES ====== */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* ====== FORM SECTIONS ====== */
+        .form-section {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .form-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ====== PREVIEW SECTION ====== */
+        .resume-preview-container {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: var(--light);
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ====== UTILITY CLASSES ====== */
+        .mb-0 { margin-bottom: 0 !important; }
+        .mb-1 { margin-bottom: 5px !important; }
+        .mb-3 { margin-bottom: 15px !important; }
+        .mb-4 { margin-bottom: 20px !important; }
+        .mt-4 { margin-top: 20px !important; }
+        .d-flex { display: flex !important; }
+        .gap-2 { gap: 10px !important; }
+        .justify-content-between { justify-content: space-between !important; }
+        .justify-content-end { justify-content: flex-end !important; }
+        .align-items-center { align-items: center !important; }
+        .text-center { text-align: center !important; }
+
+        /* ====== MOBILE NAVIGATION ====== */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 2000;
+            transform: translateX(-100%);
+            transition: transform 0.3s;
+            display: none;
+        }
+
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav-links {
+            padding: 20px;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 15px 0;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav-link:last-child {
+            border-bottom: none;
+        }
+
+        /* ====== MODALS ====== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        /* ====== TOAST ====== */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 4000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.error {
+            background: #dc2626;
+        }
+
+        .toast.success {
+            background: var(--success);
+        }
+
+        /* ====== RESPONSIVE DESIGN ====== */
+        @media (max-width: 768px) {
+            .main-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .toddler {
+                display: none;
+            }
+
+            .builder-tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .mobile-nav {
+                display: block;
+            }
         }
 
         /* ====== UPDATED RESUME TEMPLATES ====== */
@@ -52,6 +626,9 @@
             min-height: 900px;
             background: white;
             font-family: 'Inter', sans-serif;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
         }
 
         /* South African Classic Template */
@@ -249,7 +826,43 @@
             font-size: 16px;
         }
 
-        /* ====== UPDATED FOOTER ====== */
+        /* ====== FOOTER ====== */
+        .main-footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
@@ -318,7 +931,6 @@
                 <div class="logo-icon">CV</div>
                 <div class="logo-text">
                     <h1>CVGenie</h1>
-                    <!-- Slogan removed -->
                 </div>
             </a>
 
@@ -725,7 +1337,55 @@
         </div>
     </footer>
 
-    <!-- Modals (Keep existing modals, just updating copyright) -->
+    <!-- Modals -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Sign In</h3>
+                <button class="modal-close" onclick="hideLoginModal()">×</button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="your.email@example.com">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" placeholder="Enter your password">
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="hideLoginModal()">
+                Sign In
+            </button>
+            <p class="text-center mt-3" style="color: var(--gray); font-size: 14px;">
+                Don't have an account? <a href="#" style="color: var(--primary);">Continue without account</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="modal" id="saveModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Save Your Resume</h3>
+                <button class="modal-close" onclick="hideSaveModal()">×</button>
+            </div>
+            <p style="margin-bottom: 20px; color: var(--gray);">
+                Save your resume to access it later from any device. We'll email you a secure link.
+            </p>
+            <div class="form-group">
+                <label class="form-label">Your Email</label>
+                <input type="email" class="form-control" placeholder="your.email@example.com">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Create a Password (Optional)</label>
+                <input type="password" class="form-control" placeholder="Leave blank for email-only access">
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="hideSaveModal(); showToast('Resume saved successfully! Check your email for the link.')">
+                Save Resume
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast" id="toast"></div>
 
     <script>
         // App State
@@ -749,6 +1409,34 @@
             updatePreview();
             setupEventListeners();
         });
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Update preview on all input changes
+            document.querySelectorAll('input, textarea').forEach(input => {
+                input.addEventListener('input', updatePreview);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            window.scrollTo({
+                                top: target.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Initialize sector selection
+            selectSector('retail');
+        }
 
         // Initialize with South African examples
         function initSouthAfricanExamples() {
@@ -783,12 +1471,90 @@
             }, 100);
         }
 
+        // Start building function
+        function startBuilding() {
+            // Show toddler
+            document.getElementById('toddler').classList.add('active');
+            
+            // Scroll to builder section
+            document.getElementById('builder').scrollIntoView({ behavior: 'smooth' });
+            
+            // Show first tab
+            changeTab('personal');
+            
+            showToast('Welcome to CVGenie! Start building your professional resume.');
+        }
+
+        // Change tab function
+        function changeTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab').forEach(tabBtn => {
+                tabBtn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            
+            // Activate corresponding tab button
+            document.querySelectorAll('.tab').forEach(tabBtn => {
+                if (tabBtn.textContent.includes(tabName.charAt(0).toUpperCase() + tabName.slice(1)) || 
+                    tabBtn.getAttribute('onclick')?.includes(tabName)) {
+                    tabBtn.classList.add('active');
+                }
+            });
+            
+            // Update toddler progress
+            const steps = {
+                'personal': 1,
+                'experience': 2,
+                'education': 3,
+                'skills': 4,
+                'preview': 5
+            };
+            
+            if (steps[tabName]) {
+                updateToddler(steps[tabName]);
+            }
+            
+            currentTab = tabName;
+            
+            // Update preview if we're on the preview tab
+            if (tabName === 'preview') {
+                updatePreview();
+            }
+        }
+
+        // Update toddler progress
+        function updateToddler(step) {
+            currentStep = step;
+            
+            // Update step circles
+            document.querySelectorAll('.toddler-step').forEach((stepEl, index) => {
+                if (index + 1 <= step) {
+                    stepEl.classList.add('active');
+                } else {
+                    stepEl.classList.remove('active');
+                }
+            });
+            
+            // Update progress bar
+            const progress = (step / 5) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+        }
+
         // Select job sector
         function selectSector(sector) {
             selectedSector = sector;
             document.querySelectorAll('.sector-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
+            
+            // Find and activate the clicked button
             event.target.classList.add('active');
             
             // Update form examples based on sector
@@ -798,18 +1564,47 @@
         // Update examples based on sector
         function updateSectorExamples(sector) {
             const examples = {
-                'corporate': { title: 'Office Administrator', skills: 'Microsoft Office, Administrative Support, Data Entry, Communication' },
-                'technical': { title: 'Electrician', skills: 'Electrical Installations, Circuit Testing, Safety Compliance, Problem Solving' },
-                'healthcare': { title: 'Enrolled Nurse', skills: 'Patient Care, Medication Administration, Vital Signs, Infection Control' },
-                'education': { title: 'Foundation Phase Teacher', skills: 'Lesson Planning, Classroom Management, Child Development, Assessment' },
-                'retail': { title: 'Store Manager', skills: 'Customer Service, Team Management, Inventory Control, Sales Techniques' },
-                'hospitality': { title: 'Hotel Supervisor', skills: 'Guest Services, Staff Coordination, Reservation Management, Quality Control' },
-                'skilled': { title: 'Automotive Technician', skills: 'Vehicle Maintenance, Diagnostic Testing, Repair Work, Customer Service' }
+                'corporate': { 
+                    title: 'Office Administrator', 
+                    skills: 'Microsoft Office, Administrative Support, Data Entry, Communication',
+                    summary: 'Experienced Office Administrator with strong organizational and communication skills. Proven ability to manage multiple tasks efficiently while maintaining attention to detail.'
+                },
+                'technical': { 
+                    title: 'Electrician', 
+                    skills: 'Electrical Installations, Circuit Testing, Safety Compliance, Problem Solving',
+                    summary: 'Qualified Electrician with extensive experience in residential and commercial electrical systems. Strong focus on safety standards and quality workmanship.'
+                },
+                'healthcare': { 
+                    title: 'Enrolled Nurse', 
+                    skills: 'Patient Care, Medication Administration, Vital Signs, Infection Control',
+                    summary: 'Compassionate Enrolled Nurse with experience in hospital and clinic settings. Dedicated to providing high-quality patient care and support.'
+                },
+                'education': { 
+                    title: 'Foundation Phase Teacher', 
+                    skills: 'Lesson Planning, Classroom Management, Child Development, Assessment',
+                    summary: 'Dedicated Foundation Phase Teacher with a passion for early childhood education. Experienced in creating engaging learning environments.'
+                },
+                'retail': { 
+                    title: 'Store Manager', 
+                    skills: 'Customer Service, Team Management, Inventory Control, Sales Techniques',
+                    summary: 'Experienced Store Manager with 5+ years in retail management. Skilled in team leadership, inventory management, and customer service excellence.'
+                },
+                'hospitality': { 
+                    title: 'Hotel Supervisor', 
+                    skills: 'Guest Services, Staff Coordination, Reservation Management, Quality Control',
+                    summary: 'Hospitality professional with experience in hotel operations and guest services. Committed to delivering exceptional customer experiences.'
+                },
+                'skilled': { 
+                    title: 'Automotive Technician', 
+                    skills: 'Vehicle Maintenance, Diagnostic Testing, Repair Work, Customer Service',
+                    summary: 'Skilled Automotive Technician with expertise in vehicle diagnostics and repair. Committed to providing quality service and customer satisfaction.'
+                }
             };
             
             const example = examples[sector] || examples.retail;
             document.getElementById('jobTitle').value = example.title;
             document.getElementById('technicalSkills').value = example.skills;
+            document.getElementById('summary').value = example.summary;
             
             updatePreview();
         }
@@ -908,6 +1703,16 @@
             showToast('Education section added');
         }
 
+        // Remove section
+        function removeSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.remove();
+                updatePreview();
+                showToast('Section removed');
+            }
+        }
+
         // Enhanced update preview function
         function updatePreview() {
             const resumeData = {
@@ -917,8 +1722,7 @@
                     email: document.getElementById('email').value || 'email@example.com',
                     phone: document.getElementById('phone').value || '+27 00 000 0000',
                     location: document.getElementById('location').value || 'City, Province',
-                    idNumber: document.getElementById('idNumber').value || '',
-                    linkedin: document.getElementById('linkedin')?.value || ''
+                    idNumber: document.getElementById('idNumber').value || ''
                 },
                 summary: document.getElementById('summary').value || 'Professional summary goes here...',
                 skills: {
@@ -1163,6 +1967,19 @@
                         `).join('')}
                     </div>
                 ` : ''}
+                
+                ${data.skills.technical ? `
+                    <div class="section">
+                        <div class="section-title">SKILLS</div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            ${data.skills.technical.split(',').map(skill => `
+                                <span style="background: var(--light); padding: 6px 12px; border-radius: 20px; font-size: 14px; color: var(--dark);">
+                                    ${skill.trim()}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
             `;
         }
 
@@ -1198,6 +2015,20 @@
                                     ${exp.start} - ${exp.end} | ${exp.location}
                                 </div>
                                 <div style="white-space: pre-line; font-size: 14px;">${exp.description}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+                
+                ${data.education.length > 0 ? `
+                    <div style="margin-bottom: 25px;">
+                        <div style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 5px;">Education</div>
+                        ${data.education.map(edu => `
+                            <div style="margin-bottom: 10px;">
+                                <div>
+                                    <strong>${edu.degree}</strong> (${edu.end})
+                                </div>
+                                <div>${edu.school}, ${edu.location}</div>
                             </div>
                         `).join('')}
                     </div>
@@ -1240,6 +2071,21 @@
                                     ${exp.company} | ${exp.location}
                                 </div>
                                 <div style="white-space: pre-line; font-size: 14px; line-height: 1.5;">${exp.description}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+                
+                ${data.education.length > 0 ? `
+                    <div style="margin-bottom: 25px;">
+                        <div style="font-size: 18px; font-weight: 600; color: var(--dark); margin-bottom: 10px; padding-bottom: 5px; border-bottom: 2px solid var(--primary);">Education</div>
+                        ${data.education.map(edu => `
+                            <div style="margin-bottom: 15px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div style="font-size: 16px; font-weight: 600;">${edu.degree}</div>
+                                    <div>${edu.end}</div>
+                                </div>
+                                <div>${edu.school}, ${edu.location}</div>
                             </div>
                         `).join('')}
                     </div>
@@ -1312,8 +2158,76 @@
             }
         }
 
-        // Keep existing utility functions (showToast, toggleMobileMenu, etc.)
-        // ... [Previous utility functions remain the same] ...
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast';
+            toast.classList.add(type);
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+            
+            // Prevent body scrolling when menu is open
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                window.scrollTo({
+                    top: section.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Show login modal
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Hide login modal
+        function hideLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Show save modal
+        function showSaveModal() {
+            document.getElementById('saveModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Hide save modal
+        function hideSaveModal() {
+            document.getElementById('saveModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            const loginModal = document.getElementById('loginModal');
+            const saveModal = document.getElementById('saveModal');
+            
+            if (event.target === loginModal) {
+                hideLoginModal();
+            }
+            
+            if (event.target === saveModal) {
+                hideSaveModal();
+            }
+        });
     </script>
 </body>
 </html>
