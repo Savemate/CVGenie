@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CVGenie | Professional Resume Builder for South Africa</title>
+    <title>9to5 University | Career Education & Professional Development</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- CookieYes Script -->
-    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/your-unique-id/script.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e40af'/><text x='50' y='65' text-anchor='middle' font-family='Arial' font-size='40' font-weight='bold' fill='white'>9</text></svg>">
 </head>
 <body>
     <!-- Loading Screen -->
     <div id="loading">
         <div class="loading-content">
-            <div class="logo-icon">CV</div>
-            <h2>CVGenie</h2>
-            <p>Preparing your resume builder...</p>
+            <div class="logo-icon">9to5</div>
+            <h2>9to5 University</h2>
+            <p>Launching your career journey...</p>
         </div>
     </div>
 
-    <!-- Cookie Consent Banner (Fallback) -->
+    <!-- Cookie Consent Banner -->
     <div id="cookieConsent" class="cookie-consent">
         <div class="cookie-content">
-            <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="cookies.html">Learn more</a></p>
+            <p>We use cookies to enhance your learning experience. By continuing to use this platform you agree to our use of cookies. <a href="cookies.html">Learn more</a></p>
             <div class="cookie-buttons">
                 <button id="acceptCookies" class="btn btn-primary">Accept All</button>
                 <button id="customizeCookies" class="btn btn-outline">Customize</button>
@@ -36,24 +36,24 @@
     <header class="main-header">
         <div class="container header-container">
             <a href="index.html" class="logo">
-                <div class="logo-icon">CV</div>
+                <div class="logo-icon">9to5</div>
                 <div class="logo-text">
-                    <h1>CVGenie</h1>
+                    <h1>9to5 University</h1>
                 </div>
             </a>
 
             <nav class="main-nav">
                 <div class="nav-links">
                     <a href="#home" class="nav-link active">Home</a>
-                    <a href="#builder" class="nav-link">Builder</a>
-                    <a href="#templates" class="nav-link">Templates</a>
+                    <a href="#courses" class="nav-link">Courses</a>
+                    <a href="#builder" class="nav-link">Resume Builder</a>
+                    <a href="#resources" class="nav-link">Resources</a>
                     <a href="#about" class="nav-link">About</a>
-                    <a href="#contact" class="nav-link">Contact</a>
                 </div>
 
                 <div class="nav-actions">
                     <button class="btn btn-outline" onclick="showLoginModal()">
-                        <i class="fas fa-user"></i> Sign In
+                        <i class="fas fa-user-graduate"></i> Student Login
                     </button>
                 </div>
             </nav>
@@ -68,9 +68,9 @@
     <div class="mobile-nav" id="mobileNav">
         <div class="mobile-nav-header">
             <div class="logo">
-                <div class="logo-icon">CV</div>
+                <div class="logo-icon">9to5</div>
                 <div class="logo-text">
-                    <h1>CVGenie</h1>
+                    <h1>9to5 University</h1>
                 </div>
             </div>
             <button onclick="toggleMobileMenu()" class="mobile-close">
@@ -80,11 +80,11 @@
         
         <div class="mobile-nav-links">
             <a href="#home" class="mobile-nav-link active" onclick="toggleMobileMenu()">Home</a>
+            <a href="#courses" class="mobile-nav-link" onclick="toggleMobileMenu()">Courses</a>
             <a href="#builder" class="mobile-nav-link" onclick="toggleMobileMenu(); startBuilding()">Resume Builder</a>
-            <a href="#templates" class="mobile-nav-link" onclick="toggleMobileMenu()">Templates</a>
+            <a href="#resources" class="mobile-nav-link" onclick="toggleMobileMenu()">Resources</a>
             <a href="#about" class="mobile-nav-link" onclick="toggleMobileMenu()">About</a>
-            <a href="#contact" class="mobile-nav-link" onclick="toggleMobileMenu()">Contact</a>
-            <a href="#" class="mobile-nav-link" onclick="toggleMobileMenu(); showLoginModal()">Sign In</a>
+            <a href="#" class="mobile-nav-link" onclick="toggleMobileMenu(); showLoginModal()">Student Login</a>
             <div class="mobile-nav-divider"></div>
             <a href="terms.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Terms & Conditions</a>
             <a href="privacy.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Privacy Policy</a>
@@ -92,13 +92,13 @@
         </div>
     </div>
 
-    <!-- Toddler -->
+    <!-- Progress Tracker -->
     <div class="toddler-container" id="toddler">
         <div class="container">
             <div class="toddler">
                 <div class="toddler-step active" data-step="1">
                     <div class="step-circle">1</div>
-                    <div class="step-label">Your Details</div>
+                    <div class="step-label">Personal Info</div>
                 </div>
                 <div class="toddler-step" data-step="2">
                     <div class="step-circle">2</div>
@@ -127,30 +127,30 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Create Professional South African Resumes</h1>
-                <p>CVGenie helps all South Africans - from any sector, any background - create professional resumes that get noticed by employers.</p>
+                <h1>Advance Your Career with Professional Education</h1>
+                <p>9to5 University provides free career education, professional development resources, and resume building tools for South African job seekers and professionals.</p>
                 
                 <div class="hero-actions">
-                    <button class="btn btn-accent" onclick="startBuilding()">
-                        <i class="fas fa-magic"></i> Start Building - 100% Free
+                    <button class="btn btn-accent" onclick="scrollToSection('courses')">
+                        <i class="fas fa-graduation-cap"></i> Explore Courses
                     </button>
-                    <button class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: white;" onclick="scrollToSection('templates')">
-                        <i class="fas fa-eye"></i> View Templates
+                    <button class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: white;" onclick="startBuilding()">
+                        <i class="fas fa-file-alt"></i> Build Resume
                     </button>
                 </div>
                 
                 <div class="hero-features">
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <span>For All Sectors</span>
+                        <span>Career Courses</span>
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon">
                             <i class="fas fa-flag-za"></i>
                         </div>
-                        <span>Made for South Africa</span>
+                        <span>South African Focus</span>
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon">
@@ -160,29 +160,68 @@
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
+                            <i class="fas fa-briefcase"></i>
                         </div>
-                        <span>Privacy First</span>
+                        <span>Job Ready Skills</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
+    <!-- Courses Section -->
+    <section id="courses" class="courses-section">
         <div class="container">
-            <div class="about-content">
-                <div class="about-icon">
-                    <i class="fas fa-hand-holding-heart"></i>
+            <div class="section-header">
+                <h2>Career Development Courses</h2>
+                <p>Free professional courses to advance your career</p>
+            </div>
+            
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-header" style="background: var(--primary);">
+                        <h3>Professional Resume Writing</h3>
+                        <span class="course-badge">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <p>Learn to create ATS-friendly resumes that get noticed by employers.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 4 hours</span>
+                            <span><i class="fas fa-modules"></i> 6 modules</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="scrollToSection('builder')">Start Course</button>
+                    </div>
                 </div>
-                <h2>About CVGenie</h2>
-                <p>CVGenie was built by MagTec Invest to assist job seekers on their journey, knowing that professional resume services can cost an arm and leg for someone without income.</p>
-                <p>We believe every South African deserves access to professional tools that can help them secure employment, regardless of their background, education level, or work experience.</p>
-                <p>Our mission is simple: to provide completely free, high-quality resume building tools that work for everyone - from recent graduates to experienced professionals, from corporate roles to skilled trades.</p>
-                <button class="btn btn-primary" onclick="startBuilding()">
-                    <i class="fas fa-rocket"></i> Start Your Journey
-                </button>
+                
+                <div class="course-card">
+                    <div class="course-header" style="background: var(--secondary);">
+                        <h3>Interview Preparation</h3>
+                        <span class="course-badge">Intermediate</span>
+                    </div>
+                    <div class="course-content">
+                        <p>Master interview techniques and common questions.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 3 hours</span>
+                            <span><i class="fas fa-modules"></i> 5 modules</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showToast('Course coming soon!', 'info')">Coming Soon</button>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-header" style="background: var(--campus-green);">
+                        <h3>Career Planning</h3>
+                        <span class="course-badge">All Levels</span>
+                    </div>
+                    <div class="course-content">
+                        <p>Create a strategic career development plan.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 5 hours</span>
+                            <span><i class="fas fa-modules"></i> 8 modules</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showToast('Course coming soon!', 'info')">Coming Soon</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -191,15 +230,15 @@
     <section id="builder" class="builder-section">
         <div class="container">
             <div class="section-header">
-                <h2>Build Your Professional Resume</h2>
-                <p>Designed for all South African job seekers - from any sector, any background</p>
+                <h2>Professional Resume Builder</h2>
+                <p>Create ATS-friendly resumes with our career-focused templates</p>
             </div>
             
             <div class="builder-container">
                 <div class="builder-tabs">
                     <button class="tab active" onclick="changeTab('personal')">
-                        <i class="fas fa-user"></i>
-                        Your Details
+                        <i class="fas fa-user-graduate"></i>
+                        Personal Info
                     </button>
                     <button class="tab" onclick="changeTab('experience')">
                         <i class="fas fa-briefcase"></i>
@@ -222,20 +261,19 @@
                 <div class="builder-content">
                     <!-- Personal Info Tab -->
                     <div id="personal-tab" class="tab-content active">
-                        <h3 class="mb-3">Your Personal Information</h3>
+                        <h3 class="mb-3">Your Professional Profile</h3>
                         
-                        <!-- Job Sector Selection -->
+                        <!-- Career Field Selection -->
                         <div class="form-group">
-                            <label class="form-label">What sector do you work in?</label>
-                            <div class="job-sector-selector">
-                                <button type="button" class="sector-btn" onclick="selectSector('corporate')">Corporate</button>
-                                <button type="button" class="sector-btn" onclick="selectSector('technical')">Technical</button>
-                                <button type="button" class="sector-btn" onclick="selectSector('creative')">Creative</button>
-                                <button type="button" class="sector-btn" onclick="selectSector('healthcare')">Healthcare</button>
-                                <button type="button" class="sector-btn" onclick="selectSector('education')">Education</button>
-                                <button type="button" class="sector-btn" onclick="selectSector('retail')">Retail</button>
-                                <button type="button" class="sector-btn" onclick="selectSector('hospitality')">Hospitality</button>
-                                <button type="button" class="sector-btn" onclick="selectSector('skilled')">Skilled Trade</button>
+                            <label class="form-label">What is your career field?</label>
+                            <div class="career-field-selector">
+                                <button type="button" class="field-btn" onclick="selectCareerField('corporate')">Corporate</button>
+                                <button type="button" class="field-btn" onclick="selectCareerField('technical')">Technical</button>
+                                <button type="button" class="field-btn" onclick="selectCareerField('healthcare')">Healthcare</button>
+                                <button type="button" class="field-btn" onclick="selectCareerField('education')">Education</button>
+                                <button type="button" class="field-btn" onclick="selectCareerField('retail')">Retail</button>
+                                <button type="button" class="field-btn" onclick="selectCareerField('creative')">Creative</button>
+                                <button type="button" class="field-btn" onclick="selectCareerField('skilled')">Skilled Trade</button>
                             </div>
                         </div>
                         
@@ -267,8 +305,8 @@
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label">Professional Profile</label>
-                            <textarea id="summary" class="form-control" placeholder="Describe your experience, skills, and what you're looking for... Use the XYZ formula: 'Accomplished [X] as measured by [Y], by doing [Z]'" oninput="updatePreview()">Experienced Store Manager with 5+ years in retail management. Skilled in team leadership, inventory management, and customer service excellence. Passionate about creating positive shopping experiences and driving store profitability.</textarea>
+                            <label class="form-label">Professional Summary</label>
+                            <textarea id="summary" class="form-control" placeholder="Describe your experience, skills, and career objectives..." oninput="updatePreview()">Experienced Store Manager with 5+ years in retail management. Skilled in team leadership, inventory management, and customer service excellence. Passionate about creating positive shopping experiences and driving store profitability.</textarea>
                         </div>
                         
                         <div class="d-flex justify-content-end">
@@ -326,7 +364,7 @@
                     
                     <!-- Skills Tab -->
                     <div id="skills-tab" class="tab-content">
-                        <h3 class="mb-3">Your Skills & Abilities</h3>
+                        <h3 class="mb-3">Your Skills & Competencies</h3>
                         
                         <div class="form-group">
                             <label class="form-label">Professional Skills</label>
@@ -334,7 +372,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label">Personal Strengths</label>
+                            <label class="form-label">Soft Skills</label>
                             <textarea id="softSkills" class="form-control" placeholder="e.g., Communication, Problem Solving, Leadership, Time Management" oninput="updatePreview()">Communication, Problem Solving, Leadership, Time Management, Attention to Detail, Adaptability, Conflict Resolution</textarea>
                         </div>
                         
@@ -373,15 +411,15 @@
                             
                             <!-- Template Selector -->
                             <div class="template-selector">
-                                <button class="template-btn active" onclick="selectTemplate('sa-classic')">
-                                    <span class="template-icon">🇿🇦</span>
-                                    <span class="template-name">South African Classic</span>
-                                    <span class="template-desc">Professional & Traditional</span>
+                                <button class="template-btn active" onclick="selectTemplate('professional')">
+                                    <span class="template-icon"><i class="fas fa-user-tie"></i></span>
+                                    <span class="template-name">Professional</span>
+                                    <span class="template-desc">University Style</span>
                                 </button>
                                 <button class="template-btn" onclick="selectTemplate('modern')">
                                     <span class="template-icon"><i class="fas fa-chart-line"></i></span>
-                                    <span class="template-name">Modern Professional</span>
-                                    <span class="template-desc">Clean & Contemporary</span>
+                                    <span class="template-name">Modern</span>
+                                    <span class="template-desc">Contemporary Design</span>
                                 </button>
                                 <button class="template-btn" onclick="selectTemplate('jobjack')">
                                     <span class="template-icon"><i class="fas fa-briefcase"></i></span>
@@ -389,30 +427,30 @@
                                     <span class="template-desc">ATS Friendly</span>
                                 </button>
                                 <button class="template-btn" onclick="selectTemplate('executive')">
-                                    <span class="template-icon"><i class="fas fa-user-tie"></i></span>
+                                    <span class="template-icon"><i class="fas fa-graduation-cap"></i></span>
                                     <span class="template-name">Executive</span>
-                                    <span class="template-desc">For Senior Roles</span>
+                                    <span class="template-desc">Senior Level</span>
                                 </button>
                                 <button class="template-btn" onclick="selectTemplate('simple')">
                                     <span class="template-icon"><i class="fas fa-file-alt"></i></span>
-                                    <span class="template-name">Simple & Clean</span>
-                                    <span class="template-desc">Easy to Read</span>
+                                    <span class="template-name">Simple</span>
+                                    <span class="template-desc">Clean & Basic</span>
                                 </button>
                             </div>
                             
                             <!-- Resume Display -->
                             <div class="resume-display" id="resumeDisplay">
-                                <div id="resumeContent" class="template-sa-classic">
+                                <div id="resumeContent" class="template-professional">
                                     <!-- Resume content will be generated here -->
                                 </div>
                             </div>
                             
                             <div class="text-center mt-4">
                                 <p style="color: var(--gray); font-size: 14px; margin-bottom: 15px;">
-                                    <i class="fas fa-info-circle"></i> Your data stays private. No account needed to download.
+                                    <i class="fas fa-info-circle"></i> Created with 9to5 University Career Platform
                                 </p>
                                 <button class="btn btn-accent" onclick="showSaveModal()">
-                                    <i class="fas fa-save"></i> Save for Later (Optional)
+                                    <i class="fas fa-save"></i> Save Progress
                                 </button>
                             </div>
                         </div>
@@ -422,132 +460,59 @@
         </div>
     </section>
 
-    <!-- Templates Showcase Section -->
-    <section id="templates" class="templates-section">
+    <!-- Resources Section -->
+    <section id="resources" class="resources-section">
         <div class="container">
             <div class="section-header">
-                <h2>Professional Resume Templates</h2>
-                <p>Choose from our collection of ATS-friendly, professionally designed templates</p>
+                <h2>Career Resources</h2>
+                <p>Tools and guides for your professional development</p>
             </div>
             
-            <div class="templates-grid">
-                <div class="template-card">
-                    <div class="template-preview" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 20px;">
-                        <h3 style="margin: 0;">THABO MBEKI</h3>
-                        <p style="margin: 5px 0 15px 0; opacity: 0.9;">Store Manager</p>
-                        <div style="display: flex; gap: 10px; font-size: 12px;">
-                            <span><i class="fas fa-envelope"></i> email@example.com</span>
-                            <span><i class="fas fa-phone"></i> +27 82 123 4567</span>
-                        </div>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-file-contract"></i>
                     </div>
-                    <div class="template-info">
-                        <h4>South African Classic</h4>
-                        <p>Traditional layout with SA flag accents</p>
-                        <button class="btn btn-outline" onclick="selectTemplate('sa-classic'); scrollToSection('builder'); changeTab('preview')">Use This Template</button>
-                    </div>
+                    <h3>Cover Letter Builder</h3>
+                    <p>Create professional cover letters that complement your resume.</p>
+                    <button class="btn btn-outline" onclick="showToast('Feature coming soon!', 'info')">Coming Soon</button>
                 </div>
                 
-                <div class="template-card">
-                    <div class="template-preview" style="background: white; color: var(--dark); padding: 20px; border-left: 4px solid var(--primary);">
-                        <h3 style="margin: 0; font-size: 18px;">Thabo Mbeki</h3>
-                        <p style="margin: 5px 0 10px 0; color: var(--primary);">Store Manager</p>
-                        <div style="font-size: 11px; color: var(--gray);">
-                            <div>Johannesburg, Gauteng</div>
-                            <div>+27 82 123 4567</div>
-                        </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-video"></i>
                     </div>
-                    <div class="template-info">
-                        <h4>JobJack Style</h4>
-                        <p>ATS-friendly, clean, professional</p>
-                        <button class="btn btn-outline" onclick="selectTemplate('jobjack'); scrollToSection('builder'); changeTab('preview')">Use This Template</button>
-                    </div>
+                    <h3>Interview Simulator</h3>
+                    <p>Practice common interview questions with our AI-powered simulator.</p>
+                    <button class="btn btn-outline" onclick="showToast('Feature coming soon!', 'info')">Coming Soon</button>
                 </div>
                 
-                <div class="template-card">
-                    <div class="template-preview" style="background: var(--dark); color: white; padding: 20px;">
-                        <h3 style="margin: 0; text-align: center;">THABO MBEKI</h3>
-                        <p style="margin: 5px 0 0 0; text-align: center; opacity: 0.8;">STORE MANAGER</p>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-chart-bar"></i>
                     </div>
-                    <div class="template-info">
-                        <h4>Modern Professional</h4>
-                        <p>Contemporary design for modern roles</p>
-                        <button class="btn btn-outline" onclick="selectTemplate('modern'); scrollToSection('builder'); changeTab('preview')">Use This Template</button>
-                    </div>
+                    <h3>Career Assessment</h3>
+                    <p>Identify your strengths and areas for professional development.</p>
+                    <button class="btn btn-outline" onclick="showToast('Feature coming soon!', 'info')">Coming Soon</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <!-- About Section -->
+    <section id="about" class="about-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Contact Us</h2>
-                <p>Have questions or feedback? We'd love to hear from you</p>
-            </div>
-            
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Get In Touch</h3>
-                    <p>We're here to help you create the perfect resume for your job search in South Africa.</p>
-                    
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>support@cvgenie.co.za</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Johannesburg, South Africa</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div>
-                            <h4>Support Hours</h4>
-                            <p>Monday - Friday, 9am - 5pm SAST</p>
-                        </div>
-                    </div>
+            <div class="about-content">
+                <div class="about-icon">
+                    <i class="fas fa-university"></i>
                 </div>
-                
-                <div class="contact-form">
-                    <h3>Send a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" required>
-                                <option value="">Select Subject</option>
-                                <option value="support">Technical Support</option>
-                                <option value="feedback">Feedback</option>
-                                <option value="partnership">Partnership</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            Send Message <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
+                <h2>About 9to5 University</h2>
+                <p>9to5 University was created to bridge the gap between education and employment. We believe every South African deserves access to quality career education and professional development tools.</p>
+                <p>Our mission is to provide completely free, practical career education that prepares you for the 9-to-5 workplace - from resume building to interview skills, professional development to career advancement.</p>
+                <p>We focus on practical, job-ready skills that employers actually want, with content specifically tailored for the South African job market.</p>
+                <button class="btn btn-primary" onclick="startBuilding()">
+                    <i class="fas fa-rocket"></i> Start Your Career Journey
+                </button>
             </div>
         </div>
     </section>
@@ -557,35 +522,36 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <div class="logo-icon">CV</div>
-                    <h3>CVGenie</h3>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 15px;">Professional Resume Builder for South Africa</p>
+                    <div class="logo-icon">9to5</div>
+                    <h3>9to5 University</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 15px;">Career Education & Professional Development</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-links">
-                    <h4>Quick Links</h4>
+                    <h4>Learning Paths</h4>
                     <ul>
-                        <li><a href="#home">Home</a></li>
+                        <li><a href="#courses">Career Courses</a></li>
                         <li><a href="#builder">Resume Builder</a></li>
-                        <li><a href="#templates">Templates</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#">Skill Assessment</a></li>
+                        <li><a href="#">Career Planning</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="#">CV Writing Tips</a></li>
-                        <li><a href="#">Interview Guide</a></li>
-                        <li><a href="#">Job Search Tips</a></li>
+                        <li><a href="#">CV Writing Guide</a></li>
+                        <li><a href="#">Interview Preparation</a></li>
                         <li><a href="#">Career Advice</a></li>
+                        <li><a href="#">Industry Insights</a></li>
+                        <li><a href="#">SA Job Market</a></li>
                     </ul>
                 </div>
                 
@@ -595,15 +561,16 @@
                         <li><a href="terms.html">Terms & Conditions</a></li>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="cookies.html">Cookie Policy</a></li>
-                        <li><a href="#">Disclaimer</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                        <li><a href="#">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>© 2024 CVGenie. All rights reserved.</p>
+                <p>© 2024 9to5 University. All rights reserved.</p>
                 <div class="copyright">
-                    A product of MagTec Invest | Built with ❤️ for South Africa
+                    Empowering South African professionals through free career education
                 </div>
             </div>
         </div>
@@ -613,22 +580,22 @@
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Sign In</h3>
+                <h3>Student Login</h3>
                 <button class="modal-close" onclick="hideLoginModal()">×</button>
             </div>
             <div class="form-group">
-                <label class="form-label">Email Address</label>
-                <input type="email" class="form-control" placeholder="your.email@example.com">
+                <label class="form-label">Student Email</label>
+                <input type="email" class="form-control" placeholder="student@email.com">
             </div>
             <div class="form-group">
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control" placeholder="Enter your password">
             </div>
             <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="hideLoginModal()">
-                Sign In
+                Login to 9to5 University
             </button>
             <p class="text-center mt-3" style="color: var(--gray); font-size: 14px;">
-                Don't have an account? <a href="#" style="color: var(--primary);" onclick="hideLoginModal(); showSaveModal()">Continue without account</a>
+                New student? <a href="#" style="color: var(--primary);" onclick="hideLoginModal(); showSaveModal()">Continue without account</a>
             </p>
         </div>
     </div>
@@ -636,25 +603,25 @@
     <div class="modal" id="saveModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Save Your Resume</h3>
+                <h3>Save Your Progress</h3>
                 <button class="modal-close" onclick="hideSaveModal()">×</button>
             </div>
             <p style="margin-bottom: 20px; color: var(--gray);">
-                Save your resume to access it later from any device. We'll email you a secure link.
+                Save your resume and course progress to access it later from any device.
             </p>
             <div class="form-group">
                 <label class="form-label">Your Email</label>
-                <input type="email" class="form-control" placeholder="your.email@example.com">
+                <input type="email" class="form-control" placeholder="student@email.com">
             </div>
             <div class="form-group">
                 <label class="form-label">Create a Password (Optional)</label>
                 <input type="password" class="form-control" placeholder="Leave blank for email-only access">
             </div>
-            <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="hideSaveModal(); showToast('Resume saved successfully! Check your email for the link.')">
-                Save Resume
+            <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="hideSaveModal(); showToast('Progress saved to 9to5 University!', 'success')">
+                Save Progress
             </button>
             <p class="text-center mt-3" style="color: var(--gray); font-size: 12px;">
-                By saving your resume, you agree to our <a href="terms.html" style="color: var(--primary);">Terms & Conditions</a> and <a href="privacy.html" style="color: var(--primary);">Privacy Policy</a>.
+                By saving your progress, you agree to our <a href="terms.html" style="color: var(--primary);">Terms & Conditions</a> and <a href="privacy.html" style="color: var(--primary);">Privacy Policy</a>.
             </p>
         </div>
     </div>
@@ -665,52 +632,7 @@
     <!-- External Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    
-    <script>
-        // Immediately hide loading screen and initialize app
-        document.addEventListener('DOMContentLoaded', function() {
-            // Hide loading screen immediately
-            setTimeout(() => {
-                document.getElementById('loading').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loading').style.display = 'none';
-                }, 300);
-            }, 500);
-            
-            // Initialize app after DOM is ready
-            setTimeout(initializeApp, 800);
-        });
-
-        function initializeApp() {
-            // Check if jsPDF is loaded
-            if (typeof window.jspdf === 'undefined') {
-                console.warn('jsPDF not loaded, PDF download may not work');
-            }
-            
-            // Initialize South African examples
-            if (typeof initSouthAfricanExamples === 'function') {
-                initSouthAfricanExamples();
-            }
-            
-            // Setup event listeners
-            if (typeof setupEventListeners === 'function') {
-                setupEventListeners();
-            }
-            
-            // Setup cookie consent
-            if (typeof setupCookieConsent === 'function') {
-                setupCookieConsent();
-            }
-            
-            console.log('CVGenie initialized successfully');
-        }
-    </script>
-    
-    <!-- Load your scripts AFTER the initialization -->
-    <script src="scripts.js" defer></script>
-    <script src="templates.js" defer></script>
+    <script src="script.js"></script>
+    <script src="templates.js"></script>
 </body>
 </html>
-</body>
-</html>
-
