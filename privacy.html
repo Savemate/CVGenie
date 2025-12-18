@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e40af'/><text x='50' y='65' text-anchor='middle' font-family='Arial' font-size='40' font-weight='bold' fill='white'>9</text></svg>">
 </head>
 <body>
     <!-- Loading Screen -->
@@ -225,7 +226,7 @@
                     <h4>Legal</h4>
                     <ul>
                         <li><a href="terms.html">Terms & Conditions</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="privacy.html" class="active">Privacy Policy</a></li>
                         <li><a href="cookies.html">Cookie Policy</a></li>
                         <li><a href="#">Accessibility</a></li>
                         <li><a href="#">Contact Us</a></li>
@@ -245,6 +246,8 @@
     <!-- Toast Container -->
     <div class="toast" id="toast"></div>
 
+    <script src="utils.js"></script>
+    <script src="script.js"></script>
     <script>
         // Simple loading handler
         document.addEventListener('DOMContentLoaded', function() {
@@ -261,17 +264,6 @@
             const mobileNav = document.getElementById('mobileNav');
             mobileNav.classList.toggle('active');
             document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-        }
-        
-        // Simple toast function
-        function showToast(message, type = 'info') {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.className = 'toast ' + type;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
         }
     </script>
 </body>
