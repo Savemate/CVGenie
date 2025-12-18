@@ -57,33 +57,6 @@ function hideCookieConsent() {
     consent.classList.remove('show');
 }
 
-function acceptCookies() {
-    setCookie('cookie_consent', 'accepted', 365);
-    hideCookieConsent();
-    showToast('Cookie preferences saved to 9to5 University', 'success');
-}
-
-function rejectCookies() {
-    setCookie('cookie_consent', 'rejected', 365);
-    hideCookieConsent();
-    showToast('Cookie preferences updated', 'info');
-}
-
-function getCookie(name) {
-    const cookies = document.cookie.split('; ');
-    for (let cookie of cookies) {
-        const [key, value] = cookie.split('=');
-        if (key === name) return value;
-    }
-    return null;
-}
-
-function setCookie(name, value, days) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
-}
-
 // Setup cookie consent buttons
 document.addEventListener('DOMContentLoaded', function() {
     const acceptBtn = document.getElementById('acceptCookies');
@@ -219,7 +192,7 @@ function updateProgressTracker(step) {
     currentStep = step;
     
     // Update step circles
-    document.querySelectorAll('.toddler-step').forEach((stepEl, index) {
+    document.querySelectorAll('.toddler-step').forEach((stepEl, index) => {
         if (index + 1 <= step) {
             stepEl.classList.add('active');
         } else {
@@ -683,46 +656,6 @@ function printResume() {
         printWindow.print();
         printWindow.close();
     };
-}
-
-// ====== SHOW TOAST ======
-function showToast(message, type = 'info') {
-    const toast = document.getElementById('toast');
-    if (!toast) return;
-    
-    // Clear existing timeout
-    if (toast.timeoutId) {
-        clearTimeout(toast.timeoutId);
-    }
-    
-    // Set message and type
-    toast.textContent = message;
-    toast.className = 'toast';
-    toast.classList.add(type);
-    
-    // Add icon based on type
-    let icon = 'info-circle';
-    switch(type) {
-        case 'success':
-            icon = 'check-circle';
-            break;
-        case 'error':
-            icon = 'exclamation-circle';
-            break;
-        case 'warning':
-            icon = 'exclamation-triangle';
-            break;
-    }
-    
-    toast.innerHTML = `<i class="fas fa-${icon}"></i> ${message}`;
-    
-    // Show toast
-    toast.classList.add('show');
-    
-    // Auto hide after 3 seconds
-    toast.timeoutId = setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
 }
 
 // ====== MODAL FUNCTIONS ======
