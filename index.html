@@ -665,7 +665,52 @@
     <!-- External Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="scripts.js"></script>
-    <script src="templates.js"></script>
+    
+    <script>
+        // Immediately hide loading screen and initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading screen immediately
+            setTimeout(() => {
+                document.getElementById('loading').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                }, 300);
+            }, 500);
+            
+            // Initialize app after DOM is ready
+            setTimeout(initializeApp, 800);
+        });
+
+        function initializeApp() {
+            // Check if jsPDF is loaded
+            if (typeof window.jspdf === 'undefined') {
+                console.warn('jsPDF not loaded, PDF download may not work');
+            }
+            
+            // Initialize South African examples
+            if (typeof initSouthAfricanExamples === 'function') {
+                initSouthAfricanExamples();
+            }
+            
+            // Setup event listeners
+            if (typeof setupEventListeners === 'function') {
+                setupEventListeners();
+            }
+            
+            // Setup cookie consent
+            if (typeof setupCookieConsent === 'function') {
+                setupCookieConsent();
+            }
+            
+            console.log('CVGenie initialized successfully');
+        }
+    </script>
+    
+    <!-- Load your scripts AFTER the initialization -->
+    <script src="scripts.js" defer></script>
+    <script src="templates.js" defer></script>
 </body>
 </html>
+</body>
+</html>
+
