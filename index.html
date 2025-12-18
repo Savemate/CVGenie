@@ -9,24 +9,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        /* ====== UPDATED VARIABLES ====== */
         :root {
-            --primary: #1e3a8a; /* South African Blue */
-            --primary-dark: #1e40af;
-            --primary-light: #3b82f6;
-            --secondary: #d97706; /* South African Gold */
-            --accent: #ffffff;
-            --light: #f8fafc;
-            --dark: #1e293b;
-            --gray: #64748b;
-            --border: #e2e8f0;
-            --success: #059669;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
-            --radius: 8px;
-            --radius-lg: 12px;
-        }
+  /* Primary Gray Theme */
+  --primary: #4b5563; /* Gray-600 as main brand color */
+  --primary-dark: #374151; /* Gray-700 */
+  --primary-light: #9ca3af; /* Gray-400 */
+  --secondary: #d97706; /* Keeping the SA Gold as an accent */
+  --accent: #ffffff;
+  --light: #f9fafb; /* Gray-50 */
+  --dark: #111827; /* Gray-900 */
+  --gray: #6b7280; /* Gray-500 */
+  --border: #e5e7eb; /* Gray-200 */
+  --success: #059669;
+
+  /* Additional Gray Shades for UI */
+  --surface: #ffffff;
+  --surface-alt: #f3f4f6; /* Gray-100 */
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+  --radius: 8px;
+  --radius-lg: 12px;
+}
 
         /* ====== BASE STYLES ====== */
         * {
@@ -620,6 +625,18 @@
                 display: block;
             }
         }
+
+/* ====== UPDATED RESUME DISPLAY FOR PDF ====== */
+.resume-display {
+  width: 210mm; /* Standard A4 width */
+  min-height: 297mm; /* Standard A4 height */
+  background: white;
+  font-family: 'Inter', sans-serif;
+  margin: 0 auto; /* Center the resume */
+  padding: 20mm; /* Safe print margins */
+  box-shadow: var(--shadow-sm);
+  box-sizing: border-box;
+}
 
         /* ====== UPDATED RESUME TEMPLATES ====== */
         .resume-display {
