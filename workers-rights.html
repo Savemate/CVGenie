@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workers Rights | 9to5 University</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="loading-content">
+            <div class="logo-icon">9to5</div>
+            <h2>9to5 University</h2>
+            <p>Loading Workers Rights Information...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">9to5</div>
+                <div class="logo-text">
+                    <h1>9to5 University</h1>
+                </div>
+            </a>
+
+            <nav class="main-nav">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="index.html#courses" class="nav-link">Courses</a>
+                    <a href="index.html#builder" class="nav-link">Resume Builder</a>
+                    <a href="index.html#resources" class="nav-link">Resources</a>
+                    <a href="index.html#jobs" class="nav-link">Job Offers</a>
+                    <a href="hustle-jobs.html" class="nav-link">The Hustle Block</a>
+                    <a href="workers-rights.html" class="nav-link active">Workers Rights</a>
+                </div>
+            </nav>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <div class="logo-icon">9to5</div>
+                <div class="logo-text">
+                    <h1>9to5 University</h1>
+                </div>
+            </div>
+            <button onclick="toggleMobileMenu()" class="mobile-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
+            <a href="index.html#courses" class="mobile-nav-link" onclick="toggleMobileMenu()">Courses</a>
+            <a href="index.html#builder" class="mobile-nav-link" onclick="toggleMobileMenu()">Resume Builder</a>
+            <a href="index.html#resources" class="mobile-nav-link" onclick="toggleMobileMenu()">Resources</a>
+            <a href="index.html#jobs" class="mobile-nav-link" onclick="toggleMobileMenu()">Job Offers</a>
+            <a href="hustle-jobs.html" class="mobile-nav-link" onclick="toggleMobileMenu()">The Hustle Block</a>
+            <a href="workers-rights.html" class="mobile-nav-link active" onclick="toggleMobileMenu()">Workers Rights</a>
+        </div>
+    </div>
+
+    <!-- Workers Rights Hero -->
+    <section class="hero" style="background: linear-gradient(135deg, var(--library-brown) 0%, #7a320b 100%);">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Know Your Workers Rights</h1>
+                <p>Essential information about your rights as an employee in South Africa and organizations that can help with workplace issues.</p>
+                
+                <div class="hero-actions">
+                    <a href="#rights-guide" class="btn btn-accent">
+                        <i class="fas fa-book"></i> Rights Guide
+                    </a>
+                    <a href="#support-orgs" class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: white;">
+                        <i class="fas fa-hands-helping"></i> Support Organizations
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rights Guide -->
+    <section id="rights-guide" class="legal-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>South African Workers Rights Guide</h2>
+                <p>Understanding your basic employment rights and protections</p>
+            </div>
+            
+            <div class="rights-category">
+                <h2><i class="fas fa-file-contract"></i> Basic Employment Rights</h2>
+                <ul class="rights-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Fair Labour Practices</h4>
+                            <p>Every worker has the right to fair labour practices as enshrined in the Constitution.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Written Contract</h4>
+                            <p>You have the right to a written employment contract outlining your terms of employment.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Minimum Wage</h4>
+                            <p>You must be paid at least the national minimum wage (R27.58 per hour as of 2024).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Working Hours</h4>
+                            <p>Maximum 45 hours per week (9 hours per day for 5-day week, or 8 hours per day for 6-day week).</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="rights-category">
+                <h2><i class="fas fa-shield-alt"></i> Workplace Protections</h2>
+                <ul class="rights-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Safe Working Environment</h4>
+                            <p>Your employer must provide a safe and healthy working environment.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Protection from Discrimination</h4>
+                            <p>You cannot be discriminated against based on race, gender, pregnancy, marital status, etc.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Protection from Unfair Dismissal</h4>
+                            <p>You cannot be fired without a valid reason and proper procedure.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Harassment Protection</h4>
+                            <p>You have the right to work free from sexual harassment and bullying.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="rights-category">
+                <h2><i class="fas fa-money-bill-wave"></i> Leave & Benefits</h2>
+                <ul class="rights-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Annual Leave</h4>
+                            <p>21 consecutive days annual leave (or 15 working days) per year.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Sick Leave</h4>
+                            <p>6 weeks paid sick leave over 3 years (1 day for every 26 days worked).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Maternity Leave</h4>
+                            <p>4 consecutive months maternity leave (can start 4 weeks before due date).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Family Responsibility Leave</h4>
+                            <p>3 days paid leave per year for family responsibilities (childbirth, illness, death).</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Organizations -->
+    <section id="support-orgs" style="padding: 80px 0; background: var(--light);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Support Organizations</h2>
+                <p>Where to get help with workplace issues</p>
+            </div>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>CCMA</h3>
+                    <p>Commission for Conciliation, Mediation and Arbitration - Resolves workplace disputes.</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> 0861 16 16 16</p>
+                        <p><i class="fas fa-globe"></i> www.ccma.org.za</p>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>Department of Employment and Labour</h3>
+                    <p>Enforces labour laws and investigates complaints about working conditions.</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> 012 309 4000</p>
+                        <p><i class="fas fa-globe"></i> www.labour.gov.za</p>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Bargaining Councils</h3>
+                    <p>Industry-specific councils that handle disputes and set conditions of employment.</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-info-circle"></i> Find your industry council</p>
+                        <p><i class="fas fa-globe"></i> www.bargainingcouncils.co.za</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="emergency-contacts" style="margin-top: 50px; padding: 30px; background: white; border-radius: var(--radius-lg); text-align: center;">
+                <h3 style="color: var(--primary); margin-bottom: 20px;">Emergency Contacts</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div>
+                        <h4>Police Emergency</h4>
+                        <p><i class="fas fa-phone"></i> 10111</p>
+                    </div>
+                    <div>
+                        <h4>Ambulance</h4>
+                        <p><i class="fas fa-ambulance"></i> 10177</p>
+                    </div>
+                    <div>
+                        <h4>Legal Aid South Africa</h4>
+                        <p><i class="fas fa-phone"></i> 0800 110 110</p>
+                    </div>
+                    <div>
+                        <h4>Gender-Based Violence</h4>
+                        <p><i class="fas fa-phone"></i> 0800 428 428</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Common Issues & Solutions -->
+    <section style="padding: 80px 0; background: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Common Workplace Issues & Solutions</h2>
+                <p>How to handle typical workplace problems</p>
+            </div>
+            
+            <div class="faq-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+                <div class="faq-item" style="background: var(--light); padding: 25px; border-radius: var(--radius-lg);">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Unpaid Wages</h4>
+                    <p style="color: var(--gray); margin-bottom: 15px;">What to do if your employer doesn't pay you.</p>
+                    <ul style="color: var(--dark); font-size: 14px; line-height: 1.5;">
+                        <li>Keep records of hours worked</li>
+                        <li>Send written reminder to employer</li>
+                        <li>Contact Department of Labour</li>
+                        <li>File with CCMA if unresolved</li>
+                    </ul>
+                </div>
+                
+                <div class="faq-item" style="background: var(--light); padding: 25px; border-radius: var(--radius-lg);">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Unfair Dismissal</h4>
+                    <p style="color: var(--gray); margin-bottom: 15px;">Steps to take if you believe you were unfairly fired.</p>
+                    <ul style="color: var(--dark); font-size: 14px; line-height: 1.5;">
+                        <li>Request written reasons for dismissal</li>
+                        <li>File with CCMA within 30 days</li>
+                        <li>Attend conciliation meeting</li>
+                        <li>Proceed to arbitration if needed</li>
+                    </ul>
+                </div>
+                
+                <div class="faq-item" style="background: var(--light); padding: 25px; border-radius: var(--radius-lg);">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Workplace Harassment</h4>
+                    <p style="color: var(--gray); margin-bottom: 15px;">How to handle harassment at work.</p>
+                    <ul style="color: var(--dark); font-size: 14px; line-height: 1.5;">
+                        <li>Document incidents with details</li>
+                        <li>Report to supervisor or HR</li>
+                        <li>Follow company grievance procedure</li>
+                        <li>Contact CCMA if internal process fails</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="warning-box" style="margin-top: 40px; padding: 25px; background: #fff3cd; border-left: 4px solid var(--university-gold); border-radius: var(--radius);">
+                <h4 style="color: #856404; margin-bottom: 10px;"><i class="fas fa-exclamation-triangle"></i> Important Notice</h4>
+                <p style="color: #856404; margin: 0;">
+                    This information is for educational purposes only and does not constitute legal advice. 
+                    For specific legal advice regarding your situation, consult with a qualified legal professional 
+                    or contact the organizations listed above.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">9to5</div>
+                    <h3>9to5 University</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 15px;">Career Education & Professional Development</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Workplace Resources</h4>
+                    <ul>
+                        <li><a href="#rights-guide">Workers Rights Guide</a></li>
+                        <li><a href="#support-orgs">Support Organizations</a></li>
+                        <li><a href="#common-issues">Common Issues</a></li>
+                        <li><a href="index.html#courses">Conflict Resolution Course</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Career Tools</h4>
+                    <ul>
+                        <li><a href="index.html#builder">Resume Builder</a></li>
+                        <li><a href="index.html#courses">Interview Course</a></li>
+                        <li><a href="hustle-jobs.html">The Hustle Block</a></li>
+                        <li><a href="index.html#jobs">Job Offers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 9to5 University. All rights reserved.</p>
+                <div class="copyright">
+                    Empowering South African workers through education and resources
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for Workers Rights page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading screen
+            setTimeout(() => {
+                const loading = document.getElementById('loading');
+                if (loading) {
+                    loading.classList.add('loaded');
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                    }, 500);
+                }
+            }, 500);
+        });
+
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            if (mobileNav) {
+                mobileNav.classList.toggle('active');
+                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+            }
+        }
+    </script>
+</body>
+</html>
