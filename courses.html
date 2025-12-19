@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Courses | 9to5 University</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .courses-page {
+            padding: 80px 0;
+            background: var(--light);
+            min-height: 100vh;
+        }
+        
+        .login-required {
+            background: white;
+            padding: 60px 40px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .login-required-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--primary);
+            margin: 0 auto 25px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="loading-content">
+            <div class="logo-icon">9to5</div>
+            <h2>9to5 University</h2>
+            <p>Loading courses...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">9to5</div>
+                <div class="logo-text">
+                    <h1>9to5 University</h1>
+                </div>
+            </a>
+
+            <nav class="main-nav">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="courses.html" class="nav-link active">Courses</a>
+                    <a href="resume-builder.html" class="nav-link">Resume Builder</a>
+                    <a href="hustle-jobs.html" class="nav-link">The Hustle Block</a>
+                    <a href="workers-rights.html" class="nav-link">Workers Rights</a>
+                </div>
+
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-outline">
+                        <i class="fas fa-user-graduate"></i> Login to Access
+                    </a>
+                </div>
+            </nav>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <div class="logo-icon">9to5</div>
+                <div class="logo-text">
+                    <h1>9to5 University</h1>
+                </div>
+            </div>
+            <button onclick="toggleMobileMenu()" class="mobile-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
+            <a href="courses.html" class="mobile-nav-link active" onclick="toggleMobileMenu()">Courses</a>
+            <a href="resume-builder.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Resume Builder</a>
+            <a href="hustle-jobs.html" class="mobile-nav-link" onclick="toggleMobileMenu()">The Hustle Block</a>
+            <a href="workers-rights.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Workers Rights</a>
+            <a href="login.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Login</a>
+        </div>
+    </div>
+
+    <!-- Courses Content -->
+    <section class="courses-page">
+        <div class="container">
+            <div class="login-required">
+                <div class="login-required-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                
+                <h2 style="color: var(--primary); margin-bottom: 15px;">Login Required</h2>
+                <p style="color: var(--gray); margin-bottom: 25px; line-height: 1.6;">
+                    Our career development courses are available to registered members. 
+                    Create a free account to access all courses, track your progress, and earn certificates.
+                </p>
+                
+                <div class="course-benefits" style="background: var(--light); padding: 20px; border-radius: var(--radius); margin-bottom: 30px; text-align: left;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">What you'll get with free account:</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="padding: 8px 0; display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <span>Access to all career courses</span>
+                        </li>
+                        <li style="padding: 8px 0; display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <span>Video lessons and written materials</span>
+                        </li>
+                        <li style="padding: 8px 0; display="flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <span>Progress tracking and certificates</span>
+                        </li>
+                        <li style="padding: 8px 0; display="flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <span>Course completion badges</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="login-actions">
+                    <a href="login.html" class="btn btn-primary btn-lg" style="margin-bottom: 15px; display: block;">
+                        <i class="fas fa-user-plus"></i> Create Free Account
+                    </a>
+                    <p style="color: var(--gray); font-size: 14px;">
+                        Already have an account? <a href="login.html" style="color: var(--primary);">Login here</a>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Course Catalog Preview -->
+            <div class="courses-preview" style="margin-top: 60px;">
+                <h3 style="text-align: center; color: var(--primary); margin-bottom: 30px;">Available Courses (Requires Login)</h3>
+                
+                <div class="courses-grid">
+                    <!-- Course Preview Cards -->
+                    <div class="course-card" style="opacity: 0.7;">
+                        <div class="course-header" style="background: var(--primary);">
+                            <h3>Ace Your Interview</h3>
+                            <span class="course-badge">Login Required</span>
+                        </div>
+                        <div class="course-content">
+                            <p>Master interview techniques and common questions. Video lessons included.</p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 4 hours</span>
+                                <span><i class="fas fa-video"></i> 6 video lessons</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card" style="opacity: 0.7;">
+                        <div class="course-header" style="background: var(--secondary);">
+                            <h3>Workplace Conflict Resolution</h3>
+                            <span class="course-badge">Login Required</span>
+                        </div>
+                        <div class="course-content">
+                            <p>Learn to handle workplace conflicts professionally and effectively.</p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 3 hours</span>
+                                <span><i class="fas fa-file-alt"></i> Written materials</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card" style="opacity: 0.7;">
+                        <div class="course-header" style="background: var(--campus-green);">
+                            <h3>Professional Communication</h3>
+                            <span class="course-badge">Login Required</span>
+                        </div>
+                        <div class="course-content">
+                            <p>Master email etiquette, meeting protocols, and professional conversations.</p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 5 hours</span>
+                                <span><i class="fas fa-video"></i> Video lessons</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">9to5</div>
+                    <h3>9to5 University</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 15px;">Free Career Education Platform</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="resume-builder.html">Resume Builder</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="hustle-jobs.html">The Hustle Block</a></li>
+                        <li><a href="workers-rights.html">Workers Rights</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="login.html">Sign Up Free</a></li>
+                        <li><a href="#">My Dashboard</a></li>
+                        <li><a href="#">My Courses</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 9to5 University. All rights reserved.</p>
+                <div class="copyright">
+                    Empowering South African professionals through free career education
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hide loading screen
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const loading = document.getElementById('loading');
+                if (loading) {
+                    loading.classList.add('loaded');
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                    }, 500);
+                }
+            }, 500);
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.main-header');
+                if (header) {
+                    header.classList.toggle('scrolled', window.scrollY > 50);
+                }
+            });
+        });
+        
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            if (mobileNav) {
+                mobileNav.classList.toggle('active');
+                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+            }
+        }
+    </script>
+</body>
+</html>
