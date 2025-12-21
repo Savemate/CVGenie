@@ -3,34 +3,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Listings - 9to5 University</title>
+    <title>Career Hub - 9to5 University</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .jobs-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f5f0 0%, #ffffff 100%);
+            min-height: 70vh;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #c9a959, #e6c34c);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: #4a6572;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .search-filters {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(10, 35, 66, 0.1);
+            margin-bottom: 50px;
+            border: 1px solid rgba(201, 169, 89, 0.2);
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            align-items: end;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        select.form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            background: #fafafa;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%230a2342' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+        }
+
+        .jobs-container {
+            min-height: 400px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(10, 35, 66, 0.1);
+            border: 2px dashed #bdc3c7;
+        }
+
+        .empty-state-icon {
+            font-size: 5rem;
+            color: #ecf0f1;
+            margin-bottom: 30px;
+        }
+
+        .empty-state h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        .empty-state p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .empty-state-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .job-alert {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            border-left: 4px solid #c9a959;
+        }
+
+        .job-alert h4 {
+            color: #0a2342;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-form {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .alert-form .form-control {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .alert-form {
+                flex-direction: column;
+            }
+            
+            .empty-state-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .empty-state-actions .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        .coming-soon {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #c9a959, #e6c34c);
+            color: #0a2342;
+            border-radius: 10px;
+            margin-top: 30px;
+            font-weight: 600;
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .job-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: #c9a959;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c9a959, #e6c34c);
+        }
+
+        .job-type {
+            display: inline-block;
+            background: rgba(201, 169, 89, 0.1);
+            color: #c9a959;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .job-card h3 {
+            color: #0a2342;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .job-company {
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .job-location {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .job-description {
+            color: #5d6d7e;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .job-salary {
+            color: #27ae60;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .job-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .no-jobs-message {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="main-header">
+    <header class="prestige-header">
         <div class="container header-container">
             <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <span class="logo-top">9to5</span>
-                    <span class="logo-bottom">University</span>
+                <div class="logo-shield">
+                    <div class="shield-inner">
+                        <span class="logo-year">1995</span>
+                        <span class="logo-divider"></span>
+                        <span class="logo-acronym">9to5U</span>
+                    </div>
                 </div>
                 <div class="logo-text">
-                    <span class="logo-primary">9to5</span>
-                    <span class="logo-secondary">University</span>
+                    <h1 class="university-name">9to5 University</h1>
+                    <p class="university-motto">Excellence in Career Development</p>
                 </div>
             </a>
 
-            <nav class="main-nav">
+            <nav class="prestige-nav">
                 <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="hustle-jobs.html" class="nav-link active"><i class="fas fa-briefcase"></i> Jobs</a></li>
-                    <li><a href="resume-builder.html" class="nav-link"><i class="fas fa-file-alt"></i> Resume Builder</a></li>
-                    <li><a href="courses.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Courses</a></li>
-                    <li><a href="workers-rights.html" class="nav-link"><i class="fas fa-balance-scale"></i> Rights</a></li>
-                    <li><a href="login.html" class="btn btn-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                    <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                    <li><a href="hustle-jobs.html" class="nav-link active"><i class="fas fa-briefcase"></i> <span>Career Hub</span></a></li>
+                    <li><a href="resume-builder.html" class="nav-link"><i class="fas fa-file-certificate"></i> <span>Resume Pro</span></a></li>
+                    <li><a href="courses.html" class="nav-link"><i class="fas fa-graduation-cap"></i> <span>Academy</span></a></li>
+                    <li><a href="workers-rights.html" class="nav-link"><i class="fas fa-scale-balanced"></i> <span>Rights</span></a></li>
+                    <li><a href="login.html" class="btn btn-gold btn-login"><i class="fas fa-user-graduate"></i> <span>Student Portal</span></a></li>
                 </ul>
             </nav>
 
@@ -44,125 +323,235 @@
     <section class="jobs-section">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-title">Job Listings</h1>
-                <p class="section-subtitle">Find your next career opportunity</p>
+                <h1 class="section-title">Career Hub</h1>
+                <p class="section-subtitle">Find your next career opportunity with our exclusive job portal</p>
             </div>
 
-            <!-- Job Search Filters -->
+            <!-- Search Filters -->
             <div class="search-filters">
                 <div class="filter-group">
-                    <input type="text" id="jobSearch" class="form-control" placeholder="Search jobs by title, keyword, or company...">
+                    <input type="text" id="jobSearch" class="form-control" placeholder="🔍 Search jobs by title, keyword, or company...">
                 </div>
                 <div class="filter-row">
                     <div class="filter-group">
+                        <label for="jobCategory">Industry</label>
                         <select id="jobCategory" class="form-control">
-                            <option value="">All Categories</option>
+                            <option value="">All Industries</option>
                             <option value="technology">Technology</option>
-                            <option value="business">Business</option>
+                            <option value="business">Business & Finance</option>
                             <option value="healthcare">Healthcare</option>
                             <option value="education">Education</option>
+                            <option value="engineering">Engineering</option>
+                            <option value="marketing">Marketing</option>
                         </select>
                     </div>
                     <div class="filter-group">
+                        <label for="jobType">Job Type</label>
                         <select id="jobType" class="form-control">
                             <option value="">All Job Types</option>
                             <option value="full-time">Full Time</option>
                             <option value="part-time">Part Time</option>
                             <option value="internship">Internship</option>
+                            <option value="contract">Contract</option>
                             <option value="remote">Remote</option>
                         </select>
                     </div>
                     <div class="filter-group">
+                        <label for="experienceLevel">Experience Level</label>
                         <select id="experienceLevel" class="form-control">
-                            <option value="">All Experience Levels</option>
+                            <option value="">All Levels</option>
                             <option value="entry">Entry Level</option>
-                            <option value="mid">Mid Level</option>
-                            <option value="senior">Senior Level</option>
+                            <option value="mid">Mid Level (2-5 years)</option>
+                            <option value="senior">Senior Level (5+ years)</option>
+                            <option value="executive">Executive</option>
                         </select>
                     </div>
-                    <button class="btn btn-primary" onclick="searchJobs()">
-                        <i class="fas fa-search"></i> Search
-                    </button>
+                    <div class="filter-group">
+                        <button class="btn btn-gold" onclick="searchJobs()" style="width: 100%;">
+                            <i class="fas fa-search"></i> Search Jobs
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <!-- Jobs Container -->
             <div id="jobsContainer" class="jobs-container">
                 <!-- Jobs will be loaded here -->
-            </div>
-
-            <!-- Empty State (Default) -->
-            <div id="emptyState" class="empty-state">
-                <div class="empty-state-icon">
-                    <i class="fas fa-briefcase"></i>
-                </div>
-                <h3>No Jobs Available Yet</h3>
-                <p>We're currently working with employers to bring you the best opportunities.</p>
-                <p>New jobs will be posted here soon. In the meantime:</p>
-                <div class="empty-state-actions">
-                    <a href="resume-builder.html" class="btn btn-primary">
-                        <i class="fas fa-file-alt"></i> Build Your Resume
-                    </a>
-                    <a href="courses.html" class="btn btn-secondary">
-                        <i class="fas fa-graduation-cap"></i> Take Career Courses
-                    </a>
-                </div>
-                <div class="job-alert">
-                    <h4><i class="fas fa-bell"></i> Get Notified</h4>
-                    <p>Be the first to know when new jobs are posted</p>
-                    <div class="alert-form">
-                        <input type="email" id="alertEmail" class="form-control" placeholder="Enter your email">
-                        <button class="btn btn-primary" onclick="subscribeToAlerts()">
-                            <i class="fas fa-paper-plane"></i> Subscribe
-                        </button>
+                <div class="empty-state">
+                    <div class="empty-state-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Coming Soon: Exclusive Job Portal</h3>
+                    <p>We're building partnerships with top employers to bring you the best career opportunities.</p>
+                    <p>Our job portal will launch soon with positions from leading companies across all industries.</p>
+                    
+                    <div class="empty-state-actions">
+                        <a href="resume-builder.html" class="btn btn-gold">
+                            <i class="fas fa-file-alt"></i> Prepare Your Resume
+                        </a>
+                        <a href="courses.html" class="btn btn-outline">
+                            <i class="fas fa-graduation-cap"></i> Build Your Skills
+                        </a>
+                    </div>
+                    
+                    <div class="job-alert">
+                        <h4><i class="fas fa-bell"></i> Be the First to Know</h4>
+                        <p>Get notified when new jobs are posted</p>
+                        <div class="alert-form">
+                            <input type="email" id="alertEmail" class="form-control" placeholder="Enter your email address">
+                            <button class="btn btn-gold" onclick="subscribeToAlerts()">
+                                <i class="fas fa-paper-plane"></i> Subscribe
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Coming Soon Section -->
+            <div class="coming-soon">
+                <i class="fas fa-rocket"></i> New jobs launching Q1 2024 - Get ready!
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="main-footer">
+    <footer class="prestige-footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="footer-logo">9to5<span>University</span></div>
-                    <p class="footer-about">Connecting students with career opportunities.</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-shield small">
+                            <div class="shield-inner">
+                                <span class="logo-year">1995</span>
+                                <span class="logo-divider"></span>
+                                <span class="logo-acronym">9to5U</span>
+                            </div>
+                        </div>
+                        <div class="footer-logo-text">
+                            <h3>9to5 University</h3>
+                            <p>Career Excellence Since 1995</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Connecting students with premier career opportunities.</p>
                 </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:magtecinvest@gmail.com">magtecinvest@gmail.com</a></p>
-                        <p><i class="fas fa-building"></i> A MagTec Invest Company</p>
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h4>Contact</h4>
+                        <div class="contact-info">
+                            <p><i class="fas fa-envelope"></i> <a href="mailto:magtecinvest@gmail.com">magtecinvest@gmail.com</a></p>
+                            <p><i class="fas fa-building-columns"></i> A MagTec Invest Institution</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <span id="currentYear">2023</span> 9to5 University. All Rights Reserved. A MagTec Invest Company.</p>
+                <p>&copy; 1995-<span id="currentYear"></span> 9to5 University. All rights reserved. A MagTec Invest Premier Institution.</p>
+                <p class="disclaimer">All career services provided free of charge to students and alumni.</p>
             </div>
         </div>
     </footer>
 
     <script src="scripts.js"></script>
     <script>
-        function searchJobs() {
-            showNotification('Searching for jobs... New opportunities coming soon!', 'info');
-        }
-        
-        function subscribeToAlerts() {
-            const email = document.getElementById('alertEmail').value;
-            if (!email || !email.includes('@')) {
-                showNotification('Please enter a valid email address', 'error');
-                return;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize current year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Job search functionality
+            window.searchJobs = function() {
+                const searchTerm = document.getElementById('jobSearch').value;
+                const category = document.getElementById('jobCategory').value;
+                const jobType = document.getElementById('jobType').value;
+                const experience = document.getElementById('experienceLevel').value;
+                
+                let message = 'Searching for jobs';
+                if (searchTerm) message += ` with "${searchTerm}"`;
+                if (category) message += ` in ${category}`;
+                if (jobType) message += ` (${jobType})`;
+                if (experience) message += ` at ${experience} level`;
+                
+                showNotification(message + '... New opportunities coming soon!', 'info');
+                
+                // Simulate loading
+                const container = document.getElementById('jobsContainer');
+                container.innerHTML = `
+                    <div class="no-jobs-message">
+                        <div style="font-size: 3rem; color: #ecf0f1; margin-bottom: 20px;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                        <p>Searching our partner network...</p>
+                        <p>New jobs will be available soon. In the meantime, prepare your resume!</p>
+                        <a href="resume-builder.html" class="btn btn-gold" style="margin-top: 20px;">
+                            <i class="fas fa-file-alt"></i> Build Your Resume
+                        </a>
+                    </div>
+                `;
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    container.innerHTML = document.querySelector('.empty-state').outerHTML;
+                }, 3000);
+            };
+            
+            // Alert subscription
+            window.subscribeToAlerts = function() {
+                const email = document.getElementById('alertEmail').value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (!email || !emailRegex.test(email)) {
+                    showNotification('Please enter a valid email address', 'error');
+                    return;
+                }
+                
+                // Save subscription
+                const subscriptions = JSON.parse(localStorage.getItem('jobAlerts') || '[]');
+                subscriptions.push({
+                    email: email,
+                    date: new Date().toISOString(),
+                    subscribed: true
+                });
+                localStorage.setItem('jobAlerts', JSON.stringify(subscriptions));
+                
+                showNotification('Successfully subscribed to job alerts!', 'success');
+                document.getElementById('alertEmail').value = '';
+            };
+            
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                        <span>${message}</span>
+                    </div>
+                `;
+                
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#27ae60' : type === 'error' ? '#e74c3c' : '#3498db'};
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+                    z-index: 9999;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    animation: slideIn 0.3s ease;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        if (notification.parentNode) notification.remove();
+                    }, 300);
+                }, 4000);
             }
-            
-            const alerts = JSON.parse(localStorage.getItem('jobAlerts')) || [];
-            alerts.push({ email, date: new Date().toISOString() });
-            localStorage.setItem('jobAlerts', JSON.stringify(alerts));
-            
-            showNotification('Successfully subscribed to job alerts!', 'success');
-            document.getElementById('alertEmail').value = '';
-        }
+        });
     </script>
 </body>
 </html>
