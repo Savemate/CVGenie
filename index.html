@@ -3,443 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>9to5 University | Career Education & Professional Development</title>
+    <title>9to5 University - Home</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e40af'/><text x='50' y='65' text-anchor='middle' font-family='Arial' font-size='40' font-weight='bold' fill='white'>9</text></svg>">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading">
-        <div class="loading-content">
-            <div class="logo-icon">9to5</div>
-            <h2>9to5 University</h2>
-            <p>Launching your career journey...</p>
-        </div>
+    <!-- Cookie Consent Banner (will be hidden by default) -->
+    <div id="cookieConsent" class="cookie-banner">
+        <p>We use cookies to improve your experience. By continuing to use our site, you accept our <a href="cookies.html">Cookie Policy</a>.</p>
+        <button id="acceptCookies" class="btn btn-primary">Accept</button>
+        <button id="rejectCookies" class="btn btn-secondary">Reject</button>
     </div>
 
     <!-- Header -->
-    <header class="main-header">
+    <header>
         <div class="container header-container">
             <a href="index.html" class="logo">
-                <div class="logo-icon">9to5</div>
-                <div class="logo-text">
-                    <h1>9to5 University</h1>
+                <div class="logo-icon">
+                    <div class="logo-top">9to5</div>
+                    <div class="logo-bottom">University</div>
                 </div>
+                <div class="logo-text">9to5<span>University</span></div>
             </a>
-
-            <nav class="main-nav">
-                <div class="nav-links">
-                    <a href="#home" class="nav-link active">Home</a>
-                    <a href="#courses" class="nav-link">Courses</a>
-                    <a href="resume-builder.html" class="nav-link">Resume Builder</a>
-                    <a href="#resources" class="nav-link">Resources</a>
-                    <a href="hustle-jobs.html" class="nav-link">The Hustle Block</a>
-                    <a href="workers-rights.html" class="nav-link">Workers Rights</a>
-                </div>
-
-                <div class="nav-actions">
-                    <a href="login.html" class="btn btn-outline">
-                        <i class="fas fa-user-graduate"></i> Login / Sign Up
-                    </a>
-                </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="hustle-jobs.html">Jobs</a></li>
+                    <li><a href="resume-builder.html">Resume</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="workers-rights.html">Rights</a></li>
+                    <li><a href="login.html" class="login-btn">Login</a></li>
+                </ul>
             </nav>
-
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            
+            <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <div class="mobile-nav-header">
-            <div class="logo">
-                <div class="logo-icon">9to5</div>
-                <div class="logo-text">
-                    <h1>9to5 University</h1>
-                </div>
-            </div>
-            <button onclick="toggleMobileMenu()" class="mobile-close">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <div class="mobile-nav-links">
-            <a href="#home" class="mobile-nav-link active" onclick="toggleMobileMenu()">Home</a>
-            <a href="#courses" class="mobile-nav-link" onclick="toggleMobileMenu()">Courses</a>
-            <a href="resume-builder.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Resume Builder</a>
-            <a href="#resources" class="mobile-nav-link" onclick="toggleMobileMenu()">Resources</a>
-            <a href="hustle-jobs.html" class="mobile-nav-link" onclick="toggleMobileMenu()">The Hustle Block</a>
-            <a href="workers-rights.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Workers Rights</a>
-            <a href="login.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Login / Sign Up</a>
-            <div class="mobile-nav-divider"></div>
-            <a href="terms.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Terms</a>
-            <a href="privacy.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Privacy</a>
-            <a href="cookies.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Cookies</a>
-        </div>
-    </div>
-
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Your Free Career Success Platform</h1>
-                <p>Professional resume building, career courses, and job opportunities - all completely free for South African professionals.</p>
-                
-                <div class="hero-actions">
-                    <a href="resume-builder.html" class="btn btn-accent">
-                        <i class="fas fa-file-alt"></i> Build Your Resume
-                    </a>
-                    <a href="login.html" class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: white;">
-                        <i class="fas fa-user-graduate"></i> Join for Free
-                    </a>
-                </div>
-                
-                <div class="hero-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <span>Free Career Courses</span>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-file-contract"></i>
-                        </div>
-                        <span>Professional Resume Builder</span>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-flag-za"></i>
-                        </div>
-                        <span>South African Focus</span>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <span>Job Opportunities</span>
-                    </div>
-                </div>
+            <h1>Launch Your Career with 9to5 University</h1>
+            <p>Connect with top employers and find the perfect job opportunity to kickstart your professional journey.</p>
+            <div class="hero-buttons">
+                <a href="hustle-jobs.html" class="btn btn-primary btn-large">Find Jobs</a>
+                <a href="resume-builder.html" class="btn btn-secondary btn-large">Build Resume</a>
             </div>
         </div>
     </section>
 
-    <!-- Courses Preview -->
-    <section id="courses" class="courses-section">
+    <!-- Features Section -->
+    <section class="features">
         <div class="container">
-            <div class="section-header">
-                <h2>Career Development Courses</h2>
-                <p>Free professional courses focused on workplace challenges</p>
-            </div>
-            
-            <div class="courses-grid">
-                <!-- Course 1 -->
-                <div class="course-card">
-                    <div class="course-header" style="background: var(--primary);">
-                        <h3>Ace Your Interview</h3>
-                        <span class="course-badge">Coming Soon</span>
+            <h2 class="section-title">How We Help You Succeed</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-briefcase"></i>
                     </div>
-                    <div class="course-content">
-                        <p>Master interview techniques and common questions. Video lessons included.</p>
-                        <div class="course-meta">
-                            <span><i class="fas fa-clock"></i> 4 hours</span>
-                            <span><i class="fas fa-video"></i> Video Lessons</span>
-                        </div>
-                        <div class="text-center">
-                            <a href="login.html" class="btn btn-primary">
-                                <i class="fas fa-lock"></i> Login to Access
-                            </a>
-                        </div>
-                    </div>
+                    <h3>Job Matching</h3>
+                    <p>Get matched with jobs that fit your skills and career goals.</p>
                 </div>
-                
-                <!-- Course 2 -->
-                <div class="course-card">
-                    <div class="course-header" style="background: var(--secondary);">
-                        <h3>Workplace Conflict Resolution</h3>
-                        <span class="course-badge">Coming Soon</span>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
                     </div>
-                    <div class="course-content">
-                        <p>Learn to handle workplace conflicts professionally and effectively.</p>
-                        <div class="course-meta">
-                            <span><i class="fas fa-clock"></i> 3 hours</span>
-                            <span><i class="fas fa-file-alt"></i> Written Theory</span>
-                        </div>
-                        <div class="text-center">
-                            <a href="login.html" class="btn btn-primary">
-                                <i class="fas fa-lock"></i> Login to Access
-                            </a>
-                        </div>
-                    </div>
+                    <h3>Resume Builder</h3>
+                    <p>Create professional resumes with our easy-to-use builder.</p>
                 </div>
-                
-                <!-- Course 3 -->
-                <div class="course-card">
-                    <div class="course-header" style="background: var(--campus-green);">
-                        <h3>Professional Communication</h3>
-                        <span class="course-badge">Coming Soon</span>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="course-content">
-                        <p>Master email etiquette, meeting protocols, and professional conversations.</p>
-                        <div class="course-meta">
-                            <span><i class="fas fa-clock"></i> 5 hours</span>
-                            <span><i class="fas fa-video"></i> Video Lessons</span>
-                        </div>
-                        <div class="text-center">
-                            <a href="login.html" class="btn btn-primary">
-                                <i class="fas fa-lock"></i> Login to Access
-                            </a>
-                        </div>
-                    </div>
+                    <h3>Career Courses</h3>
+                    <p>Enhance your skills with our career development courses.</p>
                 </div>
-            </div>
-            
-            <div class="text-center mt-4">
-                <a href="login.html" class="btn btn-accent">
-                    <i class="fas fa-graduation-cap"></i> Create Free Account for Full Access
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resume Builder Preview -->
-    <section class="builder-preview" style="padding: 80px 0; background: var(--light);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Professional Resume Builder</h2>
-                <p>Create ATS-friendly resumes with our smart templates</p>
-            </div>
-            
-            <div class="preview-container" style="background: white; border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-md);">
-                <div class="row" style="display: flex; align-items: center; gap: 40px;">
-                    <div class="col" style="flex: 1;">
-                        <h3 style="color: var(--primary); margin-bottom: 20px;">Build Your Perfect Resume</h3>
-                        <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
-                            <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
-                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
-                                <span>5 professional templates</span>
-                            </li>
-                            <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
-                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
-                                <span>South African career fields</span>
-                            </li>
-                            <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
-                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
-                                <span>ATS-friendly formatting</span>
-                            </li>
-                            <li style="padding: 10px 0; display="flex; align-items: center; gap: 10px;">
-                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
-                                <span>Free PDF download</span>
-                            </li>
-                        </ul>
-                        <a href="resume-builder.html" class="btn btn-primary btn-lg">
-                            <i class="fas fa-rocket"></i> Start Building Free Resume
-                        </a>
-                    </div>
-                    <div class="col" style="flex: 1;">
-                        <div style="border: 2px solid var(--border); border-radius: var(--radius); padding: 20px; background: white;">
-                            <div style="font-family: 'Inter', sans-serif;">
-                                <div style="border-bottom: 3px solid var(--primary); padding-bottom: 15px; margin-bottom: 20px;">
-                                    <h4 style="color: var(--primary); margin: 0 0 5px 0;">THABO MBEKI</h4>
-                                    <p style="color: var(--secondary); margin: 0; font-weight: 600;">Store Manager</p>
-                                </div>
-                                <div style="font-size: 14px; line-height: 1.6;">
-                                    <p><strong>Experience:</strong> 5+ years retail management</p>
-                                    <p><strong>Skills:</strong> Team Leadership, Inventory Control</p>
-                                    <p><strong>Created with 9to5 University</strong></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resources Section -->
-    <section id="resources" class="resources-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Career Resources</h2>
-                <p>Tools and guides for your professional development</p>
-            </div>
-            
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <div class="resource-icon">
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <i class="fas fa-balance-scale"></i>
                     </div>
-                    <h3>Workers Rights Guide</h3>
-                    <p>Understand your rights as an employee in South Africa.</p>
-                    <a href="workers-rights.html" class="btn btn-primary">Learn More</a>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>The Hustle Block</h3>
-                    <p>Find piece jobs and short-term opportunities.</p>
-                    <a href="hustle-jobs.html" class="btn btn-primary">Browse Jobs</a>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <h3>Free Account Benefits</h3>
-                    <p>Access courses, save resumes, apply for jobs.</p>
-                    <a href="login.html" class="btn btn-primary">Sign Up Free</a>
+                    <h3>Know Your Rights</h3>
+                    <p>Learn about workers' rights and employment laws.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
+    <!-- Stats Section -->
+    <section class="stats">
         <div class="container">
-            <div class="about-content">
-                <div class="about-icon">
-                    <i class="fas fa-university"></i>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>0</h3>
+                    <p>Jobs Available</p>
                 </div>
-                <h2>Why 9to5 University?</h2>
-                <p>We believe every South African deserves access to quality career education. That's why everything on our platform is completely free.</p>
-                
-                <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin: 40px 0;">
-                    <div class="benefit" style="text-align: center;">
-                        <div style="width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 15px;">
-                            <i class="fas fa-lock-open"></i>
-                        </div>
-                        <h4>Free Forever</h4>
-                        <p>No fees, no subscriptions, no hidden costs</p>
-                    </div>
-                    
-                    <div class="benefit" style="text-align: center;">
-                        <div style="width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 15px;">
-                            <i class="fas fa-flag-za"></i>
-                        </div>
-                        <h4>South African Focus</h4>
-                        <p>Content tailored for the SA job market</p>
-                    </div>
-                    
-                    <div class="benefit" style="text-align: center;">
-                        <div style="width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 15px;">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <h4>Job-Ready Skills</h4>
-                        <p>Practical skills employers actually want</p>
-                    </div>
+                <div class="stat-item">
+                    <h3>150+</h3>
+                    <p>Students Helped</p>
                 </div>
-                
-                <div class="text-center">
-                    <a href="login.html" class="btn btn-primary btn-lg">
-                        <i class="fas fa-user-plus"></i> Create Your Free Account
-                    </a>
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>Satisfaction Rate</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Partner Companies</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Career Journey?</h2>
+            <p>Upload your resume and get discovered by employers</p>
+            <a href="resume-builder.html" class="btn btn-primary btn-large">Get Started Now</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="main-footer">
+    <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <div class="logo-icon">9to5</div>
-                    <h3>9to5 University</h3>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 15px;">Free Career Education Platform</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">9to5<span>University</span></div>
+                    <p>Connecting students with career opportunities since 2023.</p>
                 </div>
-                
-                <div class="footer-links">
-                    <h4>Platform</h4>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
                     <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="hustle-jobs.html">Jobs</a></li>
                         <li><a href="resume-builder.html">Resume Builder</a></li>
                         <li><a href="courses.html">Courses</a></li>
-                        <li><a href="hustle-jobs.html">The Hustle Block</a></li>
-                        <li><a href="workers-rights.html">Workers Rights</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-links">
-                    <h4>Account</h4>
-                    <ul>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="login.html">Sign Up Free</a></li>
-                        <li><a href="#">My Dashboard</a></li>
-                        <li><a href="#">Saved Resumes</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
+                <div class="footer-col">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="terms.html">Terms & Conditions</a></li>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="cookies.html">Cookie Policy</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="workers-rights.html">Workers' Rights</a></li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>© 2024 9to5 University. All rights reserved.</p>
-                <div class="copyright">
-                    Empowering South African professionals through free career education
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:magtecinvest@gmail.com">magtecinvest@gmail.com</a></p>
+                    <p>A MagTec Invest Company</p>
                 </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 9to5 University. All Rights Reserved. A MagTec Invest Company.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
-        // Simple JavaScript for landing page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Hide loading screen
-            setTimeout(() => {
-                const loading = document.getElementById('loading');
-                if (loading) {
-                    loading.classList.add('loaded');
-                    setTimeout(() => {
-                        loading.style.display = 'none';
-                    }, 500);
-                }
-            }, 500);
-
-            // Header scroll effect
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('.main-header');
-                if (header) {
-                    header.classList.toggle('scrolled', window.scrollY > 50);
-                }
-            });
-        });
-
-        function toggleMobileMenu() {
-            const mobileNav = document.getElementById('mobileNav');
-            if (mobileNav) {
-                mobileNav.classList.toggle('active');
-                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-            }
-        }
-
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                window.scrollTo({
-                    top: section.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        }
-    </script>
+    <script src="scripts.js"></script>
+    <script src="utils.js"></script>
 </body>
 </html>
