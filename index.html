@@ -1,47 +1,52 @@
+<!-- 1. index.html (Updated with Prestigious Theme) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>9to5 University - Career Portal</title>
+    <title>9to5 University - Premier Career Development Platform</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Cookie Consent -->
     <div id="cookieConsent" class="cookie-banner">
         <div class="cookie-content">
-            <p>We use cookies to enhance your experience. By continuing, you agree to our <a href="cookies.html">Cookie Policy</a>.</p>
+            <p>9to5 University uses cookies to enhance your experience. By continuing, you accept our <a href="cookies.html">Cookie Policy</a>.</p>
             <div class="cookie-buttons">
-                <button id="acceptCookies" class="btn btn-primary">Accept All</button>
-                <button id="rejectCookies" class="btn btn-secondary">Reject</button>
+                <button id="acceptCookies" class="btn btn-gold">Accept</button>
+                <button id="rejectCookies" class="btn btn-outline">Decline</button>
             </div>
         </div>
     </div>
 
-    <!-- Header -->
-    <header class="main-header">
+    <!-- Header with Prestigious Logo -->
+    <header class="prestige-header">
         <div class="container header-container">
             <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <span class="logo-top">9to5</span>
-                    <span class="logo-bottom">University</span>
+                <div class="logo-shield">
+                    <div class="shield-inner">
+                        <span class="logo-year">1995</span>
+                        <span class="logo-divider"></span>
+                        <span class="logo-acronym">9to5U</span>
+                    </div>
                 </div>
                 <div class="logo-text">
-                    <span class="logo-primary">9to5</span>
-                    <span class="logo-secondary">University</span>
+                    <h1 class="university-name">9to5 University</h1>
+                    <p class="university-motto">Excellence in Career Development</p>
                 </div>
             </a>
 
-            <nav class="main-nav">
+            <nav class="prestige-nav">
                 <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="hustle-jobs.html" class="nav-link"><i class="fas fa-briefcase"></i> Jobs</a></li>
-                    <li><a href="resume-builder.html" class="nav-link"><i class="fas fa-file-alt"></i> Resume Builder</a></li>
-                    <li><a href="courses.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Courses</a></li>
-                    <li><a href="workers-rights.html" class="nav-link"><i class="fas fa-balance-scale"></i> Rights</a></li>
-                    <li><a href="login.html" class="btn btn-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                    <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                    <li><a href="hustle-jobs.html" class="nav-link"><i class="fas fa-briefcase"></i> <span>Career Hub</span></a></li>
+                    <li><a href="resume-builder.html" class="nav-link"><i class="fas fa-file-certificate"></i> <span>Resume Pro</span></a></li>
+                    <li><a href="courses.html" class="nav-link"><i class="fas fa-graduation-cap"></i> <span>Academy</span></a></li>
+                    <li><a href="workers-rights.html" class="nav-link"><i class="fas fa-scale-balanced"></i> <span>Rights</span></a></li>
+                    <li><a href="login.html" class="btn btn-gold btn-login"><i class="fas fa-user-graduate"></i> <span>Student Portal</span></a></li>
                 </ul>
             </nav>
 
@@ -52,90 +57,98 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container hero-container">
+    <section class="prestige-hero">
+        <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Launch Your Career with <span class="highlight">9to5 University</span></h1>
-                <p class="hero-subtitle">Professional resume builder, job matching, and career resources designed for today's competitive market.</p>
+                <div class="hero-badge">
+                    <span class="badge-text">World-Class Career Platform</span>
+                </div>
+                <h1 class="hero-title">Build Your Future with <span class="highlight">9to5 University</span></h1>
+                <p class="hero-subtitle">Free professional resume building, career coaching, and job placement services for our students and alumni.</p>
+                
+                <div class="hero-features">
+                    <div class="feature">
+                        <i class="fas fa-crown"></i>
+                        <span>Premium Resume Templates</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-rocket"></i>
+                        <span>ATS Optimization</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Free Career Courses</span>
+                    </div>
+                </div>
+
                 <div class="hero-cta">
-                    <a href="resume-builder.html" class="btn btn-primary btn-lg">
-                        <i class="fas fa-magic"></i> Build Professional Resume
+                    <a href="resume-builder.html" class="btn btn-gold btn-xl">
+                        <i class="fas fa-magic"></i> Create Professional Resume
                     </a>
-                    <a href="#features" class="btn btn-secondary btn-lg">
-                        <i class="fas fa-play-circle"></i> See How It Works
+                    <a href="#features" class="btn btn-outline btn-xl">
+                        <i class="fas fa-play-circle"></i> Watch Demo
                     </a>
                 </div>
+
                 <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">500+</span>
+                    <div class="stat">
+                        <span class="stat-number">10,000+</span>
                         <span class="stat-label">Resumes Created</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">95%</span>
+                    <div class="stat">
+                        <span class="stat-number">98%</span>
                         <span class="stat-label">Success Rate</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">A.I.</span>
-                        <span class="stat-label">Optimized Templates</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="mockup-resume">
-                    <div class="mockup-header">
-                        <h3>Professional Resume</h3>
-                        <span class="badge-premium"><i class="fas fa-crown"></i> Premium</span>
-                    </div>
-                    <div class="mockup-content">
-                        <div class="mockup-section">
-                            <h4>John Doe</h4>
-                            <p>Senior Software Engineer</p>
-                        </div>
-                        <div class="mockup-section">
-                            <h5>Experience</h5>
-                            <p>Tech Lead @ Google (2020-Present)</p>
-                        </div>
+                    <div class="stat">
+                        <span class="stat-number">Free</span>
+                        <span class="stat-label">Always Free</span>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="hero-decoration">
+            <div class="decoration-item"></div>
+            <div class="decoration-item"></div>
+            <div class="decoration-item"></div>
+        </div>
     </section>
 
-    <!-- Features -->
+    <!-- Features Section -->
     <section id="features" class="features-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Professional Resume Features</h2>
-                <p class="section-subtitle">Create resumes that get noticed by employers</p>
+                <h2 class="section-title">World-Class Resume Features</h2>
+                <p class="section-subtitle">Professional tools used by Fortune 500 companies, now available for free</p>
             </div>
+
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-file-pdf"></i>
                     </div>
-                    <h3>PDF Export</h3>
-                    <p>Download your resume as high-quality PDF ready for job applications</p>
+                    <h3>Industry-Standard PDF Export</h3>
+                    <p>Download perfectly formatted resumes in PDF format, optimized for applicant tracking systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI-Powered Optimization</h3>
+                    <p>Our AI analyzes your resume and suggests improvements to beat automated screening systems.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-palette"></i>
                     </div>
                     <h3>Professional Templates</h3>
-                    <p>Choose from ATS-friendly, modern, and creative resume designs</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>A.I. Optimization</h3>
-                    <p>Get suggestions to improve your resume for applicant tracking systems</p>
+                    <p>Choose from award-winning resume designs created by top career experts.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3>Mobile-Friendly</h3>
-                    <p>Create and edit your resume on any device, anywhere</p>
+                    <h3>Mobile-First Design</h3>
+                    <p>Create and edit your resume on any device with our responsive platform.</p>
                 </div>
             </div>
         </div>
@@ -145,63 +158,96 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-card">
-                <h2>Ready to Create Your Professional Resume?</h2>
-                <p>Join thousands of successful job seekers who landed interviews with our resume builder</p>
-                <a href="resume-builder.html" class="btn btn-primary btn-xl">
-                    <i class="fas fa-rocket"></i> Start Building Now - It's Free
+                <div class="cta-badge">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>University Service</span>
+                </div>
+                <h2>Premium Quality, Always Free</h2>
+                <p>As part of 9to5 University's commitment to student success, all career services are completely free for students and alumni.</p>
+                <a href="resume-builder.html" class="btn btn-gold btn-xl">
+                    <i class="fas fa-rocket"></i> Start Building For Free
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="main-footer">
+    <footer class="prestige-footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="footer-logo">9to5<span>University</span></div>
-                    <p class="footer-about">Professional career platform connecting students with opportunities.</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-shield small">
+                            <div class="shield-inner">
+                                <span class="logo-year">1995</span>
+                                <span class="logo-divider"></span>
+                                <span class="logo-acronym">9to5U</span>
+                            </div>
+                        </div>
+                        <div class="footer-logo-text">
+                            <h3>9to5 University</h3>
+                            <p>Career Excellence Since 1995</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">A premier institution dedicated to career development and professional growth.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="hustle-jobs.html">Job Listings</a></li>
-                        <li><a href="resume-builder.html">Resume Builder</a></li>
-                        <li><a href="courses.html">Career Courses</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="workers-rights.html">Workers' Rights</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="cookies.html">Cookie Policy</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact Us</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:magtecinvest@gmail.com">magtecinvest@gmail.com</a></p>
-                        <p><i class="fas fa-building"></i> A MagTec Invest Company</p>
-                        <p><i class="fas fa-globe"></i> 9to5University.com</p>
+
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="resume-builder.html">Resume Builder</a></li>
+                            <li><a href="hustle-jobs.html">Job Portal</a></li>
+                            <li><a href="courses.html">Career Courses</a></li>
+                            <li><a href="workers-rights.html">Career Counseling</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h4>University</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Admissions</a></li>
+                            <li><a href="#">Academics</a></li>
+                            <li><a href="#">Alumni</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="cookies.html">Cookie Policy</a></li>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="accessibility.html">Accessibility</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h4>Contact</h4>
+                        <div class="contact-info">
+                            <p><i class="fas fa-envelope"></i> <a href="mailto:magtecinvest@gmail.com">magtecinvest@gmail.com</a></p>
+                            <p><i class="fas fa-building-columns"></i> 9to5 University Campus</p>
+                            <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                            <p class="parent-company">
+                                <i class="fas fa-copyright"></i> A MagTec Invest Institution
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="footer-bottom">
-                <p>&copy; <span id="currentYear">2023</span> 9to5 University. All Rights Reserved. A MagTec Invest Company.</p>
+                <p>&copy; 1995-<span id="currentYear"></span> 9to5 University. All rights reserved. A MagTec Invest Premier Institution.</p>
+                <p class="disclaimer">All career services provided free of charge to students and alumni.</p>
             </div>
         </div>
     </footer>
 
     <script src="scripts.js"></script>
-    <script src="utils.js"></script>
+    <script src="resume-engine.js"></script>
 </body>
 </html>
