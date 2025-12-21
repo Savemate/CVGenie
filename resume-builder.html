@@ -3,1233 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Resume Builder | 9to5 University</title>
+    <title>Professional Resume Builder - 9to5 University</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Resume Builder Specific Styles */
-        .resume-builder-page {
-            min-height: 100vh;
-            background: var(--light);
-        }
-        
-        .builder-header {
-            background: white;
-            padding: 20px 0;
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 30px;
-        }
-        
-        .step-indicator {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 20px;
-        }
-        
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .step-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--light);
-            border: 2px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            color: var(--gray);
-        }
-        
-        .step.active .step-circle {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: white;
-        }
-        
-        .step-label {
-            font-size: 14px;
-            color: var(--gray);
-        }
-        
-        .step.active .step-label {
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        /* Template Styles */
-        .template-preview {
-            width: 210mm;
-            height: 297mm;
-            background: white;
-            margin: 0 auto;
-            box-shadow: var(--shadow-md);
-            padding: 25mm;
-            font-family: 'Inter', sans-serif;
-            overflow: auto;
-        }
-        
-        /* Template 1: Professional */
-        .template-professional {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.5;
-        }
-        
-        .template-professional .header {
-            border-bottom: 3px solid var(--primary);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .template-professional .name {
-            color: var(--primary);
-            font-size: 28px;
-            font-weight: 700;
-            margin: 0 0 5px 0;
-        }
-        
-        .template-professional .title {
-            color: var(--secondary);
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0 0 15px 0;
-        }
-        
-        .template-professional .contact {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            font-size: 14px;
-            color: var(--dark);
-        }
-        
-        .template-professional .section {
-            margin-bottom: 25px;
-        }
-        
-        .template-professional .section-title {
-            color: var(--primary);
-            border-bottom: 2px solid var(--light);
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            font-size: 18px;
-        }
-        
-        /* Template 2: Modern */
-        .template-modern {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-        }
-        
-        .template-modern .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .template-modern .name {
-            color: var(--dark);
-            font-size: 32px;
-            font-weight: 700;
-            margin: 0 0 5px 0;
-        }
-        
-        .template-modern .title {
-            color: var(--gray);
-            font-size: 18px;
-            font-weight: 500;
-            margin: 0;
-        }
-        
-        .template-modern .contact-sidebar {
-            text-align: right;
-            font-size: 14px;
-        }
-        
-        /* Template 3: Simple */
-        .template-simple {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-        }
-        
-        .template-simple .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .template-simple .name {
-            color: var(--dark);
-            font-size: 24px;
-            font-weight: 700;
-            margin: 0 0 5px 0;
-            text-transform: uppercase;
-        }
-        
-        .template-simple .title {
-            color: var(--gray);
-            font-size: 16px;
-            margin: 0 0 15px 0;
-        }
-        
-        .template-simple .divider {
-            height: 1px;
-            background: var(--border);
-            margin: 20px 0;
-        }
-        
-        /* Print Styles */
-        @media print {
-            .builder-header,
-            .builder-sidebar,
-            .template-selector,
-            .form-container,
-            .action-buttons,
-            .step-indicator {
-                display: none !important;
-            }
-            
-            body {
-                background: white !important;
-            }
-            
-            .template-preview {
-                width: 100% !important;
-                height: auto !important;
-                margin: 0 !important;
-                padding: 20px !important;
-                box-shadow: none !important;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body class="resume-builder-page">
-    <!-- Loading Screen -->
-    <div id="loading">
-        <div class="loading-content">
-            <div class="logo-icon">9to5</div>
-            <h2>Resume Builder</h2>
-            <p>Loading your resume builder...</p>
-        </div>
-    </div>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <span class="logo-top">9to5</span>
+                    <span class="logo-bottom">University</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-primary">9to5</span>
+                    <span class="logo-secondary">University</span>
+                </div>
+            </a>
 
-    <!-- Builder Header -->
-    <header class="builder-header">
-        <div class="container">
-            <div class="header-content" style="display: flex; justify-content: space-between; align-items: center;">
-                <div class="logo">
-                    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
-                        <div class="logo-icon">9to5</div>
-                        <div>
-                            <h2 style="margin: 0; font-size: 20px;">9to5 University</h2>
-                            <p style="margin: 0; font-size: 14px; color: var(--gray);">Resume Builder</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="header-actions">
-                    <a href="login.html" class="btn btn-outline btn-sm">
-                        <i class="fas fa-save"></i> Save to Account
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Step Indicator -->
-            <div class="step-indicator">
-                <div class="step active" data-step="1">
-                    <div class="step-circle">1</div>
-                    <div class="step-label">Personal</div>
-                </div>
-                <div class="step" data-step="2">
-                    <div class="step-circle">2</div>
-                    <div class="step-label">Experience</div>
-                </div>
-                <div class="step" data-step="3">
-                    <div class="step-circle">3</div>
-                    <div class="step-label">Education</div>
-                </div>
-                <div class="step" data-step="4">
-                    <div class="step-circle">4</div>
-                    <div class="step-label">Skills</div>
-                </div>
-                <div class="step" data-step="5">
-                    <div class="step-circle">5</div>
-                    <div class="step-label">Download</div>
-                </div>
-            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="hustle-jobs.html" class="nav-link"><i class="fas fa-briefcase"></i> Jobs</a></li>
+                    <li><a href="resume-builder.html" class="nav-link active"><i class="fas fa-file-alt"></i> Resume Builder</a></li>
+                    <li><a href="courses.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Courses</a></li>
+                    <li><a href="workers-rights.html" class="nav-link"><i class="fas fa-balance-scale"></i> Rights</a></li>
+                    <li><a href="login.html" class="btn btn-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <!-- Main Builder Content -->
-    <div class="container">
-        <div class="builder-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px;">
-            <!-- Left Side: Form -->
-            <div class="form-container">
-                <div class="form-section active" id="personal-form">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">Personal Information</h3>
+    <!-- Resume Builder Section -->
+    <section class="resume-builder-section">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Professional Resume Builder</h1>
+                <p class="section-subtitle">Create a resume that gets noticed by employers</p>
+            </div>
+
+            <div class="builder-container">
+                <!-- Templates Sidebar -->
+                <div class="templates-sidebar">
+                    <h3><i class="fas fa-palette"></i> Choose Template</h3>
+                    <p class="help-text">Select a professional template to start with</p>
                     
-                    <!-- Career Field Selection -->
-                    <div class="career-selector" style="margin-bottom: 25px;">
-                        <label style="display: block; margin-bottom: 10px; font-weight: 600;">Select Your Career Field:</label>
-                        <div class="field-buttons" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-                            <button type="button" class="field-btn active" data-field="corporate">
-                                <i class="fas fa-building"></i>
-                                <span>Corporate</span>
-                            </button>
-                            <button type="button" class="field-btn" data-field="technical">
-                                <i class="fas fa-laptop-code"></i>
-                                <span>Technical</span>
-                            </button>
-                            <button type="button" class="field-btn" data-field="healthcare">
-                                <i class="fas fa-heartbeat"></i>
-                                <span>Healthcare</span>
-                            </button>
-                            <button type="button" class="field-btn" data-field="education">
-                                <i class="fas fa-chalkboard-teacher"></i>
-                                <span>Education</span>
-                            </button>
-                            <button type="button" class="field-btn" data-field="retail">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span>Retail</span>
-                            </button>
-                            <button type="button" class="field-btn" data-field="creative">
-                                <i class="fas fa-palette"></i>
-                                <span>Creative</span>
-                            </button>
-                        </div>
+                    <div id="templateContainer" class="template-grid">
+                        <!-- Templates will be loaded by JavaScript -->
                     </div>
                     
-                    <!-- Personal Info Form -->
-                    <div class="form-group">
-                        <label>Full Name *</label>
-                        <input type="text" id="fullName" class="form-control" placeholder="e.g., Thabo Mbeki" value="Thabo Mbeki">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Professional Title</label>
-                        <input type="text" id="jobTitle" class="form-control" placeholder="e.g., Store Manager, Nurse, Teacher" value="Store Manager">
-                    </div>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" id="email" class="form-control" placeholder="your.email@gmail.com" value="thabo.mbeki@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label>Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" placeholder="+27 82 123 4567" value="+27 82 123 4567">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Location</label>
-                        <input type="text" id="location" class="form-control" placeholder="e.g., Johannesburg, Gauteng" value="Johannesburg, Gauteng">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Professional Summary</label>
-                        <textarea id="summary" class="form-control" rows="4" placeholder="Describe your experience, skills, and career objectives...">Experienced Store Manager with 5+ years in retail management. Skilled in team leadership, inventory management, and customer service excellence. Passionate about creating positive shopping experiences and driving store profitability.</textarea>
-                    </div>
-                    
-                    <div class="form-actions">
-                        <button class="btn btn-primary" onclick="nextStep()">
-                            Next: Experience <i class="fas fa-arrow-right"></i>
-                        </button>
+                    <div class="template-tips">
+                        <h4><i class="fas fa-lightbulb"></i> Tips</h4>
+                        <ul>
+                            <li>Choose a template that matches your industry</li>
+                            <li>Professional templates are ATS-friendly</li>
+                            <li>Creative templates work well for design fields</li>
+                            <li>Minimalist templates are great for all industries</li>
+                        </ul>
                     </div>
                 </div>
-                
-                <div class="form-section" id="experience-form">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">Work Experience</h3>
-                    
-                    <div id="experience-list">
-                        <!-- Experience items will be added here -->
-                    </div>
-                    
-                    <button class="btn btn-outline" onclick="addExperience()" style="width: 100%; margin-bottom: 20px;">
-                        <i class="fas fa-plus"></i> Add Work Experience
-                    </button>
-                    
-                    <div class="form-actions" style="display: flex; justify-content: space-between;">
-                        <button class="btn btn-outline" onclick="prevStep()">
-                            <i class="fas fa-arrow-left"></i> Back
-                        </button>
-                        <button class="btn btn-primary" onclick="nextStep()">
-                            Next: Education <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="form-section" id="education-form">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">Education & Training</h3>
-                    
-                    <div id="education-list">
-                        <!-- Education items will be added here -->
-                    </div>
-                    
-                    <button class="btn btn-outline" onclick="addEducation()" style="width: 100%; margin-bottom: 20px;">
-                        <i class="fas fa-plus"></i> Add Education
-                    </button>
-                    
-                    <div class="form-actions" style="display: flex; justify-content: space-between;">
-                        <button class="btn btn-outline" onclick="prevStep()">
-                            <i class="fas fa-arrow-left"></i> Back
-                        </button>
-                        <button class="btn btn-primary" onclick="nextStep()">
-                            Next: Skills <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="form-section" id="skills-form">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">Skills & Certifications</h3>
-                    
-                    <div class="form-group">
-                        <label>Professional Skills</label>
-                        <textarea id="technicalSkills" class="form-control" rows="3" placeholder="e.g., Customer Service, Team Management, Cash Handling, Inventory Control">Customer Service, Team Management, Cash Handling, Inventory Control, Sales Techniques, Stock Management, Staff Training, Visual Merchandising</textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Soft Skills</label>
-                        <textarea id="softSkills" class="form-control" rows="3" placeholder="e.g., Communication, Problem Solving, Leadership, Time Management">Communication, Problem Solving, Leadership, Time Management, Attention to Detail, Adaptability, Conflict Resolution</textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Certifications & Licenses</label>
-                        <textarea id="certifications" class="form-control" rows="3" placeholder="e.g., First Aid Certified, Drivers License, Retail Management Certificate">First Aid Certified, Code 10 Drivers License, Retail Management Certificate</textarea>
-                    </div>
-                    
-                    <div class="form-actions" style="display: flex; justify-content: space-between;">
-                        <button class="btn btn-outline" onclick="prevStep()">
-                            <i class="fas fa-arrow-left"></i> Back
-                        </button>
-                        <button class="btn btn-primary" onclick="nextStep()">
-                            Next: Download <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="form-section" id="download-form">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">Download Your Resume</h3>
-                    
-                    <div class="template-selector" style="margin-bottom: 30px;">
-                        <label style="display: block; margin-bottom: 10px; font-weight: 600;">Choose a Template:</label>
-                        <div class="template-options" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-                            <button type="button" class="template-option active" data-template="professional">
-                                <i class="fas fa-user-tie"></i>
-                                <span>Professional</span>
+
+                <!-- Resume Form -->
+                <div class="resume-form-container">
+                    <form id="resumeForm" class="form-container">
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> Personal Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name *</label>
+                                    <input type="text" id="fullName" name="fullName" class="form-control" required placeholder="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label for="jobTitle">Professional Title *</label>
+                                    <input type="text" id="jobTitle" name="jobTitle" class="form-control" required placeholder="Senior Software Engineer">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" class="form-control" required placeholder="john@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone *</label>
+                                    <input type="tel" id="phone" name="phone" class="form-control" required placeholder="(123) 456-7890">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="location">Location</label>
+                                    <input type="text" id="location" name="location" class="form-control" placeholder="City, State">
+                                </div>
+                                <div class="form-group">
+                                    <label for="website">Website/Portfolio</label>
+                                    <input type="url" id="website" name="website" class="form-control" placeholder="https://yourportfolio.com">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-file-alt"></i> Professional Summary</h3>
+                            <div class="form-group">
+                                <label for="summary">Summary *</label>
+                                <textarea id="summary" name="summary" class="form-control" rows="4" required placeholder="Results-driven professional with 5+ years of experience..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
+                            <div class="form-group">
+                                <label for="jobTitle1">Job Title</label>
+                                <input type="text" id="jobTitle1" name="jobTitle1" class="form-control" placeholder="Senior Developer">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="company1">Company</label>
+                                    <input type="text" id="company1" name="company1" class="form-control" placeholder="Tech Company Inc.">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dates1">Dates</label>
+                                    <input type="text" id="dates1" name="dates1" class="form-control" placeholder="2020 - Present">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description1">Description</label>
+                                <textarea id="description1" name="description1" class="form-control" rows="3" placeholder="Key responsibilities and achievements..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                            <div class="form-group">
+                                <label for="degree">Degree</label>
+                                <input type="text" id="degree" name="degree" class="form-control" placeholder="Bachelor of Science in Computer Science">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="school">School</label>
+                                    <input type="text" id="school" name="school" class="form-control" placeholder="University Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="graduationYear">Graduation Year</label>
+                                    <input type="text" id="graduationYear" name="graduationYear" class="form-control" placeholder="2020">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-tools"></i> Skills & Certifications</h3>
+                            <div class="form-group">
+                                <label for="technicalSkills">Technical Skills</label>
+                                <textarea id="technicalSkills" name="technicalSkills" class="form-control" rows="2" placeholder="JavaScript, React, Node.js, Python, AWS..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="professionalSkills">Professional Skills</label>
+                                <textarea id="professionalSkills" name="professionalSkills" class="form-control" rows="2" placeholder="Project Management, Team Leadership, Communication..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="certifications">Certifications</label>
+                                <textarea id="certifications" name="certifications" class="form-control" rows="2" placeholder="AWS Certified, PMP, Scrum Master..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="languages">Languages</label>
+                                <input type="text" id="languages" name="languages" class="form-control" placeholder="English (Native), Spanish (Intermediate)">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-sync-alt"></i> Generate Resume
                             </button>
-                            <button type="button" class="template-option" data-template="modern">
-                                <i class="fas fa-chart-line"></i>
-                                <span>Modern</span>
-                            </button>
-                            <button type="button" class="template-option" data-template="simple">
-                                <i class="fas fa-file-alt"></i>
-                                <span>Simple</span>
+                            <button type="button" class="btn btn-secondary" onclick="clearForm()">
+                                <i class="fas fa-trash-alt"></i> Clear Form
                             </button>
                         </div>
-                    </div>
-                    
-                    <div class="download-options" style="background: var(--light); padding: 20px; border-radius: var(--radius); margin-bottom: 30px;">
-                        <h4 style="margin-bottom: 15px;">Download Options</h4>
-                        <div style="display: flex; gap: 10px;">
-                            <button class="btn btn-primary" onclick="downloadPDF()">
-                                <i class="fas fa-download"></i> Download PDF
-                            </button>
-                            <button class="btn btn-outline" onclick="printResume()">
-                                <i class="fas fa-print"></i> Print Resume
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="account-prompt" style="background: #e3f2fd; padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--primary);">
-                        <h4 style="margin-bottom: 10px; color: var(--primary);">
-                            <i class="fas fa-user-plus"></i> Save Your Progress
-                        </h4>
-                        <p style="margin-bottom: 15px; color: var(--dark);">
-                            Create a free account to save your resume and access career courses.
-                        </p>
-                        <a href="login.html" class="btn btn-primary">
-                            <i class="fas fa-user-plus"></i> Create Free Account
-                        </a>
-                    </div>
-                    
-                    <div class="form-actions">
-                        <button class="btn btn-outline" onclick="prevStep()">
-                            <i class="fas fa-arrow-left"></i> Back
-                        </button>
-                    </div>
+                    </form>
                 </div>
             </div>
-            
-            <!-- Right Side: Preview -->
-            <div class="preview-container">
-                <div class="preview-header" style="margin-bottom: 20px;">
-                    <h3 style="color: var(--primary);">Resume Preview</h3>
-                    <p style="color: var(--gray); font-size: 14px;">Live preview updates as you type</p>
+
+            <!-- Resume Preview -->
+            <div class="resume-preview-container">
+                <div class="preview-header">
+                    <h3><i class="fas fa-eye"></i> Live Preview</h3>
+                    <p>Your resume will appear here</p>
+                </div>
+                <div id="resumePreview" class="resume-preview">
+                    <div class="preview-placeholder">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Your Resume Preview</h4>
+                        <p>Fill out the form and click "Generate Resume" to see your professional resume here</p>
+                    </div>
                 </div>
                 
-                <div class="template-preview" id="resumePreview">
-                    <!-- Resume content will be rendered here -->
-                </div>
-                
-                <div class="preview-footer" style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
-                    <p style="color: var(--gray); font-size: 14px;">
-                        <i class="fas fa-info-circle"></i> Created with 9to5 University Resume Builder
-                    </p>
+                <div class="download-controls">
+                    <button id="downloadPdf" class="btn btn-primary btn-lg">
+                        <i class="fas fa-file-pdf"></i> Download as PDF
+                    </button>
+                    <button id="downloadWord" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-file-word"></i> Download as Word
+                    </button>
+                    <button onclick="printResume()" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-print"></i> Print Resume
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- JavaScript -->
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">9to5<span>University</span></div>
+                    <p class="footer-about">Professional career platform connecting students with opportunities.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:magtecinvest@gmail.com">magtecinvest@gmail.com</a></p>
+                        <p><i class="fas fa-building"></i> A MagTec Invest Company</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear">2023</span> 9to5 University. All Rights Reserved. A MagTec Invest Company.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
     <script>
-        // Resume Builder Application
-        class ResumeBuilder {
-            constructor() {
-                this.currentStep = 1;
-                this.selectedTemplate = 'professional';
-                this.resumeData = {
-                    personal: {
-                        name: 'Thabo Mbeki',
-                        title: 'Store Manager',
-                        email: 'thabo.mbeki@email.com',
-                        phone: '+27 82 123 4567',
-                        location: 'Johannesburg, Gauteng',
-                        summary: 'Experienced Store Manager with 5+ years in retail management. Skilled in team leadership, inventory management, and customer service excellence. Passionate about creating positive shopping experiences and driving store profitability.'
-                    },
-                    experience: [
-                        {
-                            title: 'Store Manager',
-                            company: 'Checkers Hyper',
-                            start: 'March 2019',
-                            end: 'Present',
-                            description: 'Managed daily store operations, supervised team of 25 staff members, increased sales by 15% through improved customer service initiatives.'
-                        }
-                    ],
-                    education: [
-                        {
-                            degree: 'National Senior Certificate',
-                            school: 'Alexander High School',
-                            year: '2015'
-                        }
-                    ],
-                    skills: {
-                        technical: 'Customer Service, Team Management, Cash Handling, Inventory Control, Sales Techniques, Stock Management, Staff Training, Visual Merchandising',
-                        soft: 'Communication, Problem Solving, Leadership, Time Management, Attention to Detail, Adaptability, Conflict Resolution',
-                        certifications: 'First Aid Certified, Code 10 Drivers License, Retail Management Certificate'
-                    }
-                };
-                
-                this.init();
-            }
-            
-            init() {
-                // Hide loading screen
-                this.hideLoading();
-                
-                // Initialize event listeners
-                this.setupEventListeners();
-                
-                // Initialize form with example data
-                this.populateForm();
-                
-                // Render initial preview
-                this.renderPreview();
-                
-                // Add example experience and education
-                this.addExperienceItem(this.resumeData.experience[0]);
-                this.addEducationItem(this.resumeData.education[0]);
-            }
-            
-            hideLoading() {
-                setTimeout(() => {
-                    const loading = document.getElementById('loading');
-                    if (loading) {
-                        loading.classList.add('loaded');
-                        setTimeout(() => {
-                            loading.style.display = 'none';
-                        }, 500);
-                    }
-                }, 500);
-            }
-            
-            setupEventListeners() {
-                // Form input listeners
-                document.getElementById('fullName').addEventListener('input', (e) => {
-                    this.resumeData.personal.name = e.target.value;
-                    this.renderPreview();
-                });
-                
-                document.getElementById('jobTitle').addEventListener('input', (e) => {
-                    this.resumeData.personal.title = e.target.value;
-                    this.renderPreview();
-                });
-                
-                document.getElementById('email').addEventListener('input', (e) => {
-                    this.resumeData.personal.email = e.target.value;
-                    this.renderPreview();
-                });
-                
-                document.getElementById('phone').addEventListener('input', (e) => {
-                    this.resumeData.personal.phone = e.target.value;
-                    this.renderPreview();
-                });
-                
-                document.getElementById('location').addEventListener('input', (e) => {
-                    this.resumeData.personal.location = e.target.value;
-                    this.renderPreview();
-                });
-                
-                document.getElementById('summary').addEventListener('input', (e) => {
-                    this.resumeData.personal.summary = e.target.value;
-                    this.renderPreview();
-                });
-                
-                document.getElementById('technicalSkills').addEventListener('input', (e) => {
-                    this.resumeData.skills.technical = e.target.value;
-                    this.renderPreview();
-                });
-                
-                document.getElementById('softSkills').addEventListener('input', (e) => {
-                    this.resumeData.skills.soft = e.target.value;
-                    this.renderPreview();
-                });
-                
-                document.getElementById('certifications').addEventListener('input', (e) => {
-                    this.resumeData.skills.certifications = e.target.value;
-                    this.renderPreview();
-                });
-                
-                // Career field buttons
-                document.querySelectorAll('.field-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        document.querySelectorAll('.field-btn').forEach(b => b.classList.remove('active'));
-                        e.target.classList.add('active');
-                        this.updateCareerField(e.target.dataset.field);
-                    });
-                });
-                
-                // Template selection
-                document.querySelectorAll('.template-option').forEach(option => {
-                    option.addEventListener('click', (e) => {
-                        document.querySelectorAll('.template-option').forEach(o => o.classList.remove('active'));
-                        e.target.classList.add('active');
-                        this.selectedTemplate = e.target.dataset.template;
-                        this.renderPreview();
-                    });
-                });
-            }
-            
-            populateForm() {
-                // Set form values from resume data
-                document.getElementById('fullName').value = this.resumeData.personal.name;
-                document.getElementById('jobTitle').value = this.resumeData.personal.title;
-                document.getElementById('email').value = this.resumeData.personal.email;
-                document.getElementById('phone').value = this.resumeData.personal.phone;
-                document.getElementById('location').value = this.resumeData.personal.location;
-                document.getElementById('summary').value = this.resumeData.personal.summary;
-                document.getElementById('technicalSkills').value = this.resumeData.skills.technical;
-                document.getElementById('softSkills').value = this.resumeData.skills.soft;
-                document.getElementById('certifications').value = this.resumeData.skills.certifications;
-            }
-            
-            updateCareerField(field) {
-                // Update job title based on career field
-                const fieldTitles = {
-                    corporate: 'Office Administrator',
-                    technical: 'Technical Specialist',
-                    healthcare: 'Healthcare Assistant',
-                    education: 'Teacher',
-                    retail: 'Store Manager',
-                    creative: 'Creative Designer'
-                };
-                
-                if (fieldTitles[field]) {
-                    document.getElementById('jobTitle').value = fieldTitles[field];
-                    this.resumeData.personal.title = fieldTitles[field];
-                    this.renderPreview();
-                }
-            }
-            
-            nextStep() {
-                if (this.currentStep < 5) {
-                    this.currentStep++;
-                    this.updateStepDisplay();
-                }
-            }
-            
-            prevStep() {
-                if (this.currentStep > 1) {
-                    this.currentStep--;
-                    this.updateStepDisplay();
-                }
-            }
-            
-            updateStepDisplay() {
-                // Update step indicator
-                document.querySelectorAll('.step').forEach(step => {
-                    step.classList.remove('active');
-                });
-                
-                const currentStepEl = document.querySelector(`.step[data-step="${this.currentStep}"]`);
-                if (currentStepEl) {
-                    currentStepEl.classList.add('active');
-                }
-                
-                // Show/hide form sections
-                document.querySelectorAll('.form-section').forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                const sections = ['personal', 'experience', 'education', 'skills', 'download'];
-                const currentSection = document.getElementById(`${sections[this.currentStep - 1]}-form`);
-                if (currentSection) {
-                    currentSection.classList.add('active');
-                }
-            }
-            
-            addExperience() {
-                const id = Date.now();
-                const experienceList = document.getElementById('experience-list');
-                
-                const experienceHTML = `
-                    <div class="experience-item" data-id="${id}" style="background: var(--light); padding: 15px; border-radius: var(--radius); margin-bottom: 15px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <h4 style="margin: 0; color: var(--primary);">Work Experience</h4>
-                            <button type="button" class="btn btn-outline btn-sm" onclick="resumeBuilder.removeExperience(${id})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Job Title</label>
-                                <input type="text" class="exp-title form-control" placeholder="e.g., Store Manager" oninput="resumeBuilder.updateExperience(${id})">
-                            </div>
-                            <div class="form-group">
-                                <label>Company</label>
-                                <input type="text" class="exp-company form-control" placeholder="e.g., Checkers Hyper" oninput="resumeBuilder.updateExperience(${id})">
-                            </div>
-                        </div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Start Date</label>
-                                <input type="text" class="exp-start form-control" placeholder="e.g., March 2019" oninput="resumeBuilder.updateExperience(${id})">
-                            </div>
-                            <div class="form-group">
-                                <label>End Date</label>
-                                <input type="text" class="exp-end form-control" placeholder="e.g., Present" oninput="resumeBuilder.updateExperience(${id})">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="exp-desc form-control" rows="3" placeholder="Describe your responsibilities and achievements..." oninput="resumeBuilder.updateExperience(${id})"></textarea>
-                        </div>
+        // Additional functions for resume builder
+        function clearForm() {
+            if (confirm('Are you sure you want to clear all form data?')) {
+                document.getElementById('resumeForm').reset();
+                localStorage.removeItem('resumeFormData');
+                document.getElementById('resumePreview').innerHTML = `
+                    <div class="preview-placeholder">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Your Resume Preview</h4>
+                        <p>Fill out the form and click "Generate Resume" to see your professional resume here</p>
                     </div>
                 `;
-                
-                experienceList.insertAdjacentHTML('beforeend', experienceHTML);
-                
-                // Add to resume data
-                this.resumeData.experience.push({
-                    title: '',
-                    company: '',
-                    start: '',
-                    end: '',
-                    description: ''
-                });
-                
-                this.renderPreview();
+                showNotification('Form cleared successfully', 'success');
             }
-            
-            addExperienceItem(data) {
-                const id = Date.now();
-                const experienceList = document.getElementById('experience-list');
-                
-                const experienceHTML = `
-                    <div class="experience-item" data-id="${id}" style="background: var(--light); padding: 15px; border-radius: var(--radius); margin-bottom: 15px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <h4 style="margin: 0; color: var(--primary);">Work Experience</h4>
-                            <button type="button" class="btn btn-outline btn-sm" onclick="resumeBuilder.removeExperience(${id})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Job Title</label>
-                                <input type="text" class="exp-title form-control" value="${data.title}" oninput="resumeBuilder.updateExperience(${id})">
-                            </div>
-                            <div class="form-group">
-                                <label>Company</label>
-                                <input type="text" class="exp-company form-control" value="${data.company}" oninput="resumeBuilder.updateExperience(${id})">
-                            </div>
-                        </div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Start Date</label>
-                                <input type="text" class="exp-start form-control" value="${data.start}" oninput="resumeBuilder.updateExperience(${id})">
-                            </div>
-                            <div class="form-group">
-                                <label>End Date</label>
-                                <input type="text" class="exp-end form-control" value="${data.end}" oninput="resumeBuilder.updateExperience(${id})">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="exp-desc form-control" rows="3" oninput="resumeBuilder.updateExperience(${id})">${data.description}</textarea>
-                        </div>
-                    </div>
-                `;
-                
-                experienceList.insertAdjacentHTML('beforeend', experienceHTML);
-            }
-            
-            updateExperience(id) {
-                const item = document.querySelector(`.experience-item[data-id="${id}"]`);
-                if (!item) return;
-                
-                const index = Array.from(document.querySelectorAll('.experience-item')).findIndex(el => el.dataset.id == id);
-                
-                this.resumeData.experience[index] = {
-                    title: item.querySelector('.exp-title').value,
-                    company: item.querySelector('.exp-company').value,
-                    start: item.querySelector('.exp-start').value,
-                    end: item.querySelector('.exp-end').value,
-                    description: item.querySelector('.exp-desc').value
-                };
-                
-                this.renderPreview();
-            }
-            
-            removeExperience(id) {
-                const item = document.querySelector(`.experience-item[data-id="${id}"]`);
-                if (item) {
-                    item.remove();
-                    
-                    const index = this.resumeData.experience.findIndex((exp, i) => {
-                        const items = document.querySelectorAll('.experience-item');
-                        return items[i] === item;
-                    });
-                    
-                    if (index > -1) {
-                        this.resumeData.experience.splice(index, 1);
-                    }
-                    
-                    this.renderPreview();
-                }
-            }
-            
-            addEducation() {
-                const id = Date.now();
-                const educationList = document.getElementById('education-list');
-                
-                const educationHTML = `
-                    <div class="education-item" data-id="${id}" style="background: var(--light); padding: 15px; border-radius: var(--radius); margin-bottom: 15px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <h4 style="margin: 0; color: var(--primary);">Education</h4>
-                            <button type="button" class="btn btn-outline btn-sm" onclick="resumeBuilder.removeEducation(${id})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Qualification</label>
-                                <input type="text" class="edu-degree form-control" placeholder="e.g., National Senior Certificate" oninput="resumeBuilder.updateEducation(${id})">
-                            </div>
-                            <div class="form-group">
-                                <label>Institution</label>
-                                <input type="text" class="edu-school form-control" placeholder="e.g., Alexander High School" oninput="resumeBuilder.updateEducation(${id})">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Year Completed</label>
-                            <input type="text" class="edu-year form-control" placeholder="e.g., 2015" oninput="resumeBuilder.updateEducation(${id})">
-                        </div>
-                    </div>
-                `;
-                
-                educationList.insertAdjacentHTML('beforeend', educationHTML);
-                
-                // Add to resume data
-                this.resumeData.education.push({
-                    degree: '',
-                    school: '',
-                    year: ''
-                });
-                
-                this.renderPreview();
-            }
-            
-            addEducationItem(data) {
-                const id = Date.now();
-                const educationList = document.getElementById('education-list');
-                
-                const educationHTML = `
-                    <div class="education-item" data-id="${id}" style="background: var(--light); padding: 15px; border-radius: var(--radius); margin-bottom: 15px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <h4 style="margin: 0; color: var(--primary);">Education</h4>
-                            <button type="button" class="btn btn-outline btn-sm" onclick="resumeBuilder.removeEducation(${id})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Qualification</label>
-                                <input type="text" class="edu-degree form-control" value="${data.degree}" oninput="resumeBuilder.updateEducation(${id})">
-                            </div>
-                            <div class="form-group">
-                                <label>Institution</label>
-                                <input type="text" class="edu-school form-control" value="${data.school}" oninput="resumeBuilder.updateEducation(${id})">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Year Completed</label>
-                            <input type="text" class="edu-year form-control" value="${data.year}" oninput="resumeBuilder.updateEducation(${id})">
-                        </div>
-                    </div>
-                `;
-                
-                educationList.insertAdjacentHTML('beforeend', educationHTML);
-            }
-            
-            updateEducation(id) {
-                const item = document.querySelector(`.education-item[data-id="${id}"]`);
-                if (!item) return;
-                
-                const index = Array.from(document.querySelectorAll('.education-item')).findIndex(el => el.dataset.id == id);
-                
-                this.resumeData.education[index] = {
-                    degree: item.querySelector('.edu-degree').value,
-                    school: item.querySelector('.edu-school').value,
-                    year: item.querySelector('.edu-year').value
-                };
-                
-                this.renderPreview();
-            }
-            
-            removeEducation(id) {
-                const item = document.querySelector(`.education-item[data-id="${id}"]`);
-                if (item) {
-                    item.remove();
-                    
-                    const index = this.resumeData.education.findIndex((edu, i) => {
-                        const items = document.querySelectorAll('.education-item');
-                        return items[i] === item;
-                    });
-                    
-                    if (index > -1) {
-                        this.resumeData.education.splice(index, 1);
-                    }
-                    
-                    this.renderPreview();
-                }
-            }
-            
-            renderPreview() {
-                const preview = document.getElementById('resumePreview');
-                if (!preview) return;
-                
-                let templateHTML = '';
-                
-                switch(this.selectedTemplate) {
-                    case 'professional':
-                        templateHTML = this.generateProfessionalTemplate();
-                        break;
-                    case 'modern':
-                        templateHTML = this.generateModernTemplate();
-                        break;
-                    case 'simple':
-                        templateHTML = this.generateSimpleTemplate();
-                        break;
-                    default:
-                        templateHTML = this.generateProfessionalTemplate();
-                }
-                
-                preview.innerHTML = templateHTML;
-            }
-            
-            generateProfessionalTemplate() {
-                const data = this.resumeData;
-                
-                return `
-                    <div class="template-professional">
-                        <!-- Header - Only User Details -->
-                        <div class="header">
-                            <h1 class="name">${this.escapeHTML(data.personal.name)}</h1>
-                            <h2 class="title">${this.escapeHTML(data.personal.title)}</h2>
-                            <div class="contact">
-                                ${data.personal.email ? `<div><i class="fas fa-envelope"></i> ${this.escapeHTML(data.personal.email)}</div>` : ''}
-                                ${data.personal.phone ? `<div><i class="fas fa-phone"></i> ${this.escapeHTML(data.personal.phone)}</div>` : ''}
-                                ${data.personal.location ? `<div><i class="fas fa-map-marker-alt"></i> ${this.escapeHTML(data.personal.location)}</div>` : ''}
-                            </div>
-                        </div>
-                        
-                        <!-- Summary -->
-                        ${data.personal.summary ? `
-                        <div class="section">
-                            <h3 class="section-title">Summary</h3>
-                            <p>${this.formatText(data.personal.summary)}</p>
-                        </div>
-                        ` : ''}
-                        
-                        <!-- Experience -->
-                        ${data.experience.length > 0 ? `
-                        <div class="section">
-                            <h3 class="section-title">Work Experience</h3>
-                            ${data.experience.map(exp => `
-                                <div style="margin-bottom: 15px;">
-                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                        <strong style="font-size: 16px;">${this.escapeHTML(exp.title)}</strong>
-                                        <span style="color: var(--secondary);">${this.escapeHTML(exp.start)} - ${this.escapeHTML(exp.end)}</span>
-                                    </div>
-                                    ${exp.company ? `<div style="font-weight: 600; color: #555; margin-bottom: 8px;">${this.escapeHTML(exp.company)}</div>` : ''}
-                                    ${exp.description ? `<div>${this.formatText(exp.description)}</div>` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                        ` : ''}
-                        
-                        <!-- Education -->
-                        ${data.education.length > 0 ? `
-                        <div class="section">
-                            <h3 class="section-title">Education</h3>
-                            ${data.education.map(edu => `
-                                <div style="margin-bottom: 15px;">
-                                    <div style="display: flex; justify-content: space-between;">
-                                        <strong style="font-size: 16px;">${this.escapeHTML(edu.degree)}</strong>
-                                        ${edu.year ? `<span style="color: var(--secondary);">${this.escapeHTML(edu.year)}</span>` : ''}
-                                    </div>
-                                    ${edu.school ? `<div style="color: #555;">${this.escapeHTML(edu.school)}</div>` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                        ` : ''}
-                        
-                        <!-- Skills -->
-                        ${data.skills.technical || data.skills.soft || data.skills.certifications ? `
-                        <div class="section">
-                            <h3 class="section-title">Skills & Certifications</h3>
-                            ${data.skills.technical ? `<div style="margin-bottom: 10px;"><strong>Professional Skills:</strong> ${this.escapeHTML(data.skills.technical)}</div>` : ''}
-                            ${data.skills.soft ? `<div style="margin-bottom: 10px;"><strong>Soft Skills:</strong> ${this.escapeHTML(data.skills.soft)}</div>` : ''}
-                            ${data.skills.certifications ? `<div><strong>Certifications:</strong> ${this.escapeHTML(data.skills.certifications)}</div>` : ''}
-                        </div>
-                        ` : ''}
-                    </div>
-                `;
-            }
-            
-            generateModernTemplate() {
-                const data = this.resumeData;
-                
-                return `
-                    <div class="template-modern">
-                        <!-- Header - Only User Details -->
-                        <div class="header">
-                            <div>
-                                <h1 class="name">${this.escapeHTML(data.personal.name)}</h1>
-                                <p class="title">${this.escapeHTML(data.personal.title)}</p>
-                            </div>
-                            <div class="contact-sidebar">
-                                ${data.personal.email ? `<div><i class="fas fa-envelope"></i> ${this.escapeHTML(data.personal.email)}</div>` : ''}
-                                ${data.personal.phone ? `<div><i class="fas fa-phone"></i> ${this.escapeHTML(data.personal.phone)}</div>` : ''}
-                                ${data.personal.location ? `<div><i class="fas fa-map-marker-alt"></i> ${this.escapeHTML(data.personal.location)}</div>` : ''}
-                            </div>
-                        </div>
-                        
-                        <!-- Summary -->
-                        ${data.personal.summary ? `
-                        <div style="margin-bottom: 25px;">
-                            <h3 style="color: var(--primary); margin-bottom: 10px;">PROFILE</h3>
-                            <p>${this.formatText(data.personal.summary)}</p>
-                        </div>
-                        ` : ''}
-                        
-                        <!-- Experience -->
-                        ${data.experience.length > 0 ? `
-                        <div style="margin-bottom: 25px;">
-                            <h3 style="color: var(--primary); margin-bottom: 15px;">EXPERIENCE</h3>
-                            ${data.experience.map(exp => `
-                                <div style="margin-bottom: 20px;">
-                                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
-                                        <div>
-                                            <strong style="font-size: 16px;">${this.escapeHTML(exp.title)}</strong>
-                                            ${exp.company ? `<div style="color: var(--secondary); font-weight: 600;">${this.escapeHTML(exp.company)}</div>` : ''}
-                                        </div>
-                                        <span style="color: var(--gray); font-size: 14px;">${this.escapeHTML(exp.start)} - ${this.escapeHTML(exp.end)}</span>
-                                    </div>
-                                    ${exp.description ? `<div style="font-size: 14px; line-height: 1.6;">${this.formatText(exp.description)}</div>` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                        ` : ''}
-                        
-                        <!-- Education & Skills -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-                            ${data.education.length > 0 ? `
-                            <div>
-                                <h3 style="color: var(--primary); margin-bottom: 15px;">EDUCATION</h3>
-                                ${data.education.map(edu => `
-                                    <div style="margin-bottom: 15px;">
-                                        <strong style="display: block;">${this.escapeHTML(edu.degree)}</strong>
-                                        ${edu.school ? `<div style="color: #555; font-size: 14px;">${this.escapeHTML(edu.school)}</div>` : ''}
-                                        ${edu.year ? `<div style="color: var(--gray); font-size: 13px;">${this.escapeHTML(edu.year)}</div>` : ''}
-                                    </div>
-                                `).join('')}
-                            </div>
-                            ` : ''}
-                            
-                            ${data.skills.technical || data.skills.soft || data.skills.certifications ? `
-                            <div>
-                                <h3 style="color: var(--primary); margin-bottom: 15px;">SKILLS</h3>
-                                ${data.skills.technical ? `<div style="margin-bottom: 10px;"><strong>Technical:</strong><br>${this.escapeHTML(data.skills.technical)}</div>` : ''}
-                                ${data.skills.soft ? `<div style="margin-bottom: 10px;"><strong>Soft Skills:</strong><br>${this.escapeHTML(data.skills.soft)}</div>` : ''}
-                                ${data.skills.certifications ? `<div><strong>Certifications:</strong><br>${this.escapeHTML(data.skills.certifications)}</div>` : ''}
-                            </div>
-                            ` : ''}
-                        </div>
-                    </div>
-                `;
-            }
-            
-            generateSimpleTemplate() {
-                const data = this.resumeData;
-                
-                return `
-                    <div class="template-simple">
-                        <!-- Header - Only User Details -->
-                        <div class="header">
-                            <h1 class="name">${this.escapeHTML(data.personal.name)}</h1>
-                            <p class="title">${this.escapeHTML(data.personal.title)}</p>
-                            <div class="divider"></div>
-                            <div style="font-size: 14px; line-height: 1.8;">
-                                ${data.personal.email ? `<div><strong>Email:</strong> ${this.escapeHTML(data.personal.email)}</div>` : ''}
-                                ${data.personal.phone ? `<div><strong>Phone:</strong> ${this.escapeHTML(data.personal.phone)}</div>` : ''}
-                                ${data.personal.location ? `<div><strong>Location:</strong> ${this.escapeHTML(data.personal.location)}</div>` : ''}
-                            </div>
-                        </div>
-                        
-                        <!-- Summary -->
-                        ${data.personal.summary ? `
-                        <div style="margin-bottom: 25px;">
-                            <h3 style="color: var(--dark); margin-bottom: 10px; font-size: 18px;">PROFESSIONAL SUMMARY</h3>
-                            <p>${this.formatText(data.personal.summary)}</p>
-                        </div>
-                        ` : ''}
-                        
-                        <!-- Experience -->
-                        ${data.experience.length > 0 ? `
-                        <div style="margin-bottom: 25px;">
-                            <h3 style="color: var(--dark); margin-bottom: 15px; font-size: 18px;">WORK EXPERIENCE</h3>
-                            ${data.experience.map(exp => `
-                                <div style="margin-bottom: 20px;">
-                                    <div style="margin-bottom: 8px;">
-                                        <strong style="font-size: 16px;">${this.escapeHTML(exp.title)}</strong>
-                                        ${exp.company ? `, ${this.escapeHTML(exp.company)}` : ''}
-                                        ${exp.start || exp.end ? ` (${this.escapeHTML(exp.start)} - ${this.escapeHTML(exp.end)})` : ''}
-                                    </div>
-                                    ${exp.description ? `<div style="font-size: 14px;">${this.formatText(exp.description)}</div>` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                        ` : ''}
-                        
-                        <!-- Education & Skills -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-                            ${data.education.length > 0 ? `
-                            <div>
-                                <h3 style="color: var(--dark); margin-bottom: 15px; font-size: 18px;">EDUCATION</h3>
-                                ${data.education.map(edu => `
-                                    <div style="margin-bottom: 15px;">
-                                        <strong style="display: block;">${this.escapeHTML(edu.degree)}</strong>
-                                        ${edu.school ? `<div>${this.escapeHTML(edu.school)}</div>` : ''}
-                                        ${edu.year ? `<div>${this.escapeHTML(edu.year)}</div>` : ''}
-                                    </div>
-                                `).join('')}
-                            </div>
-                            ` : ''}
-                            
-                            ${data.skills.technical || data.skills.soft || data.skills.certifications ? `
-                            <div>
-                                <h3 style="color: var(--dark); margin-bottom: 15px; font-size: 18px;">SKILLS</h3>
-                                ${data.skills.technical ? `<div style="margin-bottom: 10px;"><strong>Professional:</strong> ${this.escapeHTML(data.skills.technical)}</div>` : ''}
-                                ${data.skills.soft ? `<div style="margin-bottom: 10px;"><strong>Personal:</strong> ${this.escapeHTML(data.skills.soft)}</div>` : ''}
-                                ${data.skills.certifications ? `<div><strong>Certifications:</strong> ${this.escapeHTML(data.skills.certifications)}</div>` : ''}
-                            </div>
-                            ` : ''}
-                        </div>
-                    </div>
-                `;
-            }
-            
-            escapeHTML(text) {
-                if (!text) return '';
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
-            
-            formatText(text) {
-                if (!text) return '';
-                return text.replace(/\n/g, '<br>');
-            }
-            
-            downloadPDF() {
-                // Show loading message
-                alert('Preparing PDF download...\n\nNote: For a production website, this would integrate with jsPDF or a PDF generation service.');
-                
-                // In a real implementation, this would generate a PDF
-                // For now, we'll simulate the download
-                setTimeout(() => {
-                    alert('Your resume PDF is ready! In a production version, it would download automatically.');
-                }, 1000);
-            }
-            
-            printResume() {
-                window.print();
-            }
-        }
-        
-        // Initialize Resume Builder
-        let resumeBuilder;
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            resumeBuilder = new ResumeBuilder();
-            
-            // Make resumeBuilder available globally for inline event handlers
-            window.resumeBuilder = resumeBuilder;
-        });
-        
-        // Global functions for inline event handlers
-        function nextStep() {
-            resumeBuilder.nextStep();
-        }
-        
-        function prevStep() {
-            resumeBuilder.prevStep();
-        }
-        
-        function addExperience() {
-            resumeBuilder.addExperience();
-        }
-        
-        function addEducation() {
-            resumeBuilder.addEducation();
-        }
-        
-        function downloadPDF() {
-            resumeBuilder.downloadPDF();
         }
         
         function printResume() {
-            resumeBuilder.printResume();
+            const preview = document.getElementById('resumePreview');
+            if (!preview || preview.querySelector('.preview-placeholder')) {
+                showNotification('Please generate a resume first', 'error');
+                return;
+            }
+            window.print();
         }
     </script>
 </body>
