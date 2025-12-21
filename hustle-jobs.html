@@ -3,514 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Hustle Block | 9to5 University</title>
+    <title>Job Listings - 9to5 University</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading">
-        <div class="loading-content">
-            <div class="logo-icon">9to5</div>
-            <h2>9to5 University</h2>
-            <p>Loading The Hustle Block...</p>
-        </div>
-    </div>
-
     <!-- Header -->
     <header class="main-header">
         <div class="container header-container">
             <a href="index.html" class="logo">
-                <div class="logo-icon">9to5</div>
+                <div class="logo-icon">
+                    <span class="logo-top">9to5</span>
+                    <span class="logo-bottom">University</span>
+                </div>
                 <div class="logo-text">
-                    <h1>9to5 University</h1>
+                    <span class="logo-primary">9to5</span>
+                    <span class="logo-secondary">University</span>
                 </div>
             </a>
 
             <nav class="main-nav">
-                <div class="nav-links">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="index.html#courses" class="nav-link">Courses</a>
-                    <a href="index.html#builder" class="nav-link">Resume Builder</a>
-                    <a href="index.html#resources" class="nav-link">Resources</a>
-                    <a href="index.html#jobs" class="nav-link">Job Offers</a>
-                    <a href="hustle-jobs.html" class="nav-link active">The Hustle Block</a>
-                    <a href="workers-rights.html" class="nav-link">Workers Rights</a>
-                </div>
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="hustle-jobs.html" class="nav-link active"><i class="fas fa-briefcase"></i> Jobs</a></li>
+                    <li><a href="resume-builder.html" class="nav-link"><i class="fas fa-file-alt"></i> Resume Builder</a></li>
+                    <li><a href="courses.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Courses</a></li>
+                    <li><a href="workers-rights.html" class="nav-link"><i class="fas fa-balance-scale"></i> Rights</a></li>
+                    <li><a href="login.html" class="btn btn-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                </ul>
             </nav>
 
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <div class="mobile-nav-header">
-            <div class="logo">
-                <div class="logo-icon">9to5</div>
-                <div class="logo-text">
-                    <h1>9to5 University</h1>
-                </div>
-            </div>
-            <button onclick="toggleMobileMenu()" class="mobile-close">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <div class="mobile-nav-links">
-            <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
-            <a href="index.html#courses" class="mobile-nav-link" onclick="toggleMobileMenu()">Courses</a>
-            <a href="index.html#builder" class="mobile-nav-link" onclick="toggleMobileMenu()">Resume Builder</a>
-            <a href="index.html#resources" class="mobile-nav-link" onclick="toggleMobileMenu()">Resources</a>
-            <a href="index.html#jobs" class="mobile-nav-link" onclick="toggleMobileMenu()">Job Offers</a>
-            <a href="hustle-jobs.html" class="mobile-nav-link active" onclick="toggleMobileMenu()">The Hustle Block</a>
-            <a href="workers-rights.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Workers Rights</a>
-        </div>
-    </div>
-
-    <!-- The Hustle Block Hero -->
-    <section class="hero" style="background: linear-gradient(135deg, var(--campus-green) 0%, #0d966b 100%);">
+    <!-- Jobs Section -->
+    <section class="jobs-section">
         <div class="container">
-            <div class="hero-content">
-                <h1>The Hustle Block</h1>
-                <p>Find piece jobs and short-term opportunities from companies we partner with. Earn extra income while building your experience.</p>
-                
-                <div class="hero-actions">
-                    <a href="#job-listings" class="btn btn-accent">
-                        <i class="fas fa-search"></i> Browse Jobs
-                    </a>
-                    <a href="index.html#builder" class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: white;">
-                        <i class="fas fa-file-alt"></i> Update Your Resume
-                    </a>
-                </div>
+            <div class="section-header">
+                <h1 class="section-title">Job Listings</h1>
+                <p class="section-subtitle">Find your next career opportunity</p>
             </div>
-        </div>
-    </section>
 
-    <!-- Job Filters -->
-    <section class="job-filters-section" style="padding: 40px 0; background: var(--light);">
-        <div class="container">
-            <div class="job-filters">
-                <h3 style="margin-bottom: 20px; color: var(--primary);">Filter Jobs</h3>
-                <div class="filter-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+            <!-- Job Search Filters -->
+            <div class="search-filters">
+                <div class="filter-group">
+                    <input type="text" id="jobSearch" class="form-control" placeholder="Search jobs by title, keyword, or company...">
+                </div>
+                <div class="filter-row">
                     <div class="filter-group">
-                        <label>Job Type</label>
-                        <select class="filter-select" onchange="filterJobs()">
-                            <option value="all">All Types</option>
+                        <select id="jobCategory" class="form-control">
+                            <option value="">All Categories</option>
+                            <option value="technology">Technology</option>
+                            <option value="business">Business</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="education">Education</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <select id="jobType" class="form-control">
+                            <option value="">All Job Types</option>
+                            <option value="full-time">Full Time</option>
+                            <option value="part-time">Part Time</option>
+                            <option value="internship">Internship</option>
                             <option value="remote">Remote</option>
-                            <option value="onsite">On-site</option>
-                            <option value="hybrid">Hybrid</option>
                         </select>
                     </div>
                     <div class="filter-group">
-                        <label>Category</label>
-                        <select class="filter-select" onchange="filterJobs()">
-                            <option value="all">All Categories</option>
-                            <option value="tech">Tech & IT</option>
-                            <option value="creative">Creative</option>
-                            <option value="admin">Administrative</option>
-                            <option value="sales">Sales & Marketing</option>
-                            <option value="data">Data Entry</option>
+                        <select id="experienceLevel" class="form-control">
+                            <option value="">All Experience Levels</option>
+                            <option value="entry">Entry Level</option>
+                            <option value="mid">Mid Level</option>
+                            <option value="senior">Senior Level</option>
                         </select>
                     </div>
-                    <div class="filter-group">
-                        <label>Duration</label>
-                        <select class="filter-select" onchange="filterJobs()">
-                            <option value="all">Any Duration</option>
-                            <option value="short">Short-term (1-4 weeks)</option>
-                            <option value="medium">Medium-term (1-3 months)</option>
-                            <option value="long">Long-term (3+ months)</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label>Payment</label>
-                        <select class="filter-select" onchange="filterJobs()">
-                            <option value="all">Any Payment</option>
-                            <option value="hourly">Hourly Rate</option>
-                            <option value="project">Project-based</option>
-                            <option value="fixed">Fixed Fee</option>
-                        </select>
-                    </div>
+                    <button class="btn btn-primary" onclick="searchJobs()">
+                        <i class="fas fa-search"></i> Search
+                    </button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Job Listings -->
-    <section id="job-listings" class="jobs-section" style="padding: 60px 0; background: white;">
-        <div class="container">
-            <div class="section-header">
-                <h2>Available Piece Jobs</h2>
-                <p>Short-term opportunities from our partner companies</p>
+            <!-- Jobs Container -->
+            <div id="jobsContainer" class="jobs-container">
+                <!-- Jobs will be loaded here -->
             </div>
-            
-            <div class="hustle-jobs-grid">
-                <!-- Job 1 -->
-                <div class="hustle-job-card">
-                    <div class="job-header">
-                        <div class="job-title">
-                            <h3>Data Entry Specialist</h3>
-                            <div class="job-company">
-                                <i class="fas fa-building"></i>
-                                <span>DataCorp Solutions</span>
-                            </div>
-                        </div>
-                        <span class="job-badge">Remote</span>
-                    </div>
-                    
-                    <div class="job-details">
-                        <div class="job-detail">
-                            <i class="fas fa-money-bill-wave"></i>
-                            <span>R150 - R200/hour</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-clock"></i>
-                            <span>2-4 weeks</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-calendar"></i>
-                            <span>Start ASAP</span>
-                        </div>
-                    </div>
-                    
-                    <div class="job-description">
-                        <p>We need help with data entry for a client project. Accuracy and attention to detail are crucial. Excel skills required.</p>
-                    </div>
-                    
-                    <div class="job-requirements">
-                        <h4>Requirements:</h4>
-                        <ul>
-                            <li>Proficient in Microsoft Excel</li>
-                            <li>Fast typing speed (50+ WPM)</li>
-                            <li>Own computer and internet</li>
-                            <li>Available 20+ hours/week</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="job-actions">
-                        <button class="btn btn-primary" onclick="applyForJob('Data Entry Specialist')">
-                            <i class="fas fa-paper-plane"></i> Apply Now
-                        </button>
-                        <button class="btn btn-outline" onclick="saveJob('Data Entry Specialist')">
-                            <i class="fas fa-bookmark"></i> Save
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Job 2 -->
-                <div class="hustle-job-card">
-                    <div class="job-header">
-                        <div class="job-title">
-                            <h3>Social Media Content Creator</h3>
-                            <div class="job-company">
-                                <i class="fas fa-building"></i>
-                                <span>BrandBoost Marketing</span>
-                            </div>
-                        </div>
-                        <span class="job-badge">Hybrid</span>
-                    </div>
-                    
-                    <div class="job-details">
-                        <div class="job-detail">
-                            <i class="fas fa-money-bill-wave"></i>
-                            <span>R3000 - R5000/project</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-clock"></i>
-                            <span>1 month</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-calendar"></i>
-                            <span>Start next week</span>
-                        </div>
-                    </div>
-                    
-                    <div class="job-description">
-                        <p>Create engaging social media content for a retail brand. Need creative individuals with Instagram/TikTok experience.</p>
-                    </div>
-                    
-                    <div class="job-requirements">
-                        <h4>Requirements:</h4>
-                        <ul>
-                            <li>Experience with social media platforms</li>
-                            <li>Basic graphic design skills</li>
-                            <li>Creative writing ability</li>
-                            <li>Portfolio of previous work</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="job-actions">
-                        <button class="btn btn-primary" onclick="applyForJob('Social Media Content Creator')">
-                            <i class="fas fa-paper-plane"></i> Apply Now
-                        </button>
-                        <button class="btn btn-outline" onclick="saveJob('Social Media Content Creator')">
-                            <i class="fas fa-bookmark"></i> Save
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Job 3 -->
-                <div class="hustle-job-card">
-                    <div class="job-header">
-                        <div class="job-title">
-                            <h3>Customer Service Representative</h3>
-                            <div class="job-company">
-                                <i class="fas fa-building"></i>
-                                <span>CallPro Solutions</span>
-                            </div>
-                        </div>
-                        <span class="job-badge">Remote</span>
-                    </div>
-                    
-                    <div class="job-details">
-                        <div class="job-detail">
-                            <i class="fas fa-money-bill-wave"></i>
-                            <span>R120 - R180/hour</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-clock"></i>
-                            <span>3 months</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-calendar"></i>
-                            <span>Flexible start</span>
-                        </div>
-                    </div>
-                    
-                    <div class="job-description">
-                        <p>Provide customer support via phone and email for an e-commerce client. Training provided. Flexible hours available.</p>
-                    </div>
-                    
-                    <div class="job-requirements">
-                        <h4>Requirements:</h4>
-                        <ul>
-                            <li>Excellent communication skills</li>
-                            <li>Own computer and headset</li>
-                            <li>Quiet work environment</li>
-                            <li>Available evenings/weekends</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="job-actions">
-                        <button class="btn btn-primary" onclick="applyForJob('Customer Service Representative')">
-                            <i class="fas fa-paper-plane"></i> Apply Now
-                        </button>
-                        <button class="btn btn-outline" onclick="saveJob('Customer Service Representative')">
-                            <i class="fas fa-bookmark"></i> Save
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Job 4 -->
-                <div class="hustle-job-card">
-                    <div class="job-header">
-                        <div class="job-title">
-                            <h3>Website Tester</h3>
-                            <div class="job-company">
-                                <i class="fas fa-building"></i>
-                                <span>WebTest Pro</span>
-                            </div>
-                        </div>
-                        <span class="job-badge">Remote</span>
-                    </div>
-                    
-                    <div class="job-details">
-                        <div class="job-detail">
-                            <i class="fas fa-money-bill-wave"></i>
-                            <span>R100 - R150/test</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-clock"></i>
-                            <span>Ongoing</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-calendar"></i>
-                            <span>Start immediately</span>
-                        </div>
-                    </div>
-                    
-                    <div class="job-description">
-                        <p>Test websites and mobile apps for usability issues. No technical experience needed - just a keen eye for detail.</p>
-                    </div>
-                    
-                    <div class="job-requirements">
-                        <h4>Requirements:</h4>
-                        <ul>
-                            <li>Smartphone and computer</li>
-                            <li>Good internet connection</li>
-                            <li>Attention to detail</li>
-                            <li>Ability to follow instructions</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="job-actions">
-                        <button class="btn btn-primary" onclick="applyForJob('Website Tester')">
-                            <i class="fas fa-paper-plane"></i> Apply Now
-                        </button>
-                        <button class="btn btn-outline" onclick="saveJob('Website Tester')">
-                            <i class="fas fa-bookmark"></i> Save
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Job 5 -->
-                <div class="hustle-job-card">
-                    <div class="job-header">
-                        <div class="job-title">
-                            <h3>Market Research Assistant</h3>
-                            <div class="job-company">
-                                <i class="fas fa-building"></i>
-                                <span>Insight Research</span>
-                            </div>
-                        </div>
-                        <span class="job-badge">On-site</span>
-                    </div>
-                    
-                    <div class="job-details">
-                        <div class="job-detail">
-                            <i class="fas fa-money-bill-wave"></i>
-                            <span>R180 - R250/hour</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-clock"></i>
-                            <span>2 weeks</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-calendar"></i>
-                            <span>Start Monday</span>
-                        </div>
-                    </div>
-                    
-                    <div class="job-description">
-                        <p>Conduct in-person surveys at shopping malls in Johannesburg. Training and materials provided. Transport allowance included.</p>
-                    </div>
-                    
-                    <div class="job-requirements">
-                        <h4>Requirements:</h4>
-                        <ul>
-                            <li>Friendly and outgoing personality</li>
-                            <li>Available during mall hours</li>
-                            <li>Own transport to sites</li>
-                            <li>Good communication skills</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="job-actions">
-                        <button class="btn btn-primary" onclick="applyForJob('Market Research Assistant')">
-                            <i class="fas fa-paper-plane"></i> Apply Now
-                        </button>
-                        <button class="btn btn-outline" onclick="saveJob('Market Research Assistant')">
-                            <i class="fas fa-bookmark"></i> Save
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Job 6 -->
-                <div class="hustle-job-card">
-                    <div class="job-header">
-                        <div class="job-title">
-                            <h3>Virtual Assistant</h3>
-                            <div class="job-company">
-                                <i class="fas fa-building"></i>
-                                <span>Executive Assist Pro</span>
-                            </div>
-                        </div>
-                        <span class="job-badge">Remote</span>
-                    </div>
-                    
-                    <div class="job-details">
-                        <div class="job-detail">
-                            <i class="fas fa-money-bill-wave"></i>
-                            <span>R200 - R300/hour</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-clock"></i>
-                            <span>1-2 months</span>
-                        </div>
-                        <div class="job-detail">
-                            <i class="fas fa-calendar"></i>
-                            <span>Flexible start</span>
-                        </div>
-                    </div>
-                    
-                    <div class="job-description">
-                        <p>Provide administrative support to busy executives. Tasks include email management, scheduling, and document preparation.</p>
-                    </div>
-                    
-                    <div class="job-requirements">
-                        <h4>Requirements:</h4>
-                        <ul>
-                            <li>Proficient in MS Office/Google Workspace</li>
-                            <li>Excellent organizational skills</li>
-                            <li>Professional communication</li>
-                            <li>Previous admin experience preferred</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="job-actions">
-                        <button class="btn btn-primary" onclick="applyForJob('Virtual Assistant')">
-                            <i class="fas fa-paper-plane"></i> Apply Now
-                        </button>
-                        <button class="btn btn-outline" onclick="saveJob('Virtual Assistant')">
-                            <i class="fas fa-bookmark"></i> Save
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-5">
-                <p style="color: var(--gray); margin-bottom: 20px;">
-                    <i class="fas fa-info-circle"></i> New jobs added weekly. Check back often for new opportunities.
-                </p>
-                <a href="index.html#builder" class="btn btn-primary">
-                    <i class="fas fa-file-alt"></i> Update Your Resume First
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works" style="padding: 60px 0; background: var(--light);">
-        <div class="container">
-            <div class="section-header">
-                <h2>How The Hustle Block Works</h2>
-                <p>Simple steps to start earning with piece jobs</p>
-            </div>
-            
-            <div class="steps-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
-                <div class="step-card" style="text-align: center; padding: 30px; background: white; border-radius: var(--radius-lg);">
-                    <div class="step-icon" style="width: 70px; height: 70px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 20px;">
-                        <i class="fas fa-user-check"></i>
-                    </div>
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">1. Create Profile</h3>
-                    <p style="color: var(--gray);">Sign up and complete your professional profile.</p>
+            <!-- Empty State (Default) -->
+            <div id="emptyState" class="empty-state">
+                <div class="empty-state-icon">
+                    <i class="fas fa-briefcase"></i>
                 </div>
-                
-                <div class="step-card" style="text-align: center; padding: 30px; background: white; border-radius: var(--radius-lg);">
-                    <div class="step-icon" style="width: 70px; height: 70px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 20px;">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">2. Browse Jobs</h3>
-                    <p style="color: var(--gray);">Find piece jobs that match your skills and availability.</p>
+                <h3>No Jobs Available Yet</h3>
+                <p>We're currently working with employers to bring you the best opportunities.</p>
+                <p>New jobs will be posted here soon. In the meantime:</p>
+                <div class="empty-state-actions">
+                    <a href="resume-builder.html" class="btn btn-primary">
+                        <i class="fas fa-file-alt"></i> Build Your Resume
+                    </a>
+                    <a href="courses.html" class="btn btn-secondary">
+                        <i class="fas fa-graduation-cap"></i> Take Career Courses
+                    </a>
                 </div>
-                
-                <div class="step-card" style="text-align: center; padding: 30px; background: white; border-radius: var(--radius-lg);">
-                    <div class="step-icon" style="width: 70px; height: 70px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 20px;">
-                        <i class="fas fa-paper-plane"></i>
+                <div class="job-alert">
+                    <h4><i class="fas fa-bell"></i> Get Notified</h4>
+                    <p>Be the first to know when new jobs are posted</p>
+                    <div class="alert-form">
+                        <input type="email" id="alertEmail" class="form-control" placeholder="Enter your email">
+                        <button class="btn btn-primary" onclick="subscribeToAlerts()">
+                            <i class="fas fa-paper-plane"></i> Subscribe
+                        </button>
                     </div>
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">3. Apply</h3>
-                    <p style="color: var(--gray);">Submit your application with your updated resume.</p>
-                </div>
-                
-                <div class="step-card" style="text-align: center; padding: 30px; background: white; border-radius: var(--radius-lg);">
-                    <div class="step-icon" style="width: 70px; height: 70px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 20px;">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">4. Get Paid</h3>
-                    <p style="color: var(--gray);">Complete the work and receive payment as agreed.</p>
                 </div>
             </div>
         </div>
@@ -519,164 +124,44 @@
     <!-- Footer -->
     <footer class="main-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <div class="logo-icon">9to5</div>
-                    <h3>9to5 University</h3>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 15px;">Career Education & Professional Development</p>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">9to5<span>University</span></div>
+                    <p class="footer-about">Connecting students with career opportunities.</p>
                 </div>
-                
-                <div class="footer-links">
-                    <h4>The Hustle Block</h4>
-                    <ul>
-                        <li><a href="#job-listings">Browse Jobs</a></li>
-                        <li><a href="#">How It Works</a></li>
-                        <li><a href="#">Partner Companies</a></li>
-                        <li><a href="#">Payment Info</a></li>
-                        <li><a href="#">FAQs</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="index.html#builder">Resume Builder</a></li>
-                        <li><a href="index.html#courses">Career Courses</a></li>
-                        <li><a href="workers-rights.html">Workers Rights</a></li>
-                        <li><a href="index.html#resources">Support Organizations</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="terms.html">Terms & Conditions</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="cookies.html">Cookie Policy</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:magtecinvest@gmail.com">magtecinvest@gmail.com</a></p>
+                        <p><i class="fas fa-building"></i> A MagTec Invest Company</p>
+                    </div>
                 </div>
             </div>
-            
             <div class="footer-bottom">
-                <p>© 2024 9to5 University. All rights reserved.</p>
-                <div class="copyright">
-                    Empowering South African professionals through free career education and job opportunities
-                </div>
+                <p>&copy; <span id="currentYear">2023</span> 9to5 University. All Rights Reserved. A MagTec Invest Company.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Application Modal -->
-    <div class="modal" id="applyModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Apply for Job</h3>
-                <button class="modal-close" onclick="hideModal('applyModal')">×</button>
-            </div>
-            <div id="applyJobTitle" style="margin-bottom: 20px; padding: 15px; background: var(--light); border-radius: var(--radius);"></div>
-            <div class="form-group">
-                <label class="form-label">Your Email *</label>
-                <input type="email" id="applyEmail" class="form-control" placeholder="your.email@gmail.com">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Cover Letter (Optional)</label>
-                <textarea id="coverLetter" class="form-control" rows="4" placeholder="Briefly explain why you're a good fit for this job..."></textarea>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Upload Resume (Optional)</label>
-                <input type="file" id="resumeUpload" class="form-control" accept=".pdf,.doc,.docx">
-            </div>
-            <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="submitApplication()">
-                Submit Application
-            </button>
-        </div>
-    </div>
-
+    <script src="scripts.js"></script>
     <script>
-        // Simple JavaScript for The Hustle Block page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Hide loading screen
-            setTimeout(() => {
-                const loading = document.getElementById('loading');
-                if (loading) {
-                    loading.classList.add('loaded');
-                    setTimeout(() => {
-                        loading.style.display = 'none';
-                    }, 500);
-                }
-            }, 500);
-        });
-
-        let currentJobTitle = '';
-
-        function toggleMobileMenu() {
-            const mobileNav = document.getElementById('mobileNav');
-            if (mobileNav) {
-                mobileNav.classList.toggle('active');
-                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-            }
+        function searchJobs() {
+            showNotification('Searching for jobs... New opportunities coming soon!', 'info');
         }
-
-        function filterJobs() {
-            // In a real implementation, this would filter the job listings
-            showToast('Jobs filtered successfully!', 'info');
-        }
-
-        function applyForJob(jobTitle) {
-            currentJobTitle = jobTitle;
-            const modal = document.getElementById('applyModal');
-            const titleElement = document.getElementById('applyJobTitle');
-            
-            if (modal && titleElement) {
-                titleElement.innerHTML = `<strong>Applying for:</strong> ${jobTitle}`;
-                modal.classList.add('active');
-            }
-        }
-
-        function saveJob(jobTitle) {
-            showToast(`Saved "${jobTitle}" to your bookmarks`, 'success');
-            // In a real implementation, this would save to user's account
-        }
-
-        function submitApplication() {
-            const email = document.getElementById('applyEmail')?.value;
-            
-            if (!email) {
-                showToast('Please enter your email address', 'error');
+        
+        function subscribeToAlerts() {
+            const email = document.getElementById('alertEmail').value;
+            if (!email || !email.includes('@')) {
+                showNotification('Please enter a valid email address', 'error');
                 return;
             }
             
-            hideModal('applyModal');
-            showToast(`Application submitted for ${currentJobTitle}! We'll contact you at ${email}`, 'success');
+            const alerts = JSON.parse(localStorage.getItem('jobAlerts')) || [];
+            alerts.push({ email, date: new Date().toISOString() });
+            localStorage.setItem('jobAlerts', JSON.stringify(alerts));
             
-            // Reset form
-            document.getElementById('applyEmail').value = '';
-            document.getElementById('coverLetter').value = '';
-            document.getElementById('resumeUpload').value = '';
-        }
-
-        function hideModal(modalId) {
-            document.getElementById(modalId)?.classList.remove('active');
-        }
-
-        function showToast(message, type = 'info') {
-            // Create toast if it doesn't exist
-            let toast = document.getElementById('toast');
-            if (!toast) {
-                toast = document.createElement('div');
-                toast.id = 'toast';
-                toast.className = 'toast';
-                document.body.appendChild(toast);
-            }
-            
-            toast.textContent = message;
-            toast.className = 'toast ' + type;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            showNotification('Successfully subscribed to job alerts!', 'success');
+            document.getElementById('alertEmail').value = '';
         }
     </script>
 </body>
