@@ -1,63 +1,46 @@
-// Main JavaScript for 9to5 University Job Portal
+// Main JavaScript for 9to5 University Portal
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('nav ul');
+    // Initialize current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
     
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            this.innerHTML = navMenu.classList.contains('active') 
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            this.innerHTML = mainNav.classList.contains('active') 
                 ? '<i class="fas fa-times"></i>' 
                 : '<i class="fas fa-bars"></i>';
         });
     }
     
-    // Cookie consent functionality
-    const cookieConsent = document.getElementById('cookieConsent');
-    const acceptCookiesBtn = document.getElementById('acceptCookies');
-    const rejectCookiesBtn = document.getElementById('rejectCookies');
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.mobile-menu-toggle') && 
+            !event.target.closest('.main-nav') &&
+            mainNav.classList.contains('active')) {
+            mainNav.classList.remove('active');
+            mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+    });
     
-    // Check if user has already made a choice
-    if (!localStorage.getItem('cookieConsent')) {
-        setTimeout(() => {
-            if (cookieConsent) {
-                cookieConsent.style.display = 'block';
-            }
-        }, 1000);
-    }
+    // Cookie Consent Management
+    initializeCookieConsent();
     
-    if (acceptCookiesBtn) {
-        acceptCookiesBtn.addEventListener('click', function() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            if (cookieConsent) {
-                cookieConsent.style.display = 'none';
-            }
-            // You can add analytics tracking here
-            console.log('Cookies accepted');
-        });
-    }
-    
-    if (rejectCookiesBtn) {
-        rejectCookiesBtn.addEventListener('click', function() {
-            localStorage.setItem('cookieConsent', 'rejected');
-            if (cookieConsent) {
-                cookieConsent.style.display = 'none';
-            }
-            console.log('Cookies rejected');
-        });
-    }
+    // Initialize page-specific functionality
+    initializePage();
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            
             e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
+            const targetElement = document.querySelector(href);
             if (targetElement) {
                 window.scrollTo({
                     top: targetElement.offsetTop - 80,
@@ -65,378 +48,679 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 // Close mobile menu if open
-                if (navMenu && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    if (mobileMenuBtn) {
-                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 }
             }
         });
-    });
-    
-    // Form validation for login and registration
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            let isValid = true;
-            const inputs = this.querySelectorAll('input[required], select[required], textarea[required]');
-            
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.style.borderColor = 'var(--danger)';
-                    
-                    // Add error message
-                    if (!input.nextElementSibling || !input.nextElementSibling.classList.contains('error-message')) {
-                        const errorMsg = document.createElement('span');
-                        errorMsg.className = 'error-message';
-                        errorMsg.style.color = 'var(--danger)';
-                        errorMsg.style.fontSize = '0.85rem';
-                        errorMsg.style.display = 'block';
-                        errorMsg.style.marginTop = '5px';
-                        errorMsg.textContent = 'This field is required';
-                        input.parentNode.appendChild(errorMsg);
-                    }
-                } else {
-                    input.style.borderColor = 'var(--medium-gray)';
-                    // Remove error message if exists
-                    const errorMsg = input.nextElementSibling;
-                    if (errorMsg && errorMsg.classList.contains('error-message')) {
-                        errorMsg.remove();
-                    }
-                }
-            });
-            
-            if (!isValid) {
-                e.preventDefault();
-                alert('Please fill in all required fields.');
-            }
-        });
-    });
-    
-    // Initialize job listings if on jobs page
-    if (window.location.pathname.includes('hustle-jobs.html')) {
-        initializeJobListings();
-    }
-    
-    // Initialize resume builder if on resume page
-    if (window.location.pathname.includes('resume-builder.html')) {
-        initializeResumeBuilder();
-    }
-    
-    // Initialize courses if on courses page
-    if (window.location.pathname.includes('courses.html')) {
-        initializeCourses();
-    }
-    
-    // Update copyright year
-    const copyrightElements = document.querySelectorAll('.footer-bottom p');
-    const currentYear = new Date().getFullYear();
-    copyrightElements.forEach(element => {
-        element.innerHTML = element.innerHTML.replace('2023', currentYear);
     });
 });
 
-// Initialize job listings
-function initializeJobListings() {
-    const jobsContainer = document.getElementById('jobsContainer');
+function initializeCookieConsent() {
+    const cookieBanner = document.getElementById('cookieConsent');
+    const acceptBtn = document.getElementById('acceptCookies');
+    const rejectBtn = document.getElementById('rejectCookies');
     
-    if (!jobsContainer) return;
+    // Check if user has already made a choice
+    if (!localStorage.getItem('cookieConsent') && cookieBanner) {
+        setTimeout(() => {
+            cookieBanner.style.display = 'block';
+        }, 1000);
+    }
     
-    // Check if we have jobs data
-    const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
-    
-    if (jobs.length === 0) {
-        jobsContainer.innerHTML = `
-            <div class="empty-state">
-                <i class="fas fa-briefcase"></i>
-                <h3>No Jobs Available Right Now</h3>
-                <p>We're currently updating our job listings. Please check back soon for new opportunities.</p>
-                <p>In the meantime, you can <a href="resume-builder.html">build your resume</a> so you're ready when new jobs are posted.</p>
-            </div>
-        `;
-    } else {
-        // Display jobs
-        let jobsHTML = '';
-        jobs.forEach(job => {
-            jobsHTML += `
-                <div class="job-card">
-                    <span class="job-category">${job.category}</span>
-                    <h3>${job.title}</h3>
-                    <p><i class="fas fa-building"></i> ${job.company}</p>
-                    <p><i class="fas fa-map-marker-alt"></i> ${job.location}</p>
-                    <p>${job.description}</p>
-                    <p class="job-salary"><i class="fas fa-money-bill-wave"></i> ${job.salary}</p>
-                    <div style="margin-top: 20px;">
-                        <button class="btn btn-primary apply-btn" data-job-id="${job.id}">Apply Now</button>
-                    </div>
-                </div>
-            `;
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            if (cookieBanner) {
+                cookieBanner.style.display = 'none';
+            }
+            showNotification('Cookie preferences saved successfully!', 'success');
         });
-        
-        jobsContainer.innerHTML = jobsHTML;
-        
-        // Add event listeners to apply buttons
-        document.querySelectorAll('.apply-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const jobId = this.getAttribute('data-job-id');
-                applyForJob(jobId);
-            });
+    }
+    
+    if (rejectBtn) {
+        rejectBtn.addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'rejected');
+            if (cookieBanner) {
+                cookieBanner.style.display = 'none';
+            }
+            showNotification('Cookie preferences saved successfully!', 'success');
         });
     }
 }
 
-// Initialize resume builder
-function initializeResumeBuilder() {
-    const templateContainer = document.getElementById('templateContainer');
-    const resumePreview = document.getElementById('resumePreview');
+function initializePage() {
+    const currentPage = window.location.pathname.split('/').pop();
     
-    if (!templateContainer || !resumePreview) return;
-    
-    // Load templates from templates.js if available
-    if (typeof resumeTemplates !== 'undefined') {
-        let templatesHTML = '';
-        resumeTemplates.forEach((template, index) => {
-            templatesHTML += `
-                <div class="template-card" data-template-id="${index}">
-                    <div class="template-preview" style="background: ${template.color}">
-                        <h4 style="color: white; padding: 20px;">${template.name}</h4>
-                    </div>
-                    <h4>${template.name}</h4>
-                    <p>${template.description}</p>
-                    <button class="btn btn-secondary select-template" data-template-id="${index}">Select</button>
-                </div>
-            `;
-        });
-        
-        templateContainer.innerHTML = templatesHTML;
-        
-        // Add event listeners to template selection
-        document.querySelectorAll('.select-template').forEach(button => {
-            button.addEventListener('click', function() {
-                const templateId = this.getAttribute('data-template-id');
-                selectTemplate(templateId);
-            });
-        });
+    switch(currentPage) {
+        case 'resume-builder.html':
+            initializeResumeBuilder();
+            break;
+        case 'hustle-jobs.html':
+            initializeJobListings();
+            break;
+        case 'courses.html':
+            initializeCourses();
+            break;
+        case 'login.html':
+            initializeLogin();
+            break;
     }
+}
+
+// Resume Builder Functionality
+function initializeResumeBuilder() {
+    // Load templates
+    loadTemplates();
     
-    // Form handling for resume builder
+    // Initialize form
     const resumeForm = document.getElementById('resumeForm');
     if (resumeForm) {
         resumeForm.addEventListener('submit', function(e) {
             e.preventDefault();
             generateResume();
         });
+        
+        // Auto-save form data
+        const formInputs = resumeForm.querySelectorAll('input, textarea, select');
+        formInputs.forEach(input => {
+            input.addEventListener('input', debounce(saveFormData, 500));
+        });
+        
+        // Load saved data
+        loadFormData();
+    }
+    
+    // Download buttons
+    const downloadPdfBtn = document.getElementById('downloadPdf');
+    const downloadWordBtn = document.getElementById('downloadWord');
+    
+    if (downloadPdfBtn) {
+        downloadPdfBtn.addEventListener('click', downloadResumePDF);
+    }
+    
+    if (downloadWordBtn) {
+        downloadWordBtn.addEventListener('click', downloadResumeWord);
     }
 }
 
-// Initialize courses
-function initializeCourses() {
-    const coursesContainer = document.getElementById('coursesContainer');
+function loadTemplates() {
+    const templateContainer = document.getElementById('templateContainer');
+    if (!templateContainer) return;
     
-    if (!coursesContainer) return;
-    
-    // Sample courses data
-    const courses = [
+    const templates = [
         {
-            id: 1,
-            title: "Career Readiness 101",
-            description: "Learn essential skills for job searching and workplace success.",
-            duration: "4 weeks",
-            icon: "fas fa-user-tie"
+            id: 'professional',
+            name: 'Professional',
+            description: 'Clean, ATS-friendly design',
+            color: '#1a365d',
+            premium: false
         },
         {
-            id: 2,
-            title: "Resume Writing Mastery",
-            description: "Create a resume that stands out and gets you interviews.",
-            duration: "2 weeks",
-            icon: "fas fa-file-alt"
+            id: 'modern',
+            name: 'Modern',
+            description: 'Contemporary design with accents',
+            color: '#2d4a8a',
+            premium: false
         },
         {
-            id: 3,
-            title: "Interview Preparation",
-            description: "Master the art of interviewing and negotiation.",
-            duration: "3 weeks",
-            icon: "fas fa-comments"
+            id: 'executive',
+            name: 'Executive',
+            description: 'Bold design for leadership roles',
+            color: '#d4af37',
+            premium: true
         },
         {
-            id: 4,
-            title: "Workplace Ethics",
-            description: "Understand professional conduct and workplace rights.",
-            duration: "2 weeks",
-            icon: "fas fa-balance-scale"
+            id: 'creative',
+            name: 'Creative',
+            description: 'Unique design for creative fields',
+            color: '#e53e3e',
+            premium: true
+        },
+        {
+            id: 'minimalist',
+            name: 'Minimalist',
+            description: 'Simple and clean design',
+            color: '#4a5568',
+            premium: false
+        },
+        {
+            id: 'academic',
+            name: 'Academic',
+            description: 'Formal design for academic use',
+            color: '#2d3748',
+            premium: false
         }
     ];
     
-    let coursesHTML = '';
-    courses.forEach(course => {
-        coursesHTML += `
-            <div class="course-card">
-                <div class="course-image">
-                    <i class="${course.icon}"></i>
+    let templatesHTML = '';
+    templates.forEach(template => {
+        templatesHTML += `
+            <div class="template-card" data-template-id="${template.id}">
+                <div class="template-preview" style="background: linear-gradient(135deg, ${template.color}, ${darkenColor(template.color, 20)})">
+                    ${template.name}
+                    ${template.premium ? '<span class="badge-premium"><i class="fas fa-crown"></i></span>' : ''}
                 </div>
-                <div class="course-content">
-                    <span class="course-duration">${course.duration}</span>
-                    <h3>${course.title}</h3>
-                    <p>${course.description}</p>
-                    <button class="btn btn-primary" style="margin-top: 15px;">Enroll Now</button>
-                </div>
+                <h4>${template.name}</h4>
+                <p>${template.description}</p>
+                <button class="btn btn-primary select-template" data-template-id="${template.id}">
+                    <i class="fas fa-check"></i> Select
+                </button>
             </div>
         `;
     });
     
-    coursesContainer.innerHTML = coursesHTML;
-}
-
-// Apply for a job
-function applyForJob(jobId) {
-    // Check if user is logged in
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    templateContainer.innerHTML = templatesHTML;
     
-    if (!isLoggedIn) {
-        if (confirm('You need to log in to apply for jobs. Would you like to go to the login page?')) {
-            window.location.href = 'login.html?redirect=hustle-jobs.html';
-        }
-        return;
-    }
-    
-    // Check if resume is uploaded
-    const hasResume = localStorage.getItem('userResume');
-    
-    if (!hasResume) {
-        if (confirm('You need to upload a resume to apply for jobs. Would you like to go to the resume builder?')) {
-            window.location.href = 'resume-builder.html';
-        }
-        return;
-    }
-    
-    // Record application
-    const applications = JSON.parse(localStorage.getItem('jobApplications')) || [];
-    applications.push({
-        jobId: jobId,
-        date: new Date().toISOString(),
-        status: 'pending'
-    });
-    
-    localStorage.setItem('jobApplications', JSON.stringify(applications));
-    
-    alert('Application submitted successfully! We will contact you if your profile matches the job requirements.');
-}
-
-// Select resume template
-function selectTemplate(templateId) {
-    if (typeof resumeTemplates !== 'undefined' && resumeTemplates[templateId]) {
-        const template = resumeTemplates[templateId];
-        localStorage.setItem('selectedTemplate', JSON.stringify(template));
-        
-        // Update UI to show selected template
-        document.querySelectorAll('.template-card').forEach(card => {
-            card.style.border = '2px solid transparent';
+    // Add event listeners to template selection
+    document.querySelectorAll('.select-template').forEach(button => {
+        button.addEventListener('click', function() {
+            const templateId = this.getAttribute('data-template-id');
+            selectTemplate(templateId);
         });
-        
-        const selectedCard = document.querySelector(`.template-card[data-template-id="${templateId}"]`);
-        if (selectedCard) {
-            selectedCard.style.border = `2px solid var(--accent-gold)`;
-        }
-        
-        alert(`"${template.name}" template selected. Now fill in your details.`);
+    });
+    
+    // Select first template by default
+    if (templates.length > 0) {
+        selectTemplate(templates[0].id);
     }
 }
 
-// Generate resume
-function generateResume() {
-    const formData = new FormData(document.getElementById('resumeForm'));
-    const resumeData = {};
-    
-    formData.forEach((value, key) => {
-        resumeData[key] = value;
+function selectTemplate(templateId) {
+    // Update UI
+    document.querySelectorAll('.template-card').forEach(card => {
+        card.classList.remove('selected');
     });
     
-    // Save resume data
-    localStorage.setItem('userResume', JSON.stringify(resumeData));
+    const selectedCard = document.querySelector(`.template-card[data-template-id="${templateId}"]`);
+    if (selectedCard) {
+        selectedCard.classList.add('selected');
+    }
     
-    // Generate resume preview
-    const resumePreview = document.getElementById('resumePreview');
-    if (resumePreview) {
-        const selectedTemplate = JSON.parse(localStorage.getItem('selectedTemplate')) || resumeTemplates[0];
-        
-        let resumeHTML = `
-            <div class="resume-content" style="font-family: Arial, sans-serif; padding: 40px; background: white;">
-                <div style="background: ${selectedTemplate.color}; color: white; padding: 30px; border-radius: 5px; margin-bottom: 30px;">
-                    <h1 style="margin: 0; font-size: 2.5rem;">${resumeData.fullName || 'Your Name'}</h1>
-                    <p style="margin: 10px 0 0 0; font-size: 1.2rem;">${resumeData.jobTitle || 'Your Job Title'}</p>
+    // Save selection
+    localStorage.setItem('selectedTemplate', templateId);
+    
+    // Update preview if resume exists
+    updateResumePreview();
+}
+
+function saveFormData() {
+    const formData = {};
+    const form = document.getElementById('resumeForm');
+    
+    if (!form) return;
+    
+    const inputs = form.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+        if (input.name) {
+            formData[input.name] = input.value;
+        }
+    });
+    
+    localStorage.setItem('resumeFormData', JSON.stringify(formData));
+}
+
+function loadFormData() {
+    const savedData = localStorage.getItem('resumeFormData');
+    if (!savedData) return;
+    
+    const formData = JSON.parse(savedData);
+    const form = document.getElementById('resumeForm');
+    
+    if (!form) return;
+    
+    Object.keys(formData).forEach(key => {
+        const input = form.querySelector(`[name="${key}"]`);
+        if (input) {
+            input.value = formData[key];
+        }
+    });
+    
+    // Update preview after loading data
+    updateResumePreview();
+}
+
+function generateResume() {
+    const form = document.getElementById('resumeForm');
+    if (!form) return;
+    
+    // Validate form
+    const requiredFields = form.querySelectorAll('[required]');
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+            isValid = false;
+            field.style.borderColor = 'var(--danger)';
+        } else {
+            field.style.borderColor = '';
+        }
+    });
+    
+    if (!isValid) {
+        showNotification('Please fill in all required fields', 'error');
+        return;
+    }
+    
+    // Save form data
+    saveFormData();
+    
+    // Generate preview
+    updateResumePreview();
+    
+    showNotification('Resume generated successfully!', 'success');
+}
+
+function updateResumePreview() {
+    const previewContainer = document.getElementById('resumePreview');
+    if (!previewContainer) return;
+    
+    // Get form data
+    const savedData = localStorage.getItem('resumeFormData');
+    const formData = savedData ? JSON.parse(savedData) : {};
+    
+    // Get selected template
+    const templateId = localStorage.getItem('selectedTemplate') || 'professional';
+    
+    // Generate preview HTML based on template
+    const previewHTML = generatePreviewHTML(formData, templateId);
+    previewContainer.innerHTML = previewHTML;
+}
+
+function generatePreviewHTML(data, templateId) {
+    const templates = {
+        professional: {
+            color: '#1a365d',
+            accent: '#d4af37'
+        },
+        modern: {
+            color: '#2d4a8a',
+            accent: '#38a169'
+        },
+        executive: {
+            color: '#d4af37',
+            accent: '#1a365d'
+        },
+        creative: {
+            color: '#e53e3e',
+            accent: '#2d4a8a'
+        },
+        minimalist: {
+            color: '#4a5568',
+            accent: '#718096'
+        },
+        academic: {
+            color: '#2d3748',
+            accent: '#4a5568'
+        }
+    };
+    
+    const template = templates[templateId] || templates.professional;
+    
+    return `
+        <div class="resume-preview-content" style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 800px; margin: 0 auto;">
+            <header style="background: ${template.color}; color: white; padding: 40px; border-radius: 8px; margin-bottom: 30px;">
+                <h1 style="margin: 0 0 10px 0; font-size: 36px; font-weight: 700;">${data.fullName || 'Your Name'}</h1>
+                <p style="margin: 0; font-size: 18px; opacity: 0.9;">${data.jobTitle || 'Professional Title'} | ${data.location || 'Location'}</p>
+                <div style="margin-top: 15px; display: flex; gap: 20px; flex-wrap: wrap;">
+                    <span><i class="fas fa-envelope"></i> ${data.email || 'email@example.com'}</span>
+                    <span><i class="fas fa-phone"></i> ${data.phone || '(123) 456-7890'}</span>
+                    <span><i class="fas fa-link"></i> ${data.website || 'portfolio.com'}</span>
+                </div>
+            </header>
+            
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+                <div>
+                    <section style="margin-bottom: 25px;">
+                        <h2 style="color: ${template.color}; border-bottom: 2px solid ${template.accent}; padding-bottom: 8px; margin-bottom: 15px;">PROFESSIONAL SUMMARY</h2>
+                        <p style="line-height: 1.6;">${data.summary || 'Results-driven professional with extensive experience...'}</p>
+                    </section>
+                    
+                    <section style="margin-bottom: 25px;">
+                        <h2 style="color: ${template.color}; border-bottom: 2px solid ${template.accent}; padding-bottom: 8px; margin-bottom: 15px;">WORK EXPERIENCE</h2>
+                        <div style="margin-bottom: 15px;">
+                            <h3 style="margin: 0 0 5px 0; font-size: 18px;">${data.jobTitle1 || 'Job Title'}</h3>
+                            <p style="color: ${template.color}; margin: 0 0 8px 0;">
+                                <strong>${data.company1 || 'Company Name'}</strong> | ${data.dates1 || 'Dates'}
+                            </p>
+                            <p>${data.description1 || 'Responsibilities and achievements...'}</p>
+                        </div>
+                    </section>
+                    
+                    <section style="margin-bottom: 25px;">
+                        <h2 style="color: ${template.color}; border-bottom: 2px solid ${template.accent}; padding-bottom: 8px; margin-bottom: 15px;">EDUCATION</h2>
+                        <div style="margin-bottom: 15px;">
+                            <h3 style="margin: 0 0 5px 0; font-size: 18px;">${data.degree || 'Degree Name'}</h3>
+                            <p style="color: ${template.color}; margin: 0 0 8px 0;">
+                                <strong>${data.school || 'University Name'}</strong> | ${data.graduationYear || 'Graduation Year'}
+                            </p>
+                            <p>${data.educationDetails || 'Relevant coursework and achievements...'}</p>
+                        </div>
+                    </section>
                 </div>
                 
-                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
-                    <div>
-                        <h2 style="color: ${selectedTemplate.color}; border-bottom: 2px solid ${selectedTemplate.color}; padding-bottom: 10px;">PROFESSIONAL SUMMARY</h2>
-                        <p>${resumeData.summary || 'Experienced professional seeking new opportunities...'}</p>
-                        
-                        <h2 style="color: ${selectedTemplate.color}; border-bottom: 2px solid ${selectedTemplate.color}; padding-bottom: 10px; margin-top: 30px;">WORK EXPERIENCE</h2>
-                        <p>${resumeData.experience || 'Detail your work experience here...'}</p>
-                        
-                        <h2 style="color: ${selectedTemplate.color}; border-bottom: 2px solid ${selectedTemplate.color}; padding-bottom: 10px; margin-top: 30px;">EDUCATION</h2>
-                        <p><strong>${resumeData.school || 'University Name'}</strong><br>
-                        ${resumeData.degree || 'Degree'} | ${resumeData.graduationYear || 'Graduation Year'}</p>
-                    </div>
+                <div>
+                    <section style="margin-bottom: 25px;">
+                        <h2 style="color: ${template.color}; border-bottom: 2px solid ${template.accent}; padding-bottom: 8px; margin-bottom: 15px;">SKILLS</h2>
+                        <div style="margin-bottom: 10px;">
+                            <h3 style="font-size: 16px; margin: 0 0 8px 0;">Technical</h3>
+                            <p>${data.technicalSkills || 'List your technical skills here...'}</p>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 16px; margin: 0 0 8px 0;">Professional</h3>
+                            <p>${data.professionalSkills || 'List your professional skills here...'}</p>
+                        </div>
+                    </section>
                     
-                    <div>
-                        <h2 style="color: ${selectedTemplate.color}; border-bottom: 2px solid ${selectedTemplate.color}; padding-bottom: 10px;">CONTACT</h2>
-                        <p><strong>Email:</strong><br>${resumeData.email || 'your.email@example.com'}</p>
-                        <p><strong>Phone:</strong><br>${resumeData.phone || '(123) 456-7890'}</p>
-                        <p><strong>Location:</strong><br>${resumeData.location || 'City, State'}</p>
-                        
-                        <h2 style="color: ${selectedTemplate.color}; border-bottom: 2px solid ${selectedTemplate.color}; padding-bottom: 10px; margin-top: 30px;">SKILLS</h2>
-                        <p>${resumeData.skills || 'List your key skills here...'}</p>
-                    </div>
+                    <section style="margin-bottom: 25px;">
+                        <h2 style="color: ${template.color}; border-bottom: 2px solid ${template.accent}; padding-bottom: 8px; margin-bottom: 15px;">CERTIFICATIONS</h2>
+                        <p>${data.certifications || 'List your certifications here...'}</p>
+                    </section>
+                    
+                    <section style="margin-bottom: 25px;">
+                        <h2 style="color: ${template.color}; border-bottom: 2px solid ${template.accent}; padding-bottom: 8px; margin-bottom: 15px;">LANGUAGES</h2>
+                        <p>${data.languages || 'List languages you speak...'}</p>
+                    </section>
                 </div>
             </div>
-        `;
-        
-        resumePreview.innerHTML = resumeHTML;
-        
-        // Show download button
-        const downloadBtn = document.getElementById('downloadResumeBtn');
-        if (downloadBtn) {
-            downloadBtn.style.display = 'block';
-        }
-    }
-    
-    alert('Resume saved successfully! You can now download it or apply for jobs.');
+            
+            <footer style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center; color: #718096; font-size: 14px;">
+                <p>Generated by 9to5 University Resume Builder</p>
+            </footer>
+        </div>
+    `;
 }
 
-// Download resume as PDF
-function downloadResume() {
-    const resumePreview = document.getElementById('resumePreview');
-    
-    if (!resumePreview) {
-        alert('Please generate a resume first.');
+async function downloadResumePDF() {
+    const previewContainer = document.getElementById('resumePreview');
+    if (!previewContainer) {
+        showNotification('Please generate a resume first', 'error');
         return;
     }
     
-    // Create a printable version
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write(`
-        <html>
+    showNotification('Generating PDF... Please wait', 'info');
+    
+    try {
+        // Create a print-friendly version
+        const printWindow = window.open('', '_blank');
+        const printContent = `
+            <!DOCTYPE html>
+            <html>
             <head>
-                <title>My Resume - 9to5 University</title>
+                <title>${document.getElementById('fullName')?.value || 'My Resume'} - 9to5 University</title>
                 <style>
-                    body { font-family: Arial, sans-serif; margin: 40px; }
+                    @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600&display=swap');
+                    body { 
+                        font-family: 'Segoe UI', Arial, sans-serif; 
+                        margin: 40px; 
+                        color: #2d3748;
+                        line-height: 1.6;
+                    }
                     @media print {
-                        body { margin: 0; }
+                        body { margin: 20px; }
+                        .no-print { display: none !important; }
+                    }
+                    .resume-header { 
+                        background: #1a365d; 
+                        color: white; 
+                        padding: 30px; 
+                        border-radius: 8px; 
+                        margin-bottom: 25px;
+                    }
+                    .section-title { 
+                        color: #1a365d; 
+                        border-bottom: 2px solid #d4af37; 
+                        padding-bottom: 5px; 
+                        margin-bottom: 15px;
+                    }
+                    .contact-info span { margin-right: 20px; }
+                    .two-column { 
+                        display: grid; 
+                        grid-template-columns: 2fr 1fr; 
+                        gap: 25px; 
+                    }
+                    .print-footer { 
+                        margin-top: 30px; 
+                        padding-top: 15px; 
+                        border-top: 1px solid #e2e8f0; 
+                        text-align: center; 
+                        color: #718096; 
+                        font-size: 12px;
                     }
                 </style>
             </head>
             <body>
-                ${resumePreview.innerHTML}
+                ${previewContainer.innerHTML}
+                <div class="print-footer">
+                    <p>Generated by 9to5 University Resume Builder | ${new Date().toLocaleDateString()}</p>
+                </div>
                 <script>
                     window.onload = function() {
                         window.print();
+                        setTimeout(() => window.close(), 1000);
                     };
                 </script>
             </body>
-        </html>
-    `);
-    printWindow.document.close();
+            </html>
+        `;
+        
+        printWindow.document.write(printContent);
+        printWindow.document.close();
+        
+        showNotification('PDF generated successfully! Check your print dialog.', 'success');
+    } catch (error) {
+        console.error('PDF generation error:', error);
+        showNotification('Error generating PDF. Please try printing manually.', 'error');
+    }
+}
+
+function downloadResumeWord() {
+    showNotification('Word export coming soon! Use PDF export for now.', 'info');
+}
+
+// Job Listings
+function initializeJobListings() {
+    const jobsContainer = document.getElementById('jobsContainer');
+    if (!jobsContainer) return;
+    
+    // Check for jobs
+    const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+    
+    if (jobs.length === 0) {
+        jobsContainer.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>No Jobs Available</h3>
+                <p>We're currently updating our job listings. New opportunities will be posted soon.</p>
+                <p>In the meantime, prepare your resume so you're ready when jobs are available.</p>
+                <a href="resume-builder.html" class="btn btn-primary">
+                    <i class="fas fa-file-alt"></i> Build Your Resume
+                </a>
+            </div>
+        `;
+    }
+}
+
+// Courses
+function initializeCourses() {
+    // Course functionality here
+}
+
+// Login
+function initializeLogin() {
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleLogin();
+        });
+    }
+    
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleRegistration();
+        });
+    }
+}
+
+function handleLogin() {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    
+    // Simple validation
+    if (!email || !password) {
+        showNotification('Please fill in all fields', 'error');
+        return;
+    }
+    
+    // Mock authentication
+    localStorage.setItem('userLoggedIn', 'true');
+    localStorage.setItem('userEmail', email);
+    
+    showNotification('Login successful!', 'success');
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 1500);
+}
+
+function handleRegistration() {
+    const name = document.getElementById('registerName').value;
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    
+    // Validation
+    if (!name || !email || !password || !confirmPassword) {
+        showNotification('Please fill in all fields', 'error');
+        return;
+    }
+    
+    if (password !== confirmPassword) {
+        showNotification('Passwords do not match', 'error');
+        return;
+    }
+    
+    if (password.length < 6) {
+        showNotification('Password must be at least 6 characters', 'error');
+        return;
+    }
+    
+    // Mock registration
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    users.push({ name, email, password: btoa(password) });
+    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('userLoggedIn', 'true');
+    localStorage.setItem('userEmail', email);
+    
+    showNotification('Registration successful!', 'success');
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 1500);
+}
+
+// Utility Functions
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existing = document.querySelector('.notification');
+    if (existing) existing.remove();
+    
+    // Create notification
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+            <span>${message}</span>
+            <button class="notification-close">&times;</button>
+        </div>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#38a169' : type === 'error' ? '#e53e3e' : '#3182ce'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 9999;
+        max-width: 350px;
+        animation: slideIn 0.3s ease;
+    `;
+    
+    // Add animation keyframes
+    if (!document.querySelector('#notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            .notification-content {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .notification-close {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                margin-left: auto;
+                padding: 0 0 0 10px;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Add close functionality
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.addEventListener('click', () => notification.remove());
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }
+    }, 5000);
+    
+    document.body.appendChild(notification);
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+function darkenColor(color, percent) {
+    let r = parseInt(color.substring(1, 3), 16);
+    let g = parseInt(color.substring(3, 5), 16);
+    let b = parseInt(color.substring(5, 7), 16);
+    
+    r = parseInt(r * (100 - percent) / 100);
+    g = parseInt(g * (100 - percent) / 100);
+    b = parseInt(b * (100 - percent) / 100);
+    
+    r = Math.max(0, r);
+    g = Math.max(0, g);
+    b = Math.max(0, b);
+    
+    return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
