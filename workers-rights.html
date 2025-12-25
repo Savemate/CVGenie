@@ -3,691 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workers' Rights - 9to5 University</title>
+    <title>Workers Rights - ResumePro</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .rights-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f8f5f0 0%, #ffffff 100%);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #c9a959, #e6c34c);
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            color: #4a6572;
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .rights-hero {
-            background: linear-gradient(135deg, #0a2342, #1c3b5e);
-            color: white;
-            padding: 60px;
-            border-radius: 20px;
-            margin-bottom: 60px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .rights-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(201, 169, 89, 0.1)"/></svg>');
-            background-size: cover;
-        }
-
-        .rights-hero h2 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .rights-hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .rights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .right-card {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(10, 35, 66, 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(201, 169, 89, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .right-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(10, 35, 66, 0.2);
-        }
-
-        .right-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #c9a959, #e6c34c);
-        }
-
-        .right-icon {
-            font-size: 2.5rem;
-            color: #c9a959;
-            margin-bottom: 25px;
-            height: 70px;
-            width: 70px;
-            background: rgba(201, 169, 89, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .right-card h3 {
-            color: #0a2342;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
-
-        .right-card p {
-            color: #5d6d7e;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .right-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .right-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            color: #5d6d7e;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .right-list li:last-child {
-            border-bottom: none;
-        }
-
-        .right-list i {
-            color: #c9a959;
-            margin-top: 5px;
-            flex-shrink: 0;
-        }
-
-        .resources-section {
-            background: #f8f9fa;
-            padding: 60px;
-            border-radius: 20px;
-            margin: 80px 0;
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .resource-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-
-        .resource-icon {
-            font-size: 2rem;
-            color: #3498db;
-            margin-bottom: 20px;
-        }
-
-        .resource-card h4 {
-            color: #0a2342;
-            margin-bottom: 10px;
-        }
-
-        .download-btn {
-            margin-top: 15px;
-            width: 100%;
-        }
-
-        .faq-section {
-            margin: 80px 0;
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .faq-item {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .faq-question {
-            color: #0a2342;
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-        }
-
-        .faq-question i {
-            color: #c9a959;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-answer {
-            color: #5d6d7e;
-            line-height: 1.6;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            margin-top: 15px;
-        }
-
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-
-        .legal-disclaimer {
-            background: #fff8e1;
-            padding: 30px;
-            border-radius: 12px;
-            border-left: 4px solid #c9a959;
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: #5d3c00;
-        }
-
-        .legal-disclaimer i {
-            color: #c9a959;
-            margin-right: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .rights-hero {
-                padding: 40px 20px;
-            }
-            
-            .rights-hero h2 {
-                font-size: 2rem;
-            }
-            
-            .rights-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .resources-section {
-                padding: 40px 20px;
-            }
-            
-            .faq-item {
-                padding: 20px;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="prestige-header">
-        <div class="container header-container">
-            <a href="index.html" class="logo">
-                <div class="logo-shield">
-                    <div class="shield-inner">
-                        <span class="logo-year">1995</span>
-                        <span class="logo-divider"></span>
-                        <span class="logo-acronym">9to5U</span>
-                    </div>
-                </div>
-                <div class="logo-text">
-                    <h1 class="university-name">9to5 University</h1>
-                    <p class="university-motto">Excellence in Career Development</p>
-                </div>
-            </a>
-
-            <nav class="prestige-nav">
-                <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> <span>Home</span></a></li>
-                    <li><a href="hustle-jobs.html" class="nav-link"><i class="fas fa-briefcase"></i> <span>Career Hub</span></a></li>
-                    <li><a href="resume-builder.html" class="nav-link"><i class="fas fa-file-certificate"></i> <span>Resume Pro</span></a></li>
-                    <li><a href="courses.html" class="nav-link"><i class="fas fa-graduation-cap"></i> <span>Academy</span></a></li>
-                    <li><a href="workers-rights.html" class="nav-link active"><i class="fas fa-scale-balanced"></i> <span>Rights</span></a></li>
-                    <li><a href="login.html" class="btn btn-gold btn-login"><i class="fas fa-user-graduate"></i> <span>Student Portal</span></a></li>
-                </ul>
-            </nav>
-
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><i class="fas fa-file-alt"></i> ResumePro</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="resume-builder.html"><i class="fas fa-edit"></i> Resume Builder</a></li>
+                <li><a href="courses.html"><i class="fas fa-graduation-cap"></i> Courses</a></li>
+                <li><a href="hustle-jobs.html"><i class="fas fa-briefcase"></i> Hustle Jobs</a></li>
+                <li><a href="workers-rights.html" class="active"><i class="fas fa-balance-scale"></i> Workers Rights</a></li>
+                <li><a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            </ul>
+            <div class="mobile-menu">
                 <i class="fas fa-bars"></i>
-            </button>
-        </div>
+            </div>
+        </nav>
     </header>
 
-    <!-- Workers' Rights Section -->
-    <section class="rights-section">
-        <div class="container">
-            <div class="section-header">
-                <h1 class="section-title">Know Your Rights</h1>
-                <p class="section-subtitle">Essential information about workplace rights, protections, and responsibilities</p>
+    <main class="rights-container">
+        <div class="rights-header">
+            <h1>Workers Rights & Protections</h1>
+            <p>Know your rights in the workplace and learn how to protect yourself</p>
+        </div>
+
+        <div class="rights-overview">
+            <h2>Your Fundamental Rights at Work</h2>
+            <p>Every worker deserves fair treatment, safe conditions, and respect in the workplace. Understanding your rights is the first step toward protecting them.</p>
+        </div>
+
+        <div class="rights-grid">
+            <div class="right-card">
+                <div class="right-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <h3>Fair Wages</h3>
+                <ul>
+                    <li>Right to minimum wage</li>
+                    <li>Overtime pay eligibility</li>
+                    <li>Timely payment of wages</li>
+                    <li>Equal pay for equal work</li>
+                </ul>
             </div>
 
-            <!-- Hero Section -->
-            <div class="rights-hero">
-                <h2>Your Rights in the Workplace</h2>
-                <p>Understanding your legal rights and protections is essential for a successful and fair career. 9to5 University provides this information as an educational resource.</p>
+            <div class="right-card">
+                <div class="right-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Safe Workplace</h3>
+                <ul>
+                    <li>Safe and healthy working conditions</li>
+                    <li>Protection from hazards</li>
+                    <li>Safety training and equipment</li>
+                    <li>Right to report unsafe conditions</li>
+                </ul>
             </div>
 
-            <!-- Rights Grid -->
-            <div class="rights-grid">
-                <!-- Right 1 -->
-                <div class="right-card">
-                    <div class="right-icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <h3>Fair Compensation</h3>
-                    <p>Understand your rights regarding wages, overtime pay, and salary negotiations.</p>
-                    <ul class="right-list">
-                        <li><i class="fas fa-check"></i> Right to minimum wage</li>
-                        <li><i class="fas fa-check"></i> Overtime pay eligibility</li>
-                        <li><i class="fas fa-check"></i> Timely payment of wages</li>
-                        <li><i class="fas fa-check"></i> Equal pay for equal work</li>
-                    </ul>
+            <div class="right-card">
+                <div class="right-icon">
+                    <i class="fas fa-balance-scale"></i>
                 </div>
-
-                <!-- Right 2 -->
-                <div class="right-card">
-                    <div class="right-icon">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h3>Workplace Safety</h3>
-                    <p>Your right to a safe and healthy work environment free from hazards.</p>
-                    <ul class="right-list">
-                        <li><i class="fas fa-check"></i> Safe working conditions</li>
-                        <li><i class="fas fa-check"></i> Proper safety training</li>
-                        <li><i class="fas fa-check"></i> Report unsafe conditions</li>
-                        <li><i class="fas fa-check"></i> Protection from retaliation</li>
-                    </ul>
-                </div>
-
-                <!-- Right 3 -->
-                <div class="right-card">
-                    <div class="right-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3>Equal Opportunity</h3>
-                    <p>Protection from discrimination based on protected characteristics.</p>
-                    <ul class="right-list">
-                        <li><i class="fas fa-check"></i> No discrimination based on race, gender, age</li>
-                        <li><i class="fas fa-check"></i> Protection from harassment</li>
-                        <li><i class="fas fa-check"></i> Reasonable accommodations</li>
-                        <li><i class="fas fa-check"></i> Equal access to opportunities</li>
-                    </ul>
-                </div>
-
-                <!-- Right 4 -->
-                <div class="right-card">
-                    <div class="right-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Work-Life Balance</h3>
-                    <p>Rights regarding working hours, breaks, and time off.</p>
-                    <ul class="right-list">
-                        <li><i class="fas fa-check"></i> Reasonable working hours</li>
-                        <li><i class="fas fa-check"></i> Meal and rest breaks</li>
-                        <li><i class="fas fa-check"></i> Family and medical leave</li>
-                        <li><i class="fas fa-check"></i> Vacation and sick leave</li>
-                    </ul>
-                </div>
-
-                <!-- Right 5 -->
-                <div class="right-card">
-                    <div class="right-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>Freedom of Expression</h3>
-                    <p>Your rights regarding workplace communication and organization.</p>
-                    <ul class="right-list">
-                        <li><i class="fas fa-check"></i> Right to discuss wages</li>
-                        <li><i class="fas fa-check"></i> Union organization rights</li>
-                        <li><i class="fas fa-check"></i> Whistleblower protections</li>
-                        <li><i class="fas fa-check"></i> Constructive feedback rights</li>
-                    </ul>
-                </div>
-
-                <!-- Right 6 -->
-                <div class="right-card">
-                    <div class="right-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <h3>Contract & Privacy</h3>
-                    <p>Understanding employment contracts and privacy rights.</p>
-                    <ul class="right-list">
-                        <li><i class="fas fa-check"></i> Review employment contracts</li>
-                        <li><i class="fas fa-check"></i> Privacy of personal information</li>
-                        <li><i class="fas fa-check"></i> Non-compete limitations</li>
-                        <li><i class="fas fa-check"></i> Proper notice of changes</li>
-                    </ul>
-                </div>
+                <h3>Non-Discrimination</h3>
+                <ul>
+                    <li>Protection from discrimination</li>
+                    <li>Equal opportunity regardless of race, gender, age, etc.</li>
+                    <li>Reasonable accommodations</li>
+                    <li>Harassment-free workplace</li>
+                </ul>
             </div>
 
-            <!-- Resources Section -->
-            <div class="resources-section">
-                <div class="section-header">
-                    <h2 class="section-title">Resources & Downloads</h2>
-                    <p class="section-subtitle">Free resources to help you understand and protect your workplace rights</p>
+            <div class="right-card">
+                <div class="right-icon">
+                    <i class="fas fa-user-clock"></i>
                 </div>
-                
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <h4>Workplace Rights Guide</h4>
-                        <p>Comprehensive guide to understanding your basic workplace rights.</p>
-                        <button class="btn btn-outline download-btn" onclick="downloadResource('rights-guide')">
-                            <i class="fas fa-download"></i> Download PDF
-                        </button>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-clipboard-list"></i>
-                        </div>
-                        <h4>Discrimination Checklist</h4>
-                        <p>Checklist to identify potential workplace discrimination.</p>
-                        <button class="btn btn-outline download-btn" onclick="downloadResource('discrimination-checklist')">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <h4>Legal Help Directory</h4>
-                        <p>Directory of organizations that provide free legal assistance.</p>
-                        <button class="btn btn-outline download-btn" onclick="downloadResource('legal-directory')">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-comment-dollar"></i>
-                        </div>
-                        <h4>Salary Negotiation Tips</h4>
-                        <p>Guide to negotiating fair compensation and benefits.</p>
-                        <button class="btn btn-outline download-btn" onclick="downloadResource('salary-negotiation')">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                    </div>
-                </div>
+                <h3>Reasonable Hours</h3>
+                <ul>
+                    <li>Maximum working hours limits</li>
+                    <li>Rest breaks and meal periods</li>
+                    <li>Weekly rest days</li>
+                    <li>Vacation and sick leave rights</li>
+                </ul>
             </div>
 
-            <!-- FAQ Section -->
-            <div class="faq-section">
-                <div class="section-header">
-                    <h2 class="section-title">Frequently Asked Questions</h2>
-                    <p class="section-subtitle">Common questions about workplace rights and protections</p>
+            <div class="right-card">
+                <div class="right-icon">
+                    <i class="fas fa-comments"></i>
                 </div>
-                
-                <div class="faq-grid">
-                    <div class="faq-item" onclick="toggleFAQ(this)">
-                        <div class="faq-question">
-                            <i class="fas fa-chevron-down"></i>
-                            What should I do if I'm being discriminated against at work?
-                        </div>
-                        <div class="faq-answer">
-                            <p>1. Document everything: Keep detailed records of incidents, dates, times, and witnesses.</p>
-                            <p>2. Report internally: Follow your company's discrimination reporting procedure.</p>
-                            <p>3. File a complaint: Contact the Equal Employment Opportunity Commission (EEOC).</p>
-                            <p>4. Seek legal advice: Consult with an employment attorney about your options.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item" onclick="toggleFAQ(this)">
-                        <div class="faq-question">
-                            <i class="fas fa-chevron-down"></i>
-                            Am I entitled to overtime pay?
-                        </div>
-                        <div class="faq-answer">
-                            <p>Overtime eligibility depends on several factors:</p>
-                            <p>• Non-exempt employees: Generally entitled to 1.5x pay for hours over 40 per week</p>
-                            <p>• Exempt employees: Usually salaried professionals, managers, administrators</p>
-                            <p>• State laws: Some states have additional overtime requirements</p>
-                            <p>Consult your state's labor department or an employment attorney for specific guidance.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item" onclick="toggleFAQ(this)">
-                        <div class="faq-question">
-                            <i class="fas fa-chevron-down"></i>
-                            Can my employer monitor my personal communications at work?
-                        </div>
-                        <div class="faq-answer">
-                            <p>Generally, yes - with important limitations:</p>
-                            <p>• Company devices: Employers have broad monitoring rights on company-owned devices</p>
-                            <p>• Personal devices: Limited monitoring if using personal devices for work</p>
-                            <p>• Privacy expectations: Varies by state and company policy</p>
-                            <p>• Consent: Some states require employee consent for certain monitoring</p>
-                            <p>Always assume work communications may be monitored and use personal devices for private matters.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item" onclick="toggleFAQ(this)">
-                        <div class="faq-question">
-                            <i class="fas fa-chevron-down"></i>
-                            What are my rights regarding workplace safety?
-                        </div>
-                        <div class="faq-answer">
-                            <p>Under OSHA (Occupational Safety and Health Administration), you have the right to:</p>
-                            <p>1. A workplace free from recognized hazards</p>
-                            <p>2. Receive training about workplace hazards</p>
-                            <p>3. Review records of work-related injuries and illnesses</p>
-                            <p>4. File a complaint with OSHA about safety concerns</p>
-                            <p>5. Be protected from retaliation for reporting safety issues</p>
-                            <p>If you believe your workplace is unsafe, document concerns and report them through proper channels.</p>
-                        </div>
-                    </div>
-                </div>
+                <h3>Freedom of Association</h3>
+                <ul>
+                    <li>Right to join or form unions</li>
+                    <li>Collective bargaining rights</li>
+                    <li>Right to discuss wages and conditions</li>
+                    <li>Protection from retaliation</li>
+                </ul>
             </div>
 
-            <!-- Legal Disclaimer -->
-            <div class="legal-disclaimer">
-                <p><i class="fas fa-exclamation-triangle"></i> <strong>Important Legal Disclaimer:</strong> This information is for educational purposes only and does not constitute legal advice. Laws vary by jurisdiction and individual circumstances. For specific legal questions, consult with a qualified employment attorney in your area. 9to5 University and MagTec Invest are not law firms and do not provide legal services.</p>
+            <div class="right-card">
+                <div class="right-icon">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <h3>Privacy Rights</h3>
+                <ul>
+                    <li>Personal information protection</li>
+                    <li>Limited workplace monitoring</li>
+                    <li>Medical record confidentiality</li>
+                    <li>Social media privacy</li>
+                </ul>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="prestige-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <div class="logo-shield small">
-                            <div class="shield-inner">
-                                <span class="logo-year">1995</span>
-                                <span class="logo-divider"></span>
-                                <span class="logo-acronym">9to5U</span>
-                            </div>
-                        </div>
-                        <div class="footer-logo-text">
-                            <h3>9to5 University</h3>
-                            <p>Career Excellence Since 1995</p>
-                        </div>
+        <div class="common-issues">
+            <h2>Common Workplace Issues & Solutions</h2>
+            <div class="issues-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        <span>Wage Theft or Unpaid Wages</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>What to do:</strong> Keep detailed records of hours worked, pay stubs, and communications. First discuss with your employer, then file a complaint with your state labor department if unresolved.</p>
                     </div>
-                    <p class="footer-description">Empowering professionals with knowledge of their workplace rights.</p>
                 </div>
-                <div class="footer-links">
-                    <div class="link-column">
-                        <h4>Contact</h4>
-                        <div class="contact-info">
-                            <p><i class="fas fa-envelope"></i> <a href="mailto:magtecinvest@gmail.com">magtecinvest@gmail.com</a></p>
-                            <p><i class="fas fa-building-columns"></i> A MagTec Invest Institution</p>
-                        </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        <span>Workplace Harassment</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>What to do:</strong> Document incidents with dates, times, and witnesses. Report to HR or management following company policy. If internal resolution fails, contact the EEOC or state human rights commission.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        <span>Unsafe Working Conditions</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>What to do:</strong> Report safety hazards to management immediately. You have the right to refuse dangerous work. Contact OSHA (Occupational Safety and Health Administration) for serious violations.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        <span>Wrongful Termination</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>What to do:</strong> Determine if termination violated employment contract, anti-discrimination laws, or retaliation protections. Consult with an employment attorney about your options.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-btn">
+                        <span>Denied Breaks or Overtime</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>What to do:</strong> Know your state's break requirements. Track all hours worked, including unauthorized overtime. Report violations to your state labor department.</p>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 1995-<span id="currentYear"></span> 9to5 University. All rights reserved. A MagTec Invest Premier Institution.</p>
-                <p class="disclaimer">Educational resources provided for informational purposes only.</p>
+        </div>
+
+        <div class="resources-section">
+            <h2>Helpful Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>Government Agencies</h3>
+                    <ul>
+                        <li>U.S. Department of Labor</li>
+                        <li>Equal Employment Opportunity Commission (EEOC)</li>
+                        <li>Occupational Safety and Health Administration (OSHA)</li>
+                        <li>National Labor Relations Board (NLRB)</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <i class="fas fa-book"></i>
+                    <h3>Legal Assistance</h3>
+                    <ul>
+                        <li>Legal Aid Societies</li>
+                        <li>State Bar Associations</li>
+                        <li>Workers' Rights Clinics</li>
+                        <li>Pro Bono Legal Services</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Hotlines</h3>
+                    <ul>
+                        <li>EEOC Helpline: 1-800-669-4000</li>
+                        <li>OSHA Hotline: 1-800-321-6742</li>
+                        <li>Wage & Hour Division: 1-866-487-9243</li>
+                        <li>Worker Safety Complaints: 1-800-321-6742</li>
+                    </ul>
+                </div>
             </div>
+        </div>
+
+        <div class="action-steps">
+            <h2>Steps to Take When Your Rights Are Violated</h2>
+            <div class="steps-timeline">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Document Everything</h4>
+                    <p>Keep detailed records of incidents, conversations, emails, and hours worked.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Know the Law</h4>
+                    <p>Research your specific rights under federal, state, and local laws.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Follow Internal Procedures</h4>
+                    <p>Report issues through proper channels at your workplace first.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>File a Formal Complaint</h4>
+                    <p>Contact the appropriate government agency if internal resolution fails.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Seek Legal Advice</h4>
+                    <p>Consult with an employment attorney about your options.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ResumePro</h3>
+                <p>Building careers one resume at a time</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="workers-rights.html">Workers Rights</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="cookies.html">Cookies Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 ResumePro. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="scripts.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize current year
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-            
-            // FAQ toggle functionality
-            window.toggleFAQ = function(element) {
-                element.classList.toggle('active');
-            };
-            
-            // Resource download functionality
-            window.downloadResource = function(resourceType) {
-                const resources = {
-                    'rights-guide': 'Workplace_Rights_Guide.pdf',
-                    'discrimination-checklist': 'Discrimination_Checklist.pdf',
-                    'legal-directory': 'Legal_Help_Directory.pdf',
-                    'salary-negotiation': 'Salary_Negotiation_Tips.pdf'
-                };
-                
-                const filename = resources[resourceType] || 'Resource.pdf';
-                
-                // Create a simple text file for demo purposes
-                const content = `9to5 University - ${filename}\n\nThis is a sample resource file. In a real application, this would be a comprehensive PDF document with detailed information about workplace rights and protections.\n\nFor actual legal advice, please consult with a qualified employment attorney.\n\nGenerated on: ${new Date().toLocaleDateString()}`;
-                
-                const blob = new Blob([content], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                
-                // Show notification
-                const notification = document.createElement('div');
-                notification.style.cssText = `
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    background: #27ae60;
-                    color: white;
-                    padding: 15px 25px;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-                    z-index: 9999;
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    animation: slideIn 0.3s ease;
-                `;
-                notification.innerHTML = `
-                    <i class="fas fa-check-circle"></i>
-                    <span>Download started: ${filename}</span>
-                `;
-                
-                document.body.appendChild(notification);
-                
-                setTimeout(() => {
-                    notification.style.animation = 'slideOut 0.3s ease';
-                    setTimeout(() => {
-                        if (notification.parentNode) notification.remove();
-                    }, 300);
-                }, 3000);
-            };
-            
-            // Add animation styles
-            if (!document.querySelector('#notification-animations')) {
-                const style = document.createElement('style');
-                style.id = 'notification-animations';
-                style.textContent = `
-                    @keyframes slideIn {
-                        from { transform: translateX(100%); opacity: 0; }
-                        to { transform: translateX(0); opacity: 1; }
-                    }
-                    @keyframes slideOut {
-                        from { transform: translateX(0); opacity: 1; }
-                        to { transform: translateX(100%); opacity: 0; }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-        });
-    </script>
 </body>
 </html>
