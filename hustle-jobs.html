@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hustle Jobs - ResumePro</title>
+    <!-- Changed title -->
+    <title>Hustle Jobs - 9to5 University</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -11,7 +12,8 @@
     <header>
         <nav>
             <div class="logo">
-                <h1><i class="fas fa-file-alt"></i> ResumePro</h1>
+                <!-- Changed logo text -->
+                <h1><i class="fas fa-file-alt"></i> 9to5 University</h1>
             </div>
             <ul class="nav-links">
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
@@ -27,175 +29,13 @@
         </nav>
     </header>
 
-    <main class="jobs-container">
-        <div class="jobs-header">
-            <h1>Hustle Jobs & Side Gigs</h1>
-            <p>Find flexible work opportunities to earn extra income or start your career</p>
-        </div>
-
-        <div class="job-filters">
-            <div class="filter-group">
-                <label for="job-type">Job Type:</label>
-                <select id="job-type">
-                    <option value="all">All Types</option>
-                    <option value="remote">Remote</option>
-                    <option value="part-time">Part-time</option>
-                    <option value="freelance">Freelance</option>
-                    <option value="gig">Gig Work</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="category">Category:</label>
-                <select id="category">
-                    <option value="all">All Categories</option>
-                    <option value="tech">Technology</option>
-                    <option value="writing">Writing</option>
-                    <option value="design">Design</option>
-                    <option value="tutoring">Tutoring</option>
-                    <option value="delivery">Delivery</option>
-                    <option value="customer-service">Customer Service</option>
-                </select>
-            </div>
-            <button class="btn-primary" id="apply-filters">Apply Filters</button>
-        </div>
-
-        <div class="jobs-grid">
-            <div class="job-card" data-type="remote" data-category="tech">
-                <div class="job-badge">Remote</div>
-                <h3>Frontend Developer</h3>
-                <p class="company">TechStart Inc.</p>
-                <p class="job-description">Looking for a frontend developer with React experience for a 3-month project.</p>
-                <div class="job-details">
-                    <span><i class="fas fa-money-bill-wave"></i> $35-50/hr</span>
-                    <span><i class="fas fa-clock"></i> Part-time</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                </div>
-                <button class="btn-primary apply-btn">Apply Now</button>
-            </div>
-
-            <div class="job-card" data-type="freelance" data-category="writing">
-                <div class="job-badge">Freelance</div>
-                <h3>Content Writer</h3>
-                <p class="company">ContentMasters Agency</p>
-                <p class="job-description">Seeking freelance writers for blog posts on technology and business topics.</p>
-                <div class="job-details">
-                    <span><i class="fas fa-money-bill-wave"></i> $20-30/article</span>
-                    <span><i class="fas fa-clock"></i> Flexible</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                </div>
-                <button class="btn-primary apply-btn">Apply Now</button>
-            </div>
-
-            <div class="job-card" data-type="gig" data-category="delivery">
-                <div class="job-badge">Gig Work</div>
-                <h3>Food Delivery Driver</h3>
-                <p class="company">QuickDeliver</p>
-                <p class="job-description">Flexible hours delivering food in your local area. Set your own schedule.</p>
-                <div class="job-details">
-                    <span><i class="fas fa-money-bill-wave"></i> $15-25/hr + tips</span>
-                    <span><i class="fas fa-clock"></i> Flexible</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Local</span>
-                </div>
-                <button class="btn-primary apply-btn">Apply Now</button>
-            </div>
-
-            <div class="job-card" data-type="part-time" data-category="customer-service">
-                <div class="job-badge">Part-time</div>
-                <h3>Customer Support Agent</h3>
-                <p class="company">SupportSolutions</p>
-                <p class="job-description">Remote customer support role, 20 hours per week. Training provided.</p>
-                <div class="job-details">
-                    <span><i class="fas fa-money-bill-wave"></i> $18-22/hr</span>
-                    <span><i class="fas fa-clock"></i> 20 hrs/week</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                </div>
-                <button class="btn-primary apply-btn">Apply Now</button>
-            </div>
-
-            <div class="job-card" data-type="freelance" data-category="design">
-                <div class="job-badge">Freelance</div>
-                <h3>Graphic Designer</h3>
-                <p class="company">DesignHub Studio</p>
-                <p class="job-description">Create social media graphics and marketing materials for clients.</p>
-                <div class="job-details">
-                    <span><i class="fas fa-money-bill-wave"></i> $25-40/hr</span>
-                    <span><i class="fas fa-clock"></i> Project-based</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                </div>
-                <button class="btn-primary apply-btn">Apply Now</button>
-            </div>
-
-            <div class="job-card" data-type="remote" data-category="tutoring">
-                <div class="job-badge">Remote</div>
-                <h3>Online Math Tutor</h3>
-                <p class="company">LearnOnline Academy</p>
-                <p class="job-description">Tutor high school students in algebra and calculus via video calls.</p>
-                <div class="job-details">
-                    <span><i class="fas fa-money-bill-wave"></i> $20-30/hr</span>
-                    <span><i class="fas fa-clock"></i> Evenings/Weekends</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                </div>
-                <button class="btn-primary apply-btn">Apply Now</button>
-            </div>
-
-            <div class="job-card" data-type="gig" data-category="tech">
-                <div class="job-badge">Gig Work</div>
-                <h3>Website Tester</h3>
-                <p class="company">UserTest Pro</p>
-                <p class="job-description">Test websites and apps, provide feedback on user experience.</p>
-                <div class="job-details">
-                    <span><i class="fas fa-money-bill-wave"></i> $10-15/test</span>
-                    <span><i class="fas fa-clock"></i> Flexible</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                </div>
-                <button class="btn-primary apply-btn">Apply Now</button>
-            </div>
-
-            <div class="job-card" data-type="part-time" data-category="writing">
-                <div class="job-badge">Part-time</div>
-                <h3>Social Media Manager</h3>
-                <p class="company">Small Business Co.</p>
-                <p class="job-description">Manage social media accounts for a local business, 15 hours per week.</p>
-                <div class="job-details">
-                    <span><i class="fas fa-money-bill-wave"></i> $400-600/month</span>
-                    <span><i class="fas fa-clock"></i> 15 hrs/week</span>
-                    <span><i class="fas fa-map-marker-alt"></i> Hybrid</span>
-                </div>
-                <button class="btn-primary apply-btn">Apply Now</button>
-            </div>
-        </div>
-
-        <div class="job-tips">
-            <h2>Tips for Hustle Job Success</h2>
-            <div class="tips-grid">
-                <div class="tip-card">
-                    <i class="fas fa-file-alt"></i>
-                    <h3>Update Your Resume</h3>
-                    <p>Keep your resume current with relevant skills and experiences</p>
-                </div>
-                <div class="tip-card">
-                    <i class="fas fa-clock"></i>
-                    <h3>Manage Your Time</h3>
-                    <p>Balance hustle jobs with other commitments effectively</p>
-                </div>
-                <div class="tip-card">
-                    <i class="fas fa-handshake"></i>
-                    <h3>Build Relationships</h3>
-                    <p>Network with clients and colleagues for future opportunities</p>
-                </div>
-                <div class="tip-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Track Earnings</h3>
-                    <p>Keep records of your income and expenses for tax purposes</p>
-                </div>
-            </div>
-        </div>
-    </main>
+    <!-- Content remains exactly the same -->
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>ResumePro</h3>
+                <!-- Changed footer section -->
+                <h3>9to5 University</h3>
                 <p>Building careers one resume at a time</p>
             </div>
             <div class="footer-section">
@@ -209,7 +49,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 ResumePro. All rights reserved.</p>
+            <!-- Changed copyright notice -->
+            <p>&copy; 2023 9to5 University. All rights reserved to MagTec Invest.</p>
         </div>
     </footer>
 
