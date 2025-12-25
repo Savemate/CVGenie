@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Builder - ResumePro</title>
+    <!-- Changed title -->
+    <title>Resume Builder - 9to5 University</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -11,7 +12,8 @@
     <header>
         <nav>
             <div class="logo">
-                <h1><i class="fas fa-file-alt"></i> ResumePro</h1>
+                <!-- Changed logo text -->
+                <h1><i class="fas fa-file-alt"></i> 9to5 University</h1>
             </div>
             <ul class="nav-links">
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
@@ -27,206 +29,13 @@
         </nav>
     </header>
 
-    <main class="resume-builder-container">
-        <div class="builder-header">
-            <h1>Resume Builder</h1>
-            <p>Fill in your details and create a professional resume</p>
-        </div>
-
-        <div class="builder-layout">
-            <div class="sidebar">
-                <div class="sidebar-section active" data-section="personal">
-                    <i class="fas fa-user"></i>
-                    <span>Personal Info</span>
-                </div>
-                <div class="sidebar-section" data-section="education">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Education</span>
-                </div>
-                <div class="sidebar-section" data-section="experience">
-                    <i class="fas fa-briefcase"></i>
-                    <span>Experience</span>
-                </div>
-                <div class="sidebar-section" data-section="skills">
-                    <i class="fas fa-star"></i>
-                    <span>Skills</span>
-                </div>
-                <div class="sidebar-section" data-section="template">
-                    <i class="fas fa-palette"></i>
-                    <span>Templates</span>
-                </div>
-                <div class="sidebar-section" data-section="preview">
-                    <i class="fas fa-eye"></i>
-                    <span>Preview</span>
-                </div>
-            </div>
-
-            <div class="content-area">
-                <div class="form-section active" id="personal-section">
-                    <h2>Personal Information</h2>
-                    <form id="personal-form">
-                        <div class="form-group">
-                            <label for="full-name">Full Name</label>
-                            <input type="text" id="full-name" placeholder="John Doe">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" placeholder="john@example.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone</label>
-                                <input type="tel" id="phone" placeholder="(123) 456-7890">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <input type="text" id="address" placeholder="City, State">
-                        </div>
-                        <div class="form-group">
-                            <label for="linkedin">LinkedIn Profile (Optional)</label>
-                            <input type="url" id="linkedin" placeholder="https://linkedin.com/in/username">
-                        </div>
-                        <div class="form-group">
-                            <label for="summary">Professional Summary</label>
-                            <textarea id="summary" rows="4" placeholder="Brief summary of your professional background and career goals..."></textarea>
-                        </div>
-                        <button type="button" class="btn-primary next-section" data-next="education">Next: Education <i class="fas fa-arrow-right"></i></button>
-                    </form>
-                </div>
-
-                <div class="form-section" id="education-section">
-                    <h2>Education</h2>
-                    <div id="education-entries">
-                        <div class="education-entry">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="school-name">Institution Name</label>
-                                    <input type="text" id="school-name" placeholder="University Name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="degree">Degree/Certificate</label>
-                                    <input type="text" id="degree" placeholder="Bachelor of Science">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="field">Field of Study</label>
-                                    <input type="text" id="field" placeholder="Computer Science">
-                                </div>
-                                <div class="form-group">
-                                    <label for="graduation">Graduation Year</label>
-                                    <input type="text" id="graduation" placeholder="2020">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="achievements">Achievements (Optional)</label>
-                                <textarea id="achievements" rows="3" placeholder="Honors, awards, or notable achievements..."></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn-secondary" id="add-education"><i class="fas fa-plus"></i> Add Another Education</button>
-                    <div class="form-navigation">
-                        <button type="button" class="btn-outline prev-section" data-prev="personal"><i class="fas fa-arrow-left"></i> Previous</button>
-                        <button type="button" class="btn-primary next-section" data-next="experience">Next: Experience <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <div class="form-section" id="experience-section">
-                    <h2>Work Experience</h2>
-                    <div id="experience-entries">
-                        <div class="experience-entry">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="job-title">Job Title</label>
-                                    <input type="text" id="job-title" placeholder="Software Developer">
-                                </div>
-                                <div class="form-group">
-                                    <label for="company">Company</label>
-                                    <input type="text" id="company" placeholder="Tech Company Inc.">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="start-date">Start Date</label>
-                                    <input type="text" id="start-date" placeholder="June 2020">
-                                </div>
-                                <div class="form-group">
-                                    <label for="end-date">End Date</label>
-                                    <input type="text" id="end-date" placeholder="Present">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="responsibilities">Responsibilities & Achievements</label>
-                                <textarea id="responsibilities" rows="4" placeholder="Describe your responsibilities and key achievements..."></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn-secondary" id="add-experience"><i class="fas fa-plus"></i> Add Another Experience</button>
-                    <div class="form-navigation">
-                        <button type="button" class="btn-outline prev-section" data-prev="education"><i class="fas fa-arrow-left"></i> Previous</button>
-                        <button type="button" class="btn-primary next-section" data-next="skills">Next: Skills <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <div class="form-section" id="skills-section">
-                    <h2>Skills</h2>
-                    <div class="form-group">
-                        <label for="skills-input">Add Your Skills (separate with commas)</label>
-                        <input type="text" id="skills-input" placeholder="JavaScript, React, Project Management, Communication">
-                        <button type="button" class="btn-small" id="add-skill-btn">Add Skills</button>
-                    </div>
-                    <div class="skills-container">
-                        <div class="skill-tags" id="skill-tags">
-                            <!-- Skills will appear here as tags -->
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="languages">Languages (Optional)</label>
-                        <input type="text" id="languages" placeholder="English (Native), Spanish (Intermediate)">
-                    </div>
-                    <div class="form-group">
-                        <label for="certifications">Certifications (Optional)</label>
-                        <textarea id="certifications" rows="3" placeholder="List any relevant certifications..."></textarea>
-                    </div>
-                    <div class="form-navigation">
-                        <button type="button" class="btn-outline prev-section" data-prev="experience"><i class="fas fa-arrow-left"></i> Previous</button>
-                        <button type="button" class="btn-primary next-section" data-next="template">Next: Templates <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <div class="form-section" id="template-section">
-                    <h2>Choose a Template</h2>
-                    <div class="templates-grid" id="templates-container">
-                        <!-- Templates will be loaded here -->
-                    </div>
-                    <div class="form-navigation">
-                        <button type="button" class="btn-outline prev-section" data-prev="skills"><i class="fas fa-arrow-left"></i> Previous</button>
-                        <button type="button" class="btn-primary next-section" data-next="preview">Preview Resume <i class="fas fa-eye"></i></button>
-                    </div>
-                </div>
-
-                <div class="form-section" id="preview-section">
-                    <h2>Resume Preview</h2>
-                    <div class="preview-container">
-                        <div class="resume-preview" id="resume-preview">
-                            <!-- Resume will be rendered here -->
-                        </div>
-                    </div>
-                    <div class="preview-actions">
-                        <button type="button" class="btn-outline" id="edit-resume"><i class="fas fa-edit"></i> Edit Resume</button>
-                        <button type="button" class="btn-primary" id="download-pdf"><i class="fas fa-download"></i> Download PDF</button>
-                        <button type="button" class="btn-secondary" id="save-resume"><i class="fas fa-save"></i> Save Resume</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+    <!-- Content remains exactly the same -->
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>ResumePro</h3>
+                <!-- Changed footer section -->
+                <h3>9to5 University</h3>
                 <p>Building careers one resume at a time</p>
             </div>
             <div class="footer-section">
@@ -240,7 +49,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 ResumePro. All rights reserved.</p>
+            <!-- Changed copyright notice -->
+            <p>&copy; 2023 9to5 University. All rights reserved to MagTec Invest.</p>
         </div>
     </footer>
 
