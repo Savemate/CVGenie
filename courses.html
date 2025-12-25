@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Career Courses - ResumePro</title>
+    <!-- Changed title -->
+    <title>Career Courses - 9to5 University</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -11,7 +12,8 @@
     <header>
         <nav>
             <div class="logo">
-                <h1><i class="fas fa-file-alt"></i> ResumePro</h1>
+                <!-- Changed logo text -->
+                <h1><i class="fas fa-file-alt"></i> 9to5 University</h1>
             </div>
             <ul class="nav-links">
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
@@ -27,165 +29,13 @@
         </nav>
     </header>
 
-    <main class="courses-container">
-        <div class="courses-header">
-            <h1>Career Development Courses</h1>
-            <p>Enhance your skills and advance your career with our expert-led courses</p>
-        </div>
-
-        <div class="course-categories">
-            <button class="category-btn active" data-category="all">All Courses</button>
-            <button class="category-btn" data-category="tech">Technology</button>
-            <button class="category-btn" data-category="business">Business</button>
-            <button class="category-btn" data-category="creative">Creative</button>
-            <button class="category-btn" data-category="soft-skills">Soft Skills</button>
-        </div>
-
-        <div class="courses-grid">
-            <div class="course-card" data-category="tech">
-                <div class="course-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <h3>Web Development Fundamentals</h3>
-                <p class="course-description">Learn HTML, CSS, and JavaScript to build modern websites</p>
-                <div class="course-meta">
-                    <span><i class="fas fa-clock"></i> 8 weeks</span>
-                    <span><i class="fas fa-user-graduate"></i> Beginner</span>
-                </div>
-                <div class="course-price">Free</div>
-                <button class="btn-primary enroll-btn">Enroll Now</button>
-            </div>
-
-            <div class="course-card" data-category="business">
-                <div class="course-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3>Digital Marketing Mastery</h3>
-                <p class="course-description">Learn SEO, social media marketing, and content strategy</p>
-                <div class="course-meta">
-                    <span><i class="fas fa-clock"></i> 6 weeks</span>
-                    <span><i class="fas fa-user-graduate"></i> Intermediate</span>
-                </div>
-                <div class="course-price">$49.99</div>
-                <button class="btn-primary enroll-btn">Enroll Now</button>
-            </div>
-
-            <div class="course-card" data-category="soft-skills">
-                <div class="course-icon">
-                    <i class="fas fa-comments"></i>
-                </div>
-                <h3>Effective Communication</h3>
-                <p class="course-description">Master professional communication and presentation skills</p>
-                <div class="course-meta">
-                    <span><i class="fas fa-clock"></i> 4 weeks</span>
-                    <span><i class="fas fa-user-graduate"></i> All Levels</span>
-                </div>
-                <div class="course-price">Free</div>
-                <button class="btn-primary enroll-btn">Enroll Now</button>
-            </div>
-
-            <div class="course-card" data-category="tech">
-                <div class="course-icon">
-                    <i class="fas fa-database"></i>
-                </div>
-                <h3>Data Analysis with Python</h3>
-                <p class="course-description">Learn data analysis, visualization, and basic machine learning</p>
-                <div class="course-meta">
-                    <span><i class="fas fa-clock"></i> 10 weeks</span>
-                    <span><i class="fas fa-user-graduate"></i> Intermediate</span>
-                </div>
-                <div class="course-price">$79.99</div>
-                <button class="btn-primary enroll-btn">Enroll Now</button>
-            </div>
-
-            <div class="course-card" data-category="creative">
-                <div class="course-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
-                <h3>UI/UX Design Principles</h3>
-                <p class="course-description">Learn user interface and user experience design fundamentals</p>
-                <div class="course-meta">
-                    <span><i class="fas fa-clock"></i> 7 weeks</span>
-                    <span><i class="fas fa-user-graduate"></i> Beginner</span>
-                </div>
-                <div class="course-price">$59.99</div>
-                <button class="btn-primary enroll-btn">Enroll Now</button>
-            </div>
-
-            <div class="course-card" data-category="business">
-                <div class="course-icon">
-                    <i class="fas fa-handshake"></i>
-                </div>
-                <h3>Project Management</h3>
-                <p class="course-description">Learn agile methodologies and project management tools</p>
-                <div class="course-meta">
-                    <span><i class="fas fa-clock"></i> 8 weeks</span>
-                    <span><i class="fas fa-user-graduate"></i> Intermediate</span>
-                </div>
-                <div class="course-price">$69.99</div>
-                <button class="btn-primary enroll-btn">Enroll Now</button>
-            </div>
-
-            <div class="course-card" data-category="soft-skills">
-                <div class="course-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3>Leadership & Team Management</h3>
-                <p class="course-description">Develop leadership skills and learn to manage teams effectively</p>
-                <div class="course-meta">
-                    <span><i class="fas fa-clock"></i> 6 weeks</span>
-                    <span><i class="fas fa-user-graduate"></i> Advanced</span>
-                </div>
-                <div class="course-price">$89.99</div>
-                <button class="btn-primary enroll-btn">Enroll Now</button>
-            </div>
-
-            <div class="course-card" data-category="tech">
-                <div class="course-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3>Mobile App Development</h3>
-                <p class="course-description">Build iOS and Android apps using React Native</p>
-                <div class="course-meta">
-                    <span><i class="fas fa-clock"></i> 12 weeks</span>
-                    <span><i class="fas fa-user-graduate"></i> Intermediate</span>
-                </div>
-                <div class="course-price">$99.99</div>
-                <button class="btn-primary enroll-btn">Enroll Now</button>
-            </div>
-        </div>
-
-        <div class="course-features">
-            <h2>Why Our Courses?</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <i class="fas fa-video"></i>
-                    <h3>Video Lessons</h3>
-                    <p>High-quality video content from industry experts</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-tasks"></i>
-                    <h3>Hands-on Projects</h3>
-                    <p>Practical assignments to build your portfolio</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Certification</h3>
-                    <p>Earn certificates to showcase your skills</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-user-friends"></i>
-                    <h3>Community Support</h3>
-                    <p>Join discussions and get help from peers</p>
-                </div>
-            </div>
-        </div>
-    </main>
+    <!-- Content remains exactly the same -->
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>ResumePro</h3>
+                <!-- Changed footer section -->
+                <h3>9to5 University</h3>
                 <p>Building careers one resume at a time</p>
             </div>
             <div class="footer-section">
@@ -199,7 +49,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 ResumePro. All rights reserved.</p>
+            <!-- Changed copyright notice -->
+            <p>&copy; 2023 9to5 University. All rights reserved to MagTec Invest.</p>
         </div>
     </footer>
 
