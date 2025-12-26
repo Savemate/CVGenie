@@ -885,3 +885,340 @@ if (document.querySelector('.resume-builder-container')) {
         return data;
     }
 }
+
+<!-- Add this CSS for template previews -->
+<style>
+    .template-sample {
+        width: 100%;
+        height: 100%;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+    
+    .sample-header {
+        height: 40px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .sample-content {
+        display: flex;
+        gap: 20px;
+        padding: 0 20px;
+        margin-bottom: 20px;
+        height: 100px;
+    }
+    
+    .sample-left {
+        width: 30%;
+        height: 100%;
+    }
+    
+    .sample-right {
+        flex: 1;
+        height: 100%;
+    }
+    
+    .sample-section {
+        height: 60px;
+        margin: 0 20px 20px;
+        width: calc(100% - 40px);
+    }
+    
+    /* Template preview styles */
+    .resume-template {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        padding: 40px;
+        background: white;
+    }
+    
+    .resume-template h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    
+    .resume-template h2 {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 25px 0 15px;
+        padding-bottom: 5px;
+    }
+    
+    .resume-template h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 20px 0 10px;
+    }
+    
+    .resume-template p {
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #666;
+    }
+    
+    .contact-info span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .experience-item, .education-item {
+        margin-bottom: 20px;
+    }
+    
+    .experience-header, .education-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+    
+    .date {
+        font-size: 14px;
+        color: #666;
+    }
+    
+    .company, .qualification {
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 15px;
+    }
+    
+    .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .skill-tag-preview {
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+</style>
+
+<!-- Update the template selection section in resume-builder.html -->
+<div class="form-section" id="template-section">
+    <h2>Choose a Professional Template</h2>
+    <p>Select a template that matches your profession and personal style. Click "Preview" to see how your resume will look.</p>
+    
+    <div class="template-filters">
+        <button class="filter-btn active" data-filter="all">All Templates</button>
+        <button class="filter-btn" data-filter="professional">Professional</button>
+        <button class="filter-btn" data-filter="modern">Modern</button>
+        <button class="filter-btn" data-filter="creative">Creative</button>
+        <button class="filter-btn" data-filter="executive">Executive</button>
+    </div>
+    
+    <div class="templates-grid" id="templates-container">
+        <!-- Templates will be loaded here by templates.js -->
+    </div>
+    
+    <div class="selected-template-info" id="selected-template-info" style="display: none;">
+        <div class="selected-template-card">
+            <h4><i class="fas fa-check-circle"></i> Template Selected</h4>
+            <p id="selected-template-name">Professional Classic</p>
+            <button class="btn-small" id="change-template-btn">
+                <i class="fas fa-exchange-alt"></i> Change Template
+            </button>
+        </div>
+    </div>
+    
+    <div class="form-navigation">
+        <button type="button" class="btn-outline prev-section" data-prev="professional">
+            <i class="fas fa-arrow-left"></i> Previous
+        </button>
+        <button type="button" class="btn-primary" id="go-to-preview-btn">
+            Preview Resume <i class="fas fa-eye"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Update the preview section to trigger template updates -->
+<div class="form-section" id="preview-section">
+    <h2>Resume Preview</h2>
+    <div class="preview-header">
+        <div class="preview-controls">
+            <button class="btn-small" id="refresh-preview">
+                <i class="fas fa-sync-alt"></i> Refresh Preview
+            </button>
+            <div class="template-selector-mini">
+                <select id="quick-template-select">
+                    <option value="1">Professional Classic</option>
+                    <option value="2">Modern Minimalist</option>
+                    <option value="3">Creative Portfolio</option>
+                    <option value="4">Academic Formal</option>
+                    <option value="5">Executive</option>
+                    <option value="6">Tech Industry</option>
+                </select>
+            </div>
+        </div>
+        <p class="preview-note">This is how your resume will look. Make sure all information is correct.</p>
+    </div>
+    
+    <div class="preview-container">
+        <div class="resume-preview" id="resume-preview">
+            <!-- Resume will be rendered here by templates.js -->
+        </div>
+    </div>
+    
+    <div class="preview-actions">
+        <button type="button" class="btn-outline" id="edit-resume">
+            <i class="fas fa-edit"></i> Edit Resume
+        </button>
+        <button type="button" class="btn-primary" id="download-pdf">
+            <i class="fas fa-download"></i> Download as PDF
+        </button>
+        <button type="button" class="btn-secondary" id="save-resume">
+            <i class="fas fa-save"></i> Save Resume
+        </button>
+        <button type="button" class="btn-success" id="generate-ats">
+            <i class="fas fa-file-alt"></i> Generate ATS Version
+        </button>
+    </div>
+    
+    <div class="preview-tips">
+        <h4><i class="fas fa-lightbulb"></i> Pro Tips:</h4>
+        <ul>
+            <li>Ensure your contact information is up to date</li>
+            <li>Tailor your summary to the specific job you're applying for</li>
+            <li>Use action verbs and quantify achievements where possible</li>
+            <li>Keep your resume to 1-2 pages maximum</li>
+            <li>Proofread for spelling and grammar errors</li>
+            <li>Choose a template that matches your industry</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    // Add template functionality to resume-builder.html
+    document.addEventListener('DOMContentLoaded', function() {
+        // Template filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                filterButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter templates
+                const templateCards = document.querySelectorAll('.template-card');
+                templateCards.forEach(card => {
+                    const template = resumeTemplates.find(t => t.id.toString() === card.getAttribute('data-template-id'));
+                    if (filter === 'all' || template.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Go to preview button
+        const goToPreviewBtn = document.getElementById('go-to-preview-btn');
+        if (goToPreviewBtn) {
+            goToPreviewBtn.addEventListener('click', function() {
+                // Update sidebar
+                document.querySelectorAll('.sidebar-section').forEach(s => {
+                    s.classList.remove('active');
+                    if (s.getAttribute('data-section') === 'preview') {
+                        s.classList.add('active');
+                    }
+                });
+                
+                // Show preview section
+                document.querySelectorAll('.form-section').forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === 'preview-section') {
+                        section.classList.add('active');
+                        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        
+                        // Update preview
+                        if (typeof updateResumePreview === 'function') {
+                            updateResumePreview();
+                        }
+                    }
+                });
+            });
+        }
+        
+        // Quick template select
+        const quickTemplateSelect = document.getElementById('quick-template-select');
+        if (quickTemplateSelect) {
+            quickTemplateSelect.addEventListener('change', function() {
+                const templateId = this.value;
+                localStorage.setItem('selectedTemplate', templateId);
+                
+                // Update template selection
+                document.querySelectorAll('.template-card').forEach(card => {
+                    card.classList.remove('selected');
+                    if (card.getAttribute('data-template-id') === templateId) {
+                        card.classList.add('selected');
+                    }
+                });
+                
+                // Update preview
+                if (typeof updateResumePreview === 'function') {
+                    updateResumePreview();
+                }
+                
+                // Show notification
+                const templateName = this.options[this.selectedIndex].text;
+                showNotification(`Template changed to "${templateName}"`, 'success');
+            });
+        }
+        
+        // Refresh preview button
+        const refreshPreviewBtn = document.getElementById('refresh-preview');
+        if (refreshPreviewBtn) {
+            refreshPreviewBtn.addEventListener('click', function() {
+                if (typeof updateResumePreview === 'function') {
+                    updateResumePreview();
+                    showNotification('Preview refreshed!', 'success');
+                }
+            });
+        }
+        
+        // Initialize quick template select with saved value
+        const savedTemplateId = localStorage.getItem('selectedTemplate') || '1';
+        if (quickTemplateSelect) {
+            quickTemplateSelect.value = savedTemplateId;
+        }
+        
+        // Show selected template info
+        function updateSelectedTemplateInfo() {
+            const selectedTemplateId = localStorage.getItem('selectedTemplate') || '1';
+            const selectedTemplate = resumeTemplates.find(t => t.id.toString() === selectedTemplateId);
+            
+            if (selectedTemplate) {
+                document.getElementById('selected-template-name').textContent = selectedTemplate.name;
+                document.getElementById('selected-template-info').style.display = 'block';
+                
+                // Update quick select
+                if (quickTemplateSelect) {
+                    quickTemplateSelect.value = selectedTemplateId;
+                }
+            }
+        }
+        
+        // Call on page load
+        updateSelectedTemplateInfo();
+    });
+</script>
