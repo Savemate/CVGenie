@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Changed title -->
     <title>Resume Builder - 9to5 University</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add jsPDF library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <!-- Changed logo text -->
                 <h1><i class="fas fa-file-alt"></i> 9to5 University</h1>
             </div>
             <ul class="nav-links">
@@ -29,12 +30,321 @@
         </nav>
     </header>
 
-    <!-- Content remains exactly the same -->
+    <main class="resume-builder-container">
+        <div class="builder-header">
+            <h1>Professional Resume Builder</h1>
+            <p>Create a professional resume for any profession - Healthcare, Engineering, IT, Business, Education, Trades, Creative Arts, and more!</p>
+        </div>
+
+        <!-- New: Profession Selection -->
+        <div class="profession-selection">
+            <h3>Select Your Profession Category</h3>
+            <div class="profession-buttons">
+                <button class="profession-btn" data-profession="business">Business & Management</button>
+                <button class="profession-btn" data-profession="tech">Technology & IT</button>
+                <button class="profession-btn" data-profession="healthcare">Healthcare & Medical</button>
+                <button class="profession-btn" data-profession="education">Education & Academia</button>
+                <button class="profession-btn" data-profession="creative">Creative & Arts</button>
+                <button class="profession-btn" data-profession="trades">Trades & Technical</button>
+                <button class="profession-btn" data-profession="sales">Sales & Marketing</button>
+                <button class="profession-btn" data-profession="hospitality">Hospitality & Services</button>
+            </div>
+        </div>
+
+        <div class="builder-layout">
+            <div class="sidebar">
+                <div class="sidebar-section active" data-section="personal">
+                    <i class="fas fa-user"></i>
+                    <span>Personal Info</span>
+                </div>
+                <div class="sidebar-section" data-section="education">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Education</span>
+                </div>
+                <div class="sidebar-section" data-section="experience">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Experience</span>
+                </div>
+                <div class="sidebar-section" data-section="skills">
+                    <i class="fas fa-star"></i>
+                    <span>Skills</span>
+                </div>
+                <div class="sidebar-section" data-section="professional">
+                    <i class="fas fa-certificate"></i>
+                    <span>Professional</span>
+                </div>
+                <div class="sidebar-section" data-section="template">
+                    <i class="fas fa-palette"></i>
+                    <span>Templates</span>
+                </div>
+                <div class="sidebar-section" data-section="preview">
+                    <i class="fas fa-eye"></i>
+                    <span>Preview</span>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <div class="form-section active" id="personal-section">
+                    <h2>Personal Information</h2>
+                    <form id="personal-form">
+                        <div class="form-group">
+                            <label for="full-name">Full Name *</label>
+                            <input type="text" id="full-name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone *</label>
+                                <input type="tel" id="phone" placeholder="079 487 4559" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" placeholder="City, Province, South Africa">
+                            </div>
+                            <div class="form-group">
+                                <label for="id-number">ID Number</label>
+                                <input type="text" id="id-number" placeholder="Optional">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn Profile / Portfolio</label>
+                            <input type="url" id="linkedin" placeholder="https://linkedin.com/in/username">
+                        </div>
+                        <div class="form-group">
+                            <label for="summary">Professional Summary *</label>
+                            <textarea id="summary" rows="4" placeholder="Brief summary of your professional background, skills, and career goals..." required></textarea>
+                            <small>Tip: Include keywords from your industry</small>
+                        </div>
+                        <button type="button" class="btn-primary next-section" data-next="education">Next: Education <i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+
+                <div class="form-section" id="education-section">
+                    <h2>Education & Qualifications</h2>
+                    <div id="education-entries">
+                        <div class="education-entry">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="school-name">Institution Name *</label>
+                                    <input type="text" id="school-name" placeholder="University/College/School" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="qualification">Qualification *</label>
+                                    <input type="text" id="qualification" placeholder="e.g., Bachelor of Science, Matric, Certificate">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="field">Field of Study</label>
+                                    <input type="text" id="field" placeholder="e.g., Computer Science, Business Management">
+                                </div>
+                                <div class="form-group">
+                                    <label for="graduation">Year Completed</label>
+                                    <input type="text" id="graduation" placeholder="2020">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="achievements">Achievements & Honors</label>
+                                <textarea id="achievements" rows="3" placeholder="Distinctions, awards, scholarships, notable projects..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-secondary" id="add-education"><i class="fas fa-plus"></i> Add Another Qualification</button>
+                    <div class="form-navigation">
+                        <button type="button" class="btn-outline prev-section" data-prev="personal"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button type="button" class="btn-primary next-section" data-next="experience">Next: Experience <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-section" id="experience-section">
+                    <h2>Work Experience</h2>
+                    <div id="experience-entries">
+                        <div class="experience-entry">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="job-title">Job Title *</label>
+                                    <input type="text" id="job-title" placeholder="e.g., Software Developer, Nurse, Teacher" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="company">Company/Organization *</label>
+                                    <input type="text" id="company" placeholder="Company Name" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="start-date">Start Date *</label>
+                                    <input type="text" id="start-date" placeholder="Month Year (e.g., June 2020)" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="end-date">End Date</label>
+                                    <input type="text" id="end-date" placeholder="Present or Month Year">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="responsibilities">Responsibilities & Achievements *</label>
+                                <textarea id="responsibilities" rows="4" placeholder="• Describe your main responsibilities
+• Highlight key achievements with numbers if possible
+• Use action verbs (Managed, Developed, Increased, etc.)" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-secondary" id="add-experience"><i class="fas fa-plus"></i> Add Another Experience</button>
+                    <div class="form-navigation">
+                        <button type="button" class="btn-outline prev-section" data-prev="education"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button type="button" class="btn-primary next-section" data-next="skills">Next: Skills <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-section" id="skills-section">
+                    <h2>Skills & Competencies</h2>
+                    <div class="skills-categories">
+                        <div class="form-group">
+                            <label for="skills-input">Technical/Professional Skills</label>
+                            <input type="text" id="skills-input" placeholder="e.g., JavaScript, Nursing Care, AutoCAD, QuickBooks">
+                            <small>Separate skills with commas</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="soft-skills">Soft Skills</label>
+                            <input type="text" id="soft-skills" placeholder="e.g., Communication, Leadership, Problem-solving">
+                        </div>
+                        <button type="button" class="btn-small" id="add-skill-btn">Add Skills</button>
+                    </div>
+                    <div class="skills-container">
+                        <div class="skill-tags" id="skill-tags">
+                            <!-- Skills will appear here as tags -->
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="languages">Languages</label>
+                            <input type="text" id="languages" placeholder="e.g., English (Fluent), Zulu (Conversational), Afrikaans (Basic)">
+                        </div>
+                        <div class="form-group">
+                            <label for="drivers-license">Driver's License</label>
+                            <select id="drivers-license">
+                                <option value="">Select</option>
+                                <option value="none">None</option>
+                                <option value="code-8">Code 8</option>
+                                <option value="code-10">Code 10</option>
+                                <option value="code-14">Code 14</option>
+                                <option value="pdp">PDP</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="btn-outline prev-section" data-prev="experience"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button type="button" class="btn-primary next-section" data-next="professional">Next: Professional <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-section" id="professional-section">
+                    <h2>Professional Details</h2>
+                    <div class="form-group">
+                        <label for="career-objective">Career Objective</label>
+                        <textarea id="career-objective" rows="3" placeholder="Your career goals and what you aim to achieve in your next role"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="certifications">Professional Certifications</label>
+                        <textarea id="certifications" rows="3" placeholder="List any relevant certifications, licenses, or memberships"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="references">References</label>
+                        <select id="references">
+                            <option value="available">References available on request</option>
+                            <option value="included">Will provide upon request</option>
+                            <option value="attached">Attached separately</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="salary-expectation">Salary Expectation (Optional)</label>
+                        <input type="text" id="salary-expectation" placeholder="e.g., R25,000 - R30,000 per month">
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="btn-outline prev-section" data-prev="skills"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button type="button" class="btn-primary next-section" data-next="template">Next: Templates <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-section" id="template-section">
+                    <h2>Choose a Professional Template</h2>
+                    <p>Select a template that suits your profession and industry</p>
+                    <div class="templates-grid" id="templates-container">
+                        <!-- Templates will be loaded here -->
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="btn-outline prev-section" data-prev="professional"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button type="button" class="btn-primary next-section" data-next="preview">Preview Resume <i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-section" id="preview-section">
+                    <h2>Resume Preview</h2>
+                    <div class="preview-actions-top">
+                        <button type="button" class="btn-small" id="refresh-preview"><i class="fas fa-sync-alt"></i> Refresh Preview</button>
+                        <button type="button" class="btn-small" id="print-preview"><i class="fas fa-print"></i> Print Preview</button>
+                    </div>
+                    <div class="preview-container">
+                        <div class="resume-preview" id="resume-preview">
+                            <!-- Resume will be rendered here -->
+                        </div>
+                    </div>
+                    <div class="preview-actions">
+                        <button type="button" class="btn-outline" id="edit-resume"><i class="fas fa-edit"></i> Edit Resume</button>
+                        <button type="button" class="btn-primary" id="download-pdf"><i class="fas fa-download"></i> Download as PDF</button>
+                        <button type="button" class="btn-secondary" id="save-resume"><i class="fas fa-save"></i> Save Resume</button>
+                        <button type="button" class="btn-success" id="generate-ats"><i class="fas fa-file-alt"></i> Generate ATS Version</button>
+                    </div>
+                    <div class="preview-tips">
+                        <h4><i class="fas fa-lightbulb"></i> Pro Tips:</h4>
+                        <ul>
+                            <li>Ensure your contact information is up to date</li>
+                            <li>Tailor your summary to the specific job you're applying for</li>
+                            <li>Use action verbs and quantify achievements where possible</li>
+                            <li>Keep your resume to 1-2 pages maximum</li>
+                            <li>Proofread for spelling and grammar errors</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Donation Section -->
+        <div class="donation-section">
+            <div class="donation-card">
+                <i class="fas fa-heart"></i>
+                <h3>Support Our Mission</h3>
+                <p>Help us keep this platform free for everyone. Your donation enables us to:</p>
+                <ul>
+                    <li>Maintain and improve the resume builder</li>
+                    <li>Provide free career resources</li>
+                    <li>Develop interview attire lending program</li>
+                    <li>Offer transport assistance for interviews</li>
+                    <li>Expand our free courses library</li>
+                </ul>
+                <div class="donation-options">
+                    <button class="donation-option" data-amount="50">R50</button>
+                    <button class="donation-option" data-amount="100">R100</button>
+                    <button class="donation-option" data-amount="200">R200</button>
+                    <button class="donation-option" data-amount="500">R500</button>
+                    <div class="custom-donation">
+                        <input type="number" id="custom-amount" placeholder="Other amount">
+                        <span>R</span>
+                    </div>
+                </div>
+                <button class="btn-primary" id="donate-button"><i class="fas fa-donate"></i> Donate Now</button>
+                <p class="donation-note">All donations go directly to supporting job seekers through 9to5 University</p>
+            </div>
+        </div>
+    </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <!-- Changed footer section -->
                 <h3>9to5 University</h3>
                 <p>Building careers one resume at a time</p>
             </div>
@@ -49,7 +359,6 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <!-- Changed copyright notice -->
             <p>&copy; 2023 9to5 University. All rights reserved to MagTec Invest.</p>
         </div>
     </footer>
@@ -57,5 +366,407 @@
     <script src="templates.js"></script>
     <script src="resume-engine.js"></script>
     <script src="scripts.js"></script>
+    <!-- Enhanced resume functionality -->
+    <script>
+        // Enhanced resume generation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Profession-specific templates and suggestions
+            const professionTemplates = {
+                'business': [1, 5, 2],
+                'tech': [6, 2, 1],
+                'healthcare': [1, 4, 3],
+                'education': [4, 1, 5],
+                'creative': [3, 2, 6],
+                'trades': [1, 5, 4],
+                'sales': [2, 1, 6],
+                'hospitality': [1, 3, 5]
+            };
+
+            // Profession-specific skill suggestions
+            const professionSkills = {
+                'business': ['Project Management', 'Strategic Planning', 'Budget Management', 'Team Leadership', 'Financial Analysis', 'Business Development', 'Stakeholder Management', 'Risk Assessment'],
+                'tech': ['JavaScript', 'Python', 'React', 'Node.js', 'Cloud Computing', 'DevOps', 'Database Management', 'Cybersecurity', 'Agile Methodology', 'UI/UX Design'],
+                'healthcare': ['Patient Care', 'Medical Terminology', 'Clinical Skills', 'HIPAA Compliance', 'Electronic Health Records', 'Medication Administration', 'Emergency Response', 'Patient Education'],
+                'education': ['Curriculum Development', 'Classroom Management', 'Student Assessment', 'Lesson Planning', 'Educational Technology', 'Differentiated Instruction', 'Parent Communication', 'Special Education'],
+                'creative': ['Adobe Creative Suite', 'Graphic Design', 'Content Creation', 'Video Editing', 'Photography', 'Brand Development', 'Social Media Marketing', 'Web Design', 'Copywriting'],
+                'trades': ['Electrical Wiring', 'Plumbing', 'Carpentry', 'Welding', 'HVAC', 'Blueprint Reading', 'Equipment Maintenance', 'Safety Compliance', 'Quality Control'],
+                'sales': ['Customer Relationship Management', 'Sales Strategy', 'Negotiation', 'Product Knowledge', 'Market Research', 'Cold Calling', 'Presentation Skills', 'Closing Techniques'],
+                'hospitality': ['Customer Service', 'Event Planning', 'Inventory Management', 'Food Safety', 'Menu Planning', 'Reservation Systems', 'Staff Training', 'Guest Relations']
+            };
+
+            // Set up profession selection
+            const professionButtons = document.querySelectorAll('.profession-btn');
+            professionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const profession = this.getAttribute('data-profession');
+                    
+                    // Update active button
+                    professionButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show profession-specific suggestions
+                    showProfessionSuggestions(profession);
+                });
+            });
+
+            function showProfessionSuggestions(profession) {
+                const skillsInput = document.getElementById('skills-input');
+                if (skillsInput && professionSkills[profession]) {
+                    // Add suggested skills to input
+                    const currentSkills = skillsInput.value ? skillsInput.value + ', ' : '';
+                    skillsInput.value = currentSkills + professionSkills[profession].slice(0, 5).join(', ');
+                    
+                    // Show notification
+                    showNotification(`Added ${profession} skill suggestions. Feel free to customize!`, 'info');
+                }
+            }
+
+            // Enhanced PDF generation
+            const downloadPdfBtn = document.getElementById('download-pdf');
+            if (downloadPdfBtn) {
+                downloadPdfBtn.addEventListener('click', generateProfessionalPDF);
+            }
+
+            // Enhanced resume preview
+            const refreshPreviewBtn = document.getElementById('refresh-preview');
+            if (refreshPreviewBtn) {
+                refreshPreviewBtn.addEventListener('click', updateResumePreview);
+            }
+
+            // Print preview
+            const printPreviewBtn = document.getElementById('print-preview');
+            if (printPreviewBtn) {
+                printPreviewBtn.addEventListener('click', function() {
+                    window.print();
+                });
+            }
+
+            // ATS version generation
+            const generateAtsBtn = document.getElementById('generate-ats');
+            if (generateAtsBtn) {
+                generateAtsBtn.addEventListener('click', generateATSVersion);
+            }
+
+            // Donation functionality
+            const donateButton = document.getElementById('donate-button');
+            const donationOptions = document.querySelectorAll('.donation-option');
+            const customAmountInput = document.getElementById('custom-amount');
+
+            donationOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    donationOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    customAmountInput.value = '';
+                });
+            });
+
+            customAmountInput.addEventListener('input', function() {
+                donationOptions.forEach(opt => opt.classList.remove('selected'));
+            });
+
+            if (donateButton) {
+                donateButton.addEventListener('click', function() {
+                    let amount = 0;
+                    
+                    // Check selected donation option
+                    const selectedOption = document.querySelector('.donation-option.selected');
+                    if (selectedOption) {
+                        amount = selectedOption.getAttribute('data-amount');
+                    } else if (customAmountInput.value) {
+                        amount = customAmountInput.value;
+                    }
+                    
+                    if (amount > 0) {
+                        processDonation(amount);
+                    } else {
+                        showNotification('Please select or enter a donation amount', 'warning');
+                    }
+                });
+            }
+        });
+
+        function generateProfessionalPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+            const resumeData = collectCompleteResumeData();
+            
+            // Set up PDF document
+            doc.setFontSize(22);
+            doc.setFont('helvetica', 'bold');
+            doc.text(resumeData.personal.name, 20, 30);
+            
+            doc.setFontSize(11);
+            doc.setFont('helvetica', 'normal');
+            
+            // Contact information
+            let contactY = 40;
+            doc.text(`Email: ${resumeData.personal.email}`, 20, contactY);
+            doc.text(`Phone: ${resumeData.personal.phone}`, 20, contactY + 5);
+            if (resumeData.personal.address) {
+                doc.text(`Address: ${resumeData.personal.address}`, 20, contactY + 10);
+            }
+            
+            // Professional Summary
+            let currentY = contactY + 20;
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(14);
+            doc.text('PROFESSIONAL SUMMARY', 20, currentY);
+            
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(11);
+            const summaryLines = doc.splitTextToSize(resumeData.personal.summary, 170);
+            doc.text(summaryLines, 20, currentY + 8);
+            currentY += 8 + (summaryLines.length * 5);
+            
+            // Work Experience
+            if (resumeData.experience.length > 0) {
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(14);
+                doc.text('WORK EXPERIENCE', 20, currentY + 10);
+                currentY += 20;
+                
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(11);
+                
+                resumeData.experience.forEach((exp, index) => {
+                    if (currentY > 250) {
+                        doc.addPage();
+                        currentY = 20;
+                    }
+                    
+                    doc.setFont('helvetica', 'bold');
+                    doc.text(exp.title, 20, currentY);
+                    doc.setFont('helvetica', 'normal');
+                    doc.text(`${exp.company} | ${exp.startDate} - ${exp.endDate}`, 20, currentY + 5);
+                    
+                    const respLines = doc.splitTextToSize(exp.responsibilities, 170);
+                    doc.text(respLines, 20, currentY + 12);
+                    currentY += 12 + (respLines.length * 5) + 10;
+                });
+            }
+            
+            // Education
+            if (resumeData.education.length > 0) {
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(14);
+                doc.text('EDUCATION', 20, currentY + 5);
+                currentY += 15;
+                
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(11);
+                
+                resumeData.education.forEach((edu, index) => {
+                    if (currentY > 250) {
+                        doc.addPage();
+                        currentY = 20;
+                    }
+                    
+                    doc.setFont('helvetica', 'bold');
+                    doc.text(edu.institution, 20, currentY);
+                    doc.setFont('helvetica', 'normal');
+                    doc.text(`${edu.qualification} in ${edu.field} | ${edu.graduation}`, 20, currentY + 5);
+                    
+                    if (edu.achievements) {
+                        const achievementLines = doc.splitTextToSize(edu.achievements, 170);
+                        doc.text(achievementLines, 20, currentY + 12);
+                        currentY += 12 + (achievementLines.length * 5);
+                    }
+                    currentY += 10;
+                });
+            }
+            
+            // Skills
+            if (resumeData.skills.length > 0) {
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(14);
+                doc.text('SKILLS', 20, currentY + 5);
+                currentY += 15;
+                
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(11);
+                
+                const skillsText = resumeData.skills.join(', ');
+                const skillsLines = doc.splitTextToSize(skillsText, 170);
+                doc.text(skillsLines, 20, currentY);
+                currentY += skillsLines.length * 5;
+            }
+            
+            // Save the PDF
+            const fileName = `${resumeData.personal.name.replace(/\s+/g, '_')}_Resume_${new Date().toISOString().split('T')[0]}.pdf`;
+            doc.save(fileName);
+            
+            showNotification('Professional PDF resume generated successfully!', 'success');
+        }
+
+        function collectCompleteResumeData() {
+            return {
+                personal: {
+                    name: document.getElementById('full-name')?.value || '',
+                    email: document.getElementById('email')?.value || '',
+                    phone: document.getElementById('phone')?.value || '',
+                    address: document.getElementById('address')?.value || '',
+                    idNumber: document.getElementById('id-number')?.value || '',
+                    linkedin: document.getElementById('linkedin')?.value || '',
+                    summary: document.getElementById('summary')?.value || ''
+                },
+                education: Array.from(document.querySelectorAll('.education-entry')).map(entry => {
+                    const inputs = entry.querySelectorAll('input, textarea');
+                    return {
+                        institution: inputs[0]?.value || '',
+                        qualification: inputs[1]?.value || '',
+                        field: inputs[2]?.value || '',
+                        graduation: inputs[3]?.value || '',
+                        achievements: inputs[4]?.value || ''
+                    };
+                }),
+                experience: Array.from(document.querySelectorAll('.experience-entry')).map(entry => {
+                    const inputs = entry.querySelectorAll('input, textarea');
+                    return {
+                        title: inputs[0]?.value || '',
+                        company: inputs[1]?.value || '',
+                        startDate: inputs[2]?.value || '',
+                        endDate: inputs[3]?.value || '',
+                        responsibilities: inputs[4]?.value || ''
+                    };
+                }),
+                skills: Array.from(document.querySelectorAll('.skill-tag span')).map(tag => tag.textContent),
+                professional: {
+                    objective: document.getElementById('career-objective')?.value || '',
+                    certifications: document.getElementById('certifications')?.value || '',
+                    references: document.getElementById('references')?.value || '',
+                    salary: document.getElementById('salary-expectation')?.value || '',
+                    languages: document.getElementById('languages')?.value || '',
+                    license: document.getElementById('drivers-license')?.value || ''
+                }
+            };
+        }
+
+        function generateATSVersion() {
+            const resumeData = collectCompleteResumeData();
+            
+            // Create ATS-friendly plain text version
+            let atsText = '';
+            atsText += `${resumeData.personal.name}\n`;
+            atsText += '='.repeat(resumeData.personal.name.length) + '\n\n';
+            
+            atsText += `Contact Information:\n`;
+            atsText += `Email: ${resumeData.personal.email}\n`;
+            atsText += `Phone: ${resumeData.personal.phone}\n`;
+            if (resumeData.personal.address) atsText += `Location: ${resumeData.personal.address}\n`;
+            atsText += '\n';
+            
+            atsText += `Professional Summary:\n`;
+            atsText += `${resumeData.personal.summary}\n\n`;
+            
+            if (resumeData.experience.length > 0) {
+                atsText += `Work Experience:\n`;
+                atsText += '-'.repeat(50) + '\n';
+                resumeData.experience.forEach(exp => {
+                    atsText += `\n${exp.title}\n`;
+                    atsText += `${exp.company} | ${exp.startDate} - ${exp.endDate}\n`;
+                    atsText += `${exp.responsibilities}\n`;
+                });
+                atsText += '\n';
+            }
+            
+            if (resumeData.education.length > 0) {
+                atsText += `Education:\n`;
+                atsText += '-'.repeat(50) + '\n';
+                resumeData.education.forEach(edu => {
+                    atsText += `\n${edu.qualification} in ${edu.field}\n`;
+                    atsText += `${edu.institution} | ${edu.graduation}\n`;
+                    if (edu.achievements) atsText += `${edu.achievements}\n`;
+                });
+                atsText += '\n';
+            }
+            
+            if (resumeData.skills.length > 0) {
+                atsText += `Skills:\n`;
+                atsText += '-'.repeat(50) + '\n';
+                atsText += `${resumeData.skills.join(', ')}\n\n`;
+            }
+            
+            if (resumeData.professional.certifications) {
+                atsText += `Certifications:\n`;
+                atsText += `${resumeData.professional.certifications}\n\n`;
+            }
+            
+            // Create download link
+            const blob = new Blob([atsText], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${resumeData.personal.name.replace(/\s+/g, '_')}_ATS_Resume.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            showNotification('ATS-friendly resume generated successfully!', 'success');
+        }
+
+        function processDonation(amount) {
+            // Simulate donation processing
+            showNotification(`Thank you for your R${amount} donation!`, 'success');
+            
+            // In a real implementation, this would redirect to a payment gateway
+            setTimeout(() => {
+                const modal = document.createElement('div');
+                modal.className = 'donation-modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <h3><i class="fas fa-heart"></i> Thank You!</h3>
+                        <p>Your donation of R${amount} will help us support job seekers across South Africa.</p>
+                        <p>For now, please make your donation to:</p>
+                        <div class="payment-details">
+                            <p><strong>Bank:</strong> Standard Bank</p>
+                            <p><strong>Account Name:</strong> MagTec Invest</p>
+                            <p><strong>Account Number:</strong> 1234567890</p>
+                            <p><strong>Reference:</strong> DONATION-${Date.now().toString().slice(-6)}</p>
+                        </div>
+                        <button class="btn-primary close-modal">Close</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                modal.querySelector('.close-modal').addEventListener('click', () => {
+                    document.body.removeChild(modal);
+                });
+            }, 1000);
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <span>${message}</span>
+                <button class="close-notification">&times;</button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            notification.querySelector('.close-notification').addEventListener('click', () => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            });
+            
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        if (document.body.contains(notification)) {
+                            document.body.removeChild(notification);
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+    </script>
 </body>
 </html>
