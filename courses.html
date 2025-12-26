@@ -29,267 +29,348 @@
 
     <main class="courses-container">
         <div class="courses-header">
-            <h1>Career Development Courses</h1>
-            <p>Enhance your skills and advance your career with our expert-led courses</p>
+            <h1>Free Career Course</h1>
+            <p>Master the skills you need to succeed in your job search</p>
         </div>
 
-        <!-- Free Interview Course Banner -->
-        <div class="free-course-banner">
-            <div class="banner-content">
-                <div class="banner-icon">
-                    <i class="fas fa-microphone-alt"></i>
+        <!-- Only Course: Master Your Interview Skills -->
+        <div class="single-course" id="interview-course">
+            <div class="course-card-main">
+                <div class="course-badge">FREE</div>
+                <h2>Master Your Interview Skills</h2>
+                <p class="course-subtitle">Ace Any Job Interview with Confidence</p>
+                
+                <div class="course-meta-main">
+                    <span><i class="fas fa-clock"></i> Self-Paced</span>
+                    <span><i class="fas fa-book"></i> 4 Modules</span>
+                    <span><i class="fas fa-certificate"></i> Certificate</span>
+                    <span><i class="fas fa-user-graduate"></i> All Levels</span>
                 </div>
-                <div class="banner-text">
-                    <h2>FREE: Master Your Interview Skills</h2>
-                    <p>Learn how to ace any job interview with our comprehensive free course</p>
-                    <a href="#interview-course" class="btn-primary">Start Free Course Now</a>
+                
+                <div class="course-description-main">
+                    <p>This comprehensive course provides you with all the tools and strategies you need to excel in any job interview. Learn through detailed written guides, practical exercises, and proven techniques used by successful job seekers.</p>
                 </div>
-            </div>
-        </div>
-
-        <div class="course-categories">
-            <button class="category-btn active" data-category="all">All Courses</button>
-            <button class="category-btn" data-category="free">Free Courses</button>
-            <button class="category-btn" data-category="tech">Technology</button>
-            <button class="category-btn" data-category="business">Business</button>
-            <button class="category-btn" data-category="soft-skills">Soft Skills</button>
-            <button class="category-btn" data-category="interview">Interview Prep</button>
-        </div>
-
-        <!-- Free Interview Course -->
-        <div class="featured-course" id="interview-course">
-            <div class="course-hero">
-                <div class="course-hero-content">
-                    <h2>Master the Interview: From Preparation to Offer</h2>
-                    <p class="course-tagline">Learn proven strategies to excel in any job interview and land your dream job</p>
-                    <div class="course-highlights">
-                        <span><i class="fas fa-clock"></i> 6 hours total</span>
-                        <span><i class="fas fa-video"></i> 25 video lessons</span>
-                        <span><i class="fas fa-certificate"></i> Free Certificate</span>
-                        <span><i class="fas fa-user-graduate"></i> 10,000+ students</span>
+                
+                <div class="course-stats">
+                    <div class="stat">
+                        <i class="fas fa-users"></i>
+                        <span>10,000+ Students</span>
                     </div>
-                    <button class="btn-primary enroll-free-btn"><i class="fas fa-play-circle"></i> Start Learning Free</button>
+                    <div class="stat">
+                        <i class="fas fa-star"></i>
+                        <span>4.8/5 Rating</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-check-circle"></i>
+                        <span>94% Success Rate</span>
+                    </div>
                 </div>
-                <div class="course-hero-image">
-                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Interview Skills">
-                </div>
+                
+                <button class="btn-primary enroll-now-btn" id="enroll-main-btn">
+                    <i class="fas fa-graduation-cap"></i> Enroll for Free
+                </button>
             </div>
 
+            <!-- Course Curriculum -->
             <div class="course-curriculum">
-                <h3>Course Curriculum</h3>
-                <div class="modules">
-                    <div class="module">
-                        <h4><i class="fas fa-clipboard-list"></i> Module 1: Interview Preparation</h4>
-                        <ul>
-                            <li>Researching the company and role</li>
-                            <li>Understanding the job requirements</li>
-                            <li>Preparing your success stories</li>
-                            <li>Dressing for success</li>
-                            <li>What to bring to the interview</li>
-                        </ul>
+                <h3><i class="fas fa-clipboard-list"></i> Course Curriculum</h3>
+                
+                <div class="modules-container">
+                    <!-- Module 1 -->
+                    <div class="module-card" id="module1">
+                        <div class="module-header">
+                            <h4>Module 1: Interview Preparation Foundation</h4>
+                            <span class="module-status" id="module1-status">Start</span>
+                        </div>
+                        <div class="module-content">
+                            <div class="lesson completed">
+                                <i class="fas fa-check-circle"></i>
+                                <span>1.1 Understanding the Interview Process</span>
+                                <button class="btn-small view-lesson" data-lesson="1.1">View</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>1.2 Researching Companies and Roles</span>
+                                <button class="btn-small view-lesson" data-lesson="1.2">View</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>1.3 Preparing Your Success Stories</span>
+                                <button class="btn-small view-lesson" data-lesson="1.3">View</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>1.4 Dress Code and Professional Appearance</span>
+                                <button class="btn-small view-lesson" data-lesson="1.4">View</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>1.5 What to Bring to an Interview</span>
+                                <button class="btn-small view-lesson" data-lesson="1.5">View</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="module">
-                        <h4><i class="fas fa-comments"></i> Module 2: Common Interview Questions</h4>
-                        <ul>
-                            <li>"Tell me about yourself" - The perfect answer</li>
-                            <li>Behavioral questions (STAR method)</li>
-                            <li>Strengths and weaknesses</li>
-                            <li>Salary expectation questions</li>
-                            <li>Questions to ask the interviewer</li>
-                        </ul>
-                    </div>
-                    <div class="module">
-                        <h4><i class="fas fa-video"></i> Module 3: Virtual Interview Skills</h4>
-                        <ul>
-                            <li>Setting up your space</li>
-                            <li>Technical preparation</li>
-                            <li>Body language on camera</li>
-                            <li>Managing audio/video issues</li>
-                            <li>Virtual interview etiquette</li>
-                        </ul>
-                    </div>
-                    <div class="module">
-                        <h4><i class="fas fa-handshake"></i> Module 4: Post-Interview Strategy</h4>
-                        <ul>
-                            <li>The thank you email</li>
-                            <li>Following up professionally</li>
-                            <li>Handling job offers</li>
-                            <li>Negotiation techniques</li>
-                            <li>Handling rejection positively</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
 
-            <div class="course-features-detail">
-                <h3>What You'll Learn</h3>
-                <div class="learning-outcomes">
-                    <div class="outcome">
-                        <i class="fas fa-check-circle"></i>
-                        <p>Answer any interview question with confidence</p>
+                    <!-- Module 2 -->
+                    <div class="module-card" id="module2">
+                        <div class="module-header">
+                            <h4>Module 2: Answering Interview Questions</h4>
+                            <span class="module-status" id="module2-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>2.1 "Tell Me About Yourself" - Perfect Answer</span>
+                                <button class="btn-small view-lesson" data-lesson="2.1" disabled>Locked</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>2.2 Behavioral Questions (STAR Method)</span>
+                                <button class="btn-small view-lesson" data-lesson="2.2" disabled>Locked</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>2.3 Strengths and Weaknesses</span>
+                                <button class="btn-small view-lesson" data-lesson="2.3" disabled>Locked</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>2.4 Salary Expectation Questions</span>
+                                <button class="btn-small view-lesson" data-lesson="2.4" disabled>Locked</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>2.5 Questions to Ask the Interviewer</span>
+                                <button class="btn-small view-lesson" data-lesson="2.5" disabled>Locked</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="outcome">
-                        <i class="fas fa-check-circle"></i>
-                        <p>Master both in-person and virtual interviews</p>
-                    </div>
-                    <div class="outcome">
-                        <i class="fas fa-check-circle"></i>
-                        <p>Use the STAR method for behavioral questions</p>
-                    </div>
-                    <div class="outcome">
-                        <i class="fas fa-check-circle"></i>
-                        <p>Negotiate salary and benefits effectively</p>
-                    </div>
-                    <div class="outcome">
-                        <i class="fas fa-check-circle"></i>
-                        <p>Handle interview anxiety and stress</p>
-                    </div>
-                    <div class="outcome">
-                        <i class="fas fa-check-circle"></i>
-                        <p>Create a positive lasting impression</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="course-instructor">
-                <h3>Your Instructor</h3>
-                <div class="instructor-profile">
-                    <div class="instructor-image">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Instructor">
+                    <!-- Module 3 -->
+                    <div class="module-card" id="module3">
+                        <div class="module-header">
+                            <h4>Module 3: Virtual Interview Mastery</h4>
+                            <span class="module-status" id="module3-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>3.1 Setting Up Your Virtual Space</span>
+                                <button class="btn-small view-lesson" data-lesson="3.1" disabled>Locked</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>3.2 Technical Preparation Checklist</span>
+                                <button class="btn-small view-lesson" data-lesson="3.2" disabled>Locked</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>3.3 Body Language on Camera</span>
+                                <button class="btn-small view-lesson" data-lesson="3.3" disabled>Locked</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>3.4 Managing Technical Issues</span>
+                                <button class="btn-small view-lesson" data-lesson="3.4" disabled>Locked</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>3.5 Virtual Interview Etiquette</span>
+                                <button class="btn-small view-lesson" data-lesson="3.5" disabled>Locked</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="instructor-info">
-                        <h4>Dr. Thandiwe Nkosi</h4>
-                        <p class="instructor-title">Career Coach & HR Consultant</p>
-                        <p>With over 15 years of experience in HR and recruitment, Dr. Nkosi has conducted thousands of interviews and helped hundreds of candidates land their dream jobs. She specializes in South African job market dynamics.</p>
-                        <div class="instructor-stats">
-                            <span><i class="fas fa-star"></i> 4.9/5 Rating</span>
-                            <span><i class="fas fa-users"></i> 25,000+ Students</span>
-                            <span><i class="fas fa-play-circle"></i> 50+ Courses</span>
+
+                    <!-- Module 4 -->
+                    <div class="module-card" id="module4">
+                        <div class="module-header">
+                            <h4>Module 4: Post-Interview Success</h4>
+                            <span class="module-status" id="module4-status">Locked</span>
+                        </div>
+                        <div class="module-content">
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>4.1 The Perfect Thank You Email</span>
+                                <button class="btn-small view-lesson" data-lesson="4.1" disabled>Locked</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>4.2 Professional Follow-Up Strategy</span>
+                                <button class="btn-small view-lesson" data-lesson="4.2" disabled>Locked</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>4.3 Handling Job Offers</span>
+                                <button class="btn-small view-lesson" data-lesson="4.3" disabled>Locked</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>4.4 Salary Negotiation Techniques</span>
+                                <button class="btn-small view-lesson" data-lesson="4.4" disabled>Locked</button>
+                            </div>
+                            <div class="lesson">
+                                <i class="far fa-circle"></i>
+                                <span>4.5 Handling Rejection Positively</span>
+                                <button class="btn-small view-lesson" data-lesson="4.5" disabled>Locked</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="course-testimonials">
-                <h3>Student Success Stories</h3>
-                <div class="testimonial-cards">
-                    <div class="testimonial-card">
-                        <p>"This course transformed my interview skills. I went from nervous to confident and landed a job with a 30% salary increase!"</p>
-                        <div class="student-info">
-                            <h5>Lerato M.</h5>
-                            <p>Marketing Manager</p>
+            <!-- Progress Tracker -->
+            <div class="progress-tracker">
+                <h3><i class="fas fa-chart-line"></i> Your Progress</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="course-progress-bar" style="width: 5%"></div>
+                </div>
+                <div class="progress-stats">
+                    <span id="progress-percentage">5% Complete</span>
+                    <span id="completed-lessons">1/20 Lessons</span>
+                </div>
+                <div class="progress-actions">
+                    <button class="btn-small" id="resume-course-btn">
+                        <i class="fas fa-play"></i> Resume Course
+                    </button>
+                    <button class="btn-outline" id="reset-progress-btn">
+                        <i class="fas fa-redo"></i> Reset Progress
+                    </button>
+                </div>
+            </div>
+
+            <!-- Course Materials -->
+            <div class="course-materials">
+                <h3><i class="fas fa-download"></i> Downloadable Resources</h3>
+                <div class="materials-grid">
+                    <div class="material-card">
+                        <i class="fas fa-file-pdf"></i>
+                        <h4>Interview Preparation Checklist</h4>
+                        <p>Complete checklist for interview preparation</p>
+                        <button class="btn-small download-btn" data-file="checklist.pdf">Download</button>
+                    </div>
+                    <div class="material-card">
+                        <i class="fas fa-file-word"></i>
+                        <h4>Common Questions Template</h4>
+                        <p>Template for preparing answers to common questions</p>
+                        <button class="btn-small download-btn" data-file="questions-template.docx">Download</button>
+                    </div>
+                    <div class="material-card">
+                        <i class="fas fa-file-excel"></i>
+                        <h4>Interview Tracker</h4>
+                        <p>Spreadsheet to track your interviews and follow-ups</p>
+                        <button class="btn-small download-btn" data-file="interview-tracker.xlsx">Download</button>
+                    </div>
+                    <div class="material-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Thank You Email Templates</h4>
+                        <p>Multiple templates for post-interview follow-up</p>
+                        <button class="btn-small download-btn" data-file="thankyou-templates.pdf">Download</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Exercises -->
+            <div class="practice-exercises">
+                <h3><i class="fas fa-pencil-alt"></i> Practice Exercises</h3>
+                <div class="exercises-container">
+                    <div class="exercise-card">
+                        <h4>Exercise 1: Tell Your Story</h4>
+                        <p>Write a 2-minute introduction about yourself</p>
+                        <textarea class="exercise-answer" placeholder="Type your answer here..."></textarea>
+                        <button class="btn-small submit-exercise">Submit Answer</button>
+                    </div>
+                    <div class="exercise-card">
+                        <h4>Exercise 2: STAR Method Practice</h4>
+                        <p>Describe a challenging situation using STAR method</p>
+                        <textarea class="exercise-answer" placeholder="Situation, Task, Action, Result..."></textarea>
+                        <button class="btn-small submit-exercise">Submit Answer</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificate Section -->
+            <div class="certificate-section">
+                <div class="certificate-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Earn Your Certificate</h3>
+                    <p>Complete all modules and exercises to earn your "Interview Mastery" certificate</p>
+                    <div class="certificate-requirements">
+                        <div class="requirement">
+                            <i class="far fa-circle"></i>
+                            <span>Complete all 4 modules</span>
+                        </div>
+                        <div class="requirement">
+                            <i class="far fa-circle"></i>
+                            <span>Finish all practice exercises</span>
+                        </div>
+                        <div class="requirement">
+                            <i class="far fa-circle"></i>
+                            <span>Pass the final assessment</span>
                         </div>
                     </div>
-                    <div class="testimonial-card">
-                        <p>"The virtual interview module was a lifesaver. I followed the tips and got the job after my first Zoom interview!"</p>
-                        <div class="student-info">
-                            <h5>Siyabonga K.</h5>
-                            <p>Software Developer</p>
+                    <button class="btn-primary" id="view-certificate-btn" disabled>
+                        <i class="fas fa-certificate"></i> View Certificate (Complete course to unlock)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Donation Section -->
+            <div class="course-donation">
+                <div class="donation-card">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Support Free Education</h3>
+                    <p>This course is completely free thanks to donations from people like you. Your support helps us:</p>
+                    <ul>
+                        <li>Keep this course free forever</li>
+                        <li>Develop more free career resources</li>
+                        <li>Provide interview attire lending program</li>
+                        <li>Offer transport assistance for interviews</li>
+                    </ul>
+                    
+                    <div class="donation-options">
+                        <button class="donation-option" data-amount="50">R50</button>
+                        <button class="donation-option" data-amount="100">R100</button>
+                        <button class="donation-option" data-amount="200">R200</button>
+                        <button class="donation-option" data-amount="500">R500</button>
+                        <div class="custom-donation">
+                            <input type="number" id="donation-amount" placeholder="Other amount">
+                            <span>R</span>
                         </div>
                     </div>
-                    <div class="testimonial-card">
-                        <p>"As a recent graduate, I had no interview experience. This course gave me the structure and confidence I needed."</p>
-                        <div class="student-info">
-                            <h5>Nomvula P.</h5>
-                            <p>Recent Graduate</p>
-                        </div>
+                    
+                    <button class="btn-primary" id="donate-btn">
+                        <i class="fas fa-heart"></i> Make a Donation
+                    </button>
+                    
+                    <div class="payment-details">
+                        <h4>Direct Bank Transfer:</h4>
+                        <p><strong>Bank:</strong> Standard Bank</p>
+                        <p><strong>Account:</strong> MagTec Invest</p>
+                        <p><strong>Account Number:</strong> 1234567890</p>
+                        <p><strong>Reference:</strong> COURSE-DONATION</p>
                     </div>
-                </div>
-            </div>
-
-            <div class="enroll-section">
-                <h3>Start Your Interview Success Journey Today</h3>
-                <p>Join thousands of successful job seekers who have transformed their interview skills</p>
-                <button class="btn-primary enroll-free-btn-large"><i class="fas fa-graduation-cap"></i> Enroll for Free</button>
-                <p class="enroll-note">No payment required. Get instant access to all course materials.</p>
-            </div>
-        </div>
-
-        <div class="courses-grid">
-            <!-- Existing courses remain exactly the same -->
-            <div class="course-card" data-category="tech">
-                <div class="course-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <h3>Web Development Fundamentals</h3>
-                <p class="course-description">Learn HTML, CSS, and JavaScript to build modern websites</p>
-                <div class="course-meta">
-                    <span><i class="fas fa-clock"></i> 8 weeks</span>
-                    <span><i class="fas fa-user-graduate"></i> Beginner</span>
-                </div>
-                <div class="course-price">Free</div>
-                <button class="btn-primary enroll-btn">Enroll Now</button>
-            </div>
-
-            <div class="course-card" data-category="business">
-                <div class="course-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3>Digital Marketing Mastery</h3>
-                <p class="course-description">Learn SEO, social media marketing, and content strategy</p>
-                <div class="course-meta">
-                    <span><i class="fas fa-clock"></i> 6 weeks</span>
-                    <span><i class="fas fa-user-graduate"></i> Intermediate</span>
-                </div>
-                <div class="course-price">$49.99</div>
-                <button class="btn-primary enroll-btn">Enroll Now</button>
-            </div>
-
-            <!-- Add more existing courses as needed -->
-        </div>
-
-        <!-- Donation Section -->
-        <div class="course-donation">
-            <div class="donation-card">
-                <i class="fas fa-hands-helping"></i>
-                <h3>Support Free Education</h3>
-                <p>Help us keep courses like "Master the Interview" free for everyone. Your donation supports:</p>
-                <ul>
-                    <li>Development of more free career courses</li>
-                    <li>Interview attire lending program</li>
-                    <li>Transport assistance for job interviews</li>
-                    <li>Career counseling services</li>
-                </ul>
-                <div class="donation-actions">
-                    <button class="donation-btn" data-amount="100">Donate R100</button>
-                    <button class="donation-btn" data-amount="250">Donate R250</button>
-                    <button class="donation-btn" data-amount="500">Donate R500</button>
-                    <div class="custom-donation">
-                        <input type="number" placeholder="Other amount" id="course-donation-amount">
-                        <span>R</span>
-                    </div>
-                </div>
-                <button class="btn-primary" id="course-donate-btn"><i class="fas fa-heart"></i> Support Our Mission</button>
-                <p class="donation-disclaimer">100% of donations go towards supporting job seekers in South Africa</p>
-            </div>
-        </div>
-
-        <div class="course-features">
-            <h2>Why Our Courses?</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <i class="fas fa-video"></i>
-                    <h3>Video Lessons</h3>
-                    <p>High-quality video content from industry experts</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-tasks"></i>
-                    <h3>Hands-on Projects</h3>
-                    <p>Practical assignments to build your portfolio</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Certification</h3>
-                    <p>Earn certificates to showcase your skills</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-user-friends"></i>
-                    <h3>Community Support</h3>
-                    <p>Join discussions and get help from peers</p>
                 </div>
             </div>
         </div>
     </main>
+
+    <!-- Lesson Modal -->
+    <div class="lesson-modal" id="lessonModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="lesson-title">Lesson Title</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="lesson-content">
+                <!-- Lesson content will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" id="prev-lesson">Previous</button>
+                <button class="btn-primary" id="mark-complete">Mark as Complete</button>
+                <button class="btn-primary" id="next-lesson">Next Lesson</button>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-content">
@@ -314,151 +395,585 @@
 
     <script src="scripts.js"></script>
     <script>
-        // Interview course enrollment
+        // Course functionality - completely text-based
         document.addEventListener('DOMContentLoaded', function() {
-            const enrollButtons = document.querySelectorAll('.enroll-free-btn, .enroll-free-btn-large');
-            
-            enrollButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Show enrollment success modal
-                    const modal = document.createElement('div');
-                    modal.className = 'enrollment-modal';
-                    modal.innerHTML = `
-                        <div class="modal-content">
-                            <i class="fas fa-graduation-cap"></i>
-                            <h3>Welcome to "Master the Interview"!</h3>
-                            <p>You now have full access to the course. Start with Module 1 to begin your journey to interview success.</p>
-                            <div class="course-access">
-                                <p><strong>Access Duration:</strong> Lifetime</p>
-                                <p><strong>Start Now:</strong> <a href="#interview-course">Module 1: Interview Preparation</a></p>
-                            </div>
-                            <button class="btn-primary start-learning-btn">Start Learning Now</button>
-                            <button class="btn-outline close-enrollment">Close</button>
+            // Initialize course progress from localStorage
+            let courseProgress = JSON.parse(localStorage.getItem('interviewCourseProgress')) || {
+                enrolled: false,
+                completedLessons: ['1.1'],
+                currentModule: 1,
+                currentLesson: '1.1',
+                exerciseAnswers: {},
+                progress: 5
+            };
+
+            // Lesson content database
+            const lessonContent = {
+                '1.1': {
+                    title: 'Understanding the Interview Process',
+                    content: `
+                        <h4>What is a Job Interview?</h4>
+                        <p>A job interview is a conversation between a job applicant and a representative of an employer which is conducted to assess whether the applicant should be hired.</p>
+                        
+                        <h4>Types of Interviews</h4>
+                        <ul>
+                            <li><strong>Screening Interviews:</strong> Initial interviews to filter candidates</li>
+                            <li><strong>One-on-One Interviews:</strong> Traditional interview with one interviewer</li>
+                            <li><strong>Panel Interviews:</strong> Multiple interviewers at once</li>
+                            <li><strong>Group Interviews:</strong> Multiple candidates interviewed together</li>
+                            <li><strong>Virtual Interviews:</strong> Conducted via video call</li>
+                            <li><strong>Assessment Centers:</strong> Multiple evaluation methods over one or more days</li>
+                        </ul>
+                        
+                        <h4>The Interview Process Stages</h4>
+                        <ol>
+                            <li><strong>Preparation:</strong> Research and self-preparation</li>
+                            <li><strong>The Interview:</strong> The actual conversation</li>
+                            <li><strong>Follow-up:</strong> Thank you notes and waiting period</li>
+                            <li><strong>Decision:</strong> Offer or rejection</li>
+                        </ol>
+                        
+                        <h4>Key Objectives</h4>
+                        <p>Remember that in an interview, both parties are assessing each other. You're evaluating if this is the right company for you, while they're assessing if you're the right fit for them.</p>
+                        
+                        <div class="exercise-box">
+                            <h5>Reflection Exercise:</h5>
+                            <p>Think about your last interview. What went well? What would you do differently?</p>
                         </div>
-                    `;
-                    
-                    document.body.appendChild(modal);
-                    
-                    modal.querySelector('.start-learning-btn').addEventListener('click', () => {
-                        document.body.removeChild(modal);
-                        // Scroll to course start
-                        document.querySelector('#interview-course').scrollIntoView({ behavior: 'smooth' });
-                    });
-                    
-                    modal.querySelector('.close-enrollment').addEventListener('click', () => {
-                        document.body.removeChild(modal);
-                    });
-                });
-            });
-            
-            // Course donation functionality
-            const courseDonateBtn = document.getElementById('course-donate-btn');
-            const donationBtns = document.querySelectorAll('.donation-btn');
-            const courseDonationAmount = document.getElementById('course-donation-amount');
-            
-            donationBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    donationBtns.forEach(b => b.classList.remove('selected'));
-                    this.classList.add('selected');
-                    courseDonationAmount.value = '';
-                });
-            });
-            
-            courseDonationAmount.addEventListener('input', function() {
-                donationBtns.forEach(b => b.classList.remove('selected'));
-            });
-            
-            if (courseDonateBtn) {
-                courseDonateBtn.addEventListener('click', function() {
-                    let amount = 0;
-                    
-                    const selectedBtn = document.querySelector('.donation-btn.selected');
-                    if (selectedBtn) {
-                        amount = selectedBtn.getAttribute('data-amount');
-                    } else if (courseDonationAmount.value) {
-                        amount = courseDonationAmount.value;
+                    `
+                },
+                '1.2': {
+                    title: 'Researching Companies and Roles',
+                    content: `
+                        <h4>Why Research is Critical</h4>
+                        <p>Thorough research shows you're genuinely interested and helps you tailor your answers to the company's specific needs.</p>
+                        
+                        <h4>What to Research</h4>
+                        <ul>
+                            <li><strong>Company Information:</strong> History, mission, values, culture</li>
+                            <li><strong>Products/Services:</strong> What they offer, market position</li>
+                            <li><strong>Recent News:</strong> Press releases, achievements, challenges</li>
+                            <li><strong>Leadership:</strong> Key executives and their backgrounds</li>
+                            <li><strong>Competitors:</strong> Who they compete with</li>
+                            <li><strong>Industry Trends:</strong> Current state of the industry</li>
+                        </ul>
+                        
+                        <h4>Research Sources</h4>
+                        <ol>
+                            <li><strong>Company Website:</strong> About page, careers section, blog</li>
+                            <li><strong>LinkedIn:</strong> Company page, employee profiles</li>
+                            <li><strong>News Sites:</strong> Google News, industry publications</li>
+                            <li><strong>Social Media:</strong> Twitter, Facebook, Instagram</li>
+                            <li><strong>Annual Reports:</strong> Financial performance and strategy</li>
+                            <li><strong>Glassdoor:</strong> Company reviews and interview experiences</li>
+                        </ol>
+                        
+                        <h4>Role-Specific Research</h4>
+                        <p>Understand the job description thoroughly. Research typical responsibilities, required skills, and career progression for similar roles.</p>
+                        
+                        <div class="tip-box">
+                            <h5>Pro Tip:</h5>
+                            <p>Look for recent company news that you can reference in your interview. For example: "I saw your company recently launched [product], how has that been received?"</p>
+                        </div>
+                    `
+                },
+                '1.3': {
+                    title: 'Preparing Your Success Stories',
+                    content: `
+                        <h4>The Power of Stories</h4>
+                        <p>Stories are memorable and help interviewers understand your skills in context. They make abstract skills concrete and demonstrate your experience effectively.</p>
+                        
+                        <h4>Types of Success Stories to Prepare</h4>
+                        <ul>
+                            <li><strong>Achievement Stories:</strong> Times you exceeded expectations</li>
+                            <li><strong>Problem-Solving Stories:</strong> How you overcame challenges</li>
+                            <li><strong>Teamwork Stories:</strong> Collaborative successes</li>
+                            <li><strong>Leadership Stories:</strong> Times you led or influenced others</li>
+                            <li><strong>Learning Stories:</strong> How you acquired new skills</li>
+                            <li><strong>Innovation Stories:</strong> Creative solutions you developed</li>
+                        </ul>
+                        
+                        <h4>The STAR Method</h4>
+                        <p>Structure your stories using the STAR method:</p>
+                        <ol>
+                            <li><strong>Situation:</strong> Set the context (briefly)</li>
+                            <li><strong>Task:</strong> What needed to be done</li>
+                            <li><strong>Action:</strong> What YOU specifically did</li>
+                            <li><strong>Result:</strong> The outcome (quantify if possible)</li>
+                        </ol>
+                        
+                        <h4>Example STAR Story</h4>
+                        <p><strong>Situation:</strong> Our team was consistently missing project deadlines.</p>
+                        <p><strong>Task:</strong> I needed to identify the bottlenecks and improve our workflow.</p>
+                        <p><strong>Action:</strong> I analyzed our processes, implemented a new project management tool, and provided training to the team.</p>
+                        <p><strong>Result:</strong> We reduced missed deadlines by 75% and improved team productivity by 30%.</p>
+                        
+                        <div class="exercise-box">
+                            <h5>Practice Exercise:</h5>
+                            <p>Write one STAR story from your experience. Focus on a problem you solved or an achievement you're proud of.</p>
+                        </div>
+                    `
+                },
+                '1.4': {
+                    title: 'Dress Code and Professional Appearance',
+                    content: `
+                        <h4>First Impressions Matter</h4>
+                        <p>Your appearance is the first thing an interviewer notices. Dressing professionally shows respect and that you take the opportunity seriously.</p>
+                        
+                        <h4>General Guidelines</h4>
+                        <ul>
+                            <li><strong>Research the Company Culture:</strong> Tech startups may be more casual than law firms</li>
+                            <li><strong>When in Doubt, Dress Up:</strong> It's better to be slightly overdressed than underdressed</li>
+                            <li><strong>Conservative is Safer:</strong> Avoid flashy colors or bold patterns</li>
+                            <li><strong>Comfort Matters:</strong> You want to focus on the interview, not your uncomfortable clothes</li>
+                        </ul>
+                        
+                        <h4>Business Professional Attire</h4>
+                        <p><strong>For Men:</strong> Suit and tie, dress shoes, belt matching shoes, conservative watch</p>
+                        <p><strong>For Women:</strong> Suit (pantsuit or skirt suit), closed-toe shoes, minimal jewelry, professional hairstyle</p>
+                        
+                        <h4>Business Casual Attire</h4>
+                        <p><strong>For Men:</strong> Dress pants, collared shirt, optional tie, dress shoes</p>
+                        <p><strong>For Women:</strong> Dress pants or skirt, blouse or nice top, cardigan or blazer</p>
+                        
+                        <h4>Virtual Interview Attire</h4>
+                        <p>Dress professionally from head to toe (even if only your top is visible). This puts you in the right mindset and ensures you're ready for any unexpected camera movements.</p>
+                        
+                        <h4>Personal Grooming</h4>
+                        <ul>
+                            <li><strong>Clean and Neat:</strong> Freshly showered, clean nails</li>
+                            <li><strong>Minimal Scents:</strong> Avoid strong perfumes or colognes</li>
+                            <li><strong>Natural Makeup:</strong> If wearing makeup, keep it professional</li>
+                            <li><strong>Well-Groomed Hair:</strong> Clean and styled appropriately</li>
+                        </ul>
+                        
+                        <div class="tip-box">
+                            <h5>Remember:</h5>
+                            <p>Your clothes should not be the most memorable thing about you. They should be appropriate and allow your skills and personality to shine through.</p>
+                        </div>
+                    `
+                },
+                '1.5': {
+                    title: 'What to Bring to an Interview',
+                    content: `
+                        <h4>The Interview Toolkit</h4>
+                        <p>Being prepared with the right materials shows organization and professionalism.</p>
+                        
+                        <h4>Essential Items</h4>
+                        <ul>
+                            <li><strong>Multiple Copies of Your Resume:</strong> 3-5 copies on quality paper</li>
+                            <li><strong>Reference List:</strong> Names, titles, companies, contact information</li>
+                            <li><strong>Portfolio:</strong> If applicable to your field (design, writing, etc.)</li>
+                            <li><strong>Notebook and Pen:</strong> For taking notes</li>
+                            <li><strong>Questions List:</strong> Prepared questions for the interviewer</li>
+                        </ul>
+                        
+                        <h4>Supporting Documents</h4>
+                        <ul>
+                            <li><strong>Work Samples:</strong> Relevant to the position</li>
+                            <li><strong>Certifications:</strong> Copies of relevant certifications</li>
+                            <li><strong>Letters of Recommendation:</strong> If you have them</li>
+                            <li><strong>Identification:</strong> ID book or passport</li>
+                            <li><strong>Driver's License:</strong> If required for the position</li>
+                        </ul>
+                        
+                        <h4>Personal Items</h4>
+                        <ul>
+                            <li><strong>Breath Mints:</strong> Not gum</li>
+                            <li><strong>Tissue:</strong> Just in case</li>
+                            <li><strong>Water Bottle:</strong> Small and discreet</li>
+                            <li><strong>Phone:</strong> On silent or off</li>
+                            <li><strong>Directions/Contact Info:</strong> Printed or saved offline</li>
+                        </ul>
+                        
+                        <h4>Virtual Interview Setup</h4>
+                        <ul>
+                            <li><strong>Technology Check:</strong> Test camera, microphone, internet</li>
+                            <li><strong>Backup Plan:</strong> Phone number to call if technology fails</li>
+                            <li><strong>Notes Placement:</strong> Where you can see them without looking down</li>
+                            <li><strong>Chargers:</strong> Laptop and phone fully charged with chargers nearby</li>
+                        </ul>
+                        
+                        <div class="checklist-box">
+                            <h5>Pre-Interview Checklist:</h5>
+                            <ul>
+                                <li>✓ All documents printed and organized</li>
+                                <li>✓ Portfolio/work samples ready</li>
+                                <li>✓ Questions prepared</li>
+                                <li>✓ Technology tested (for virtual interviews)</li>
+                                <li>✓ Travel time calculated with buffer</li>
+                            </ul>
+                        </div>
+                    `
+                }
+                // Additional lessons would continue here for all 20 lessons
+            };
+
+            // Update UI based on progress
+            function updateCourseUI() {
+                // Update progress bar
+                const progressBar = document.getElementById('course-progress-bar');
+                const progressPercentage = document.getElementById('progress-percentage');
+                const completedLessons = document.getElementById('completed-lessons');
+                
+                const totalLessons = 20;
+                const completed = courseProgress.completedLessons.length;
+                const progress = (completed / totalLessons) * 100;
+                
+                courseProgress.progress = progress;
+                progressBar.style.width = `${progress}%`;
+                progressPercentage.textContent = `${Math.round(progress)}% Complete`;
+                completedLessons.textContent = `${completed}/${totalLessons} Lessons`;
+                
+                // Update lesson statuses
+                courseProgress.completedLessons.forEach(lessonId => {
+                    const lessonElement = document.querySelector(`[data-lesson="${lessonId}"]`);
+                    if (lessonElement) {
+                        const parent = lessonElement.closest('.lesson');
+                        parent.querySelector('i').className = 'fas fa-check-circle';
+                        parent.querySelector('i').style.color = '#28a745';
                     }
-                    
-                    if (amount > 0) {
-                        processCourseDonation(amount);
+                });
+                
+                // Update module statuses
+                for (let i = 1; i <= 4; i++) {
+                    const moduleStatus = document.getElementById(`module${i}-status`);
+                    if (i <= courseProgress.currentModule) {
+                        moduleStatus.textContent = 'In Progress';
+                        moduleStatus.style.backgroundColor = '#ffc107';
+                        moduleStatus.style.color = '#000';
+                        
+                        // Unlock lessons in current module
+                        const moduleLessons = document.querySelectorAll(`#module${i} .view-lesson`);
+                        moduleLessons.forEach(btn => {
+                            btn.disabled = false;
+                            btn.textContent = 'View';
+                        });
                     } else {
-                        alert('Please select or enter a donation amount');
+                        moduleStatus.textContent = 'Locked';
+                        moduleStatus.style.backgroundColor = '#6c757d';
+                        moduleStatus.style.color = '#fff';
                     }
+                }
+                
+                // Save progress
+                localStorage.setItem('interviewCourseProgress', JSON.stringify(courseProgress));
+            }
+
+            // Enroll button
+            const enrollBtn = document.getElementById('enroll-main-btn');
+            enrollBtn.addEventListener('click', function() {
+                courseProgress.enrolled = true;
+                localStorage.setItem('interviewCourseProgress', JSON.stringify(courseProgress));
+                
+                alert('Successfully enrolled in "Master Your Interview Skills" course! You can now start with Module 1.');
+                updateCourseUI();
+            });
+
+            // Lesson view buttons
+            document.querySelectorAll('.view-lesson').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (this.disabled) return;
+                    
+                    const lessonId = this.getAttribute('data-lesson');
+                    openLesson(lessonId);
                 });
+            });
+
+            // Lesson modal functionality
+            const lessonModal = document.getElementById('lessonModal');
+            const closeModalBtn = lessonModal.querySelector('.close-modal');
+            const markCompleteBtn = document.getElementById('mark-complete');
+            const prevLessonBtn = document.getElementById('prev-lesson');
+            const nextLessonBtn = document.getElementById('next-lesson');
+            
+            let currentLessonId = '';
+            
+            function openLesson(lessonId) {
+                currentLessonId = lessonId;
+                const lesson = lessonContent[lessonId];
+                
+                if (lesson) {
+                    document.getElementById('lesson-title').textContent = lesson.title;
+                    document.getElementById('lesson-content').innerHTML = lesson.content;
+                    
+                    // Update navigation buttons
+                    prevLessonBtn.style.display = 'inline-block';
+                    nextLessonBtn.style.display = 'inline-block';
+                    
+                    // Check if lesson is already completed
+                    if (courseProgress.completedLessons.includes(lessonId)) {
+                        markCompleteBtn.innerHTML = '<i class="fas fa-check"></i> Completed';
+                        markCompleteBtn.disabled = true;
+                    } else {
+                        markCompleteBtn.innerHTML = '<i class="fas fa-check-circle"></i> Mark as Complete';
+                        markCompleteBtn.disabled = false;
+                    }
+                    
+                    lessonModal.style.display = 'block';
+                }
             }
             
-            // Category filtering for courses
-            const categoryBtns = document.querySelectorAll('.category-btn');
-            const courseCards = document.querySelectorAll('.course-card');
+            closeModalBtn.addEventListener('click', () => {
+                lessonModal.style.display = 'none';
+                updateCourseUI();
+            });
             
-            categoryBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
+            markCompleteBtn.addEventListener('click', function() {
+                if (!courseProgress.completedLessons.includes(currentLessonId)) {
+                    courseProgress.completedLessons.push(currentLessonId);
                     
-                    // Update active button
-                    categoryBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
+                    // Update module progress
+                    const moduleNum = parseInt(currentLessonId.split('.')[0]);
+                    if (moduleNum > courseProgress.currentModule) {
+                        courseProgress.currentModule = moduleNum;
+                    }
                     
-                    // Show/hide courses
-                    courseCards.forEach(card => {
-                        if (category === 'all' || card.getAttribute('data-category') === category) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
+                    localStorage.setItem('interviewCourseProgress', JSON.stringify(courseProgress));
+                    updateCourseUI();
+                    
+                    this.innerHTML = '<i class="fas fa-check"></i> Completed';
+                    this.disabled = true;
+                    
+                    // Show completion message
+                    const completionMsg = document.createElement('div');
+                    completionMsg.className = 'completion-message';
+                    completionMsg.innerHTML = '<i class="fas fa-check-circle"></i> Lesson marked as complete!';
+                    document.getElementById('lesson-content').appendChild(completionMsg);
+                    
+                    setTimeout(() => {
+                        if (completionMsg.parentNode) {
+                            completionMsg.remove();
                         }
-                    });
+                    }, 3000);
+                }
+            });
+            
+            // Navigation between lessons
+            prevLessonBtn.addEventListener('click', function() {
+                // Implement previous lesson logic
+                alert('Previous lesson functionality would go here');
+            });
+            
+            nextLessonBtn.addEventListener('click', function() {
+                // Implement next lesson logic
+                alert('Next lesson functionality would go here');
+            });
+
+            // Resume course button
+            document.getElementById('resume-course-btn').addEventListener('click', function() {
+                if (courseProgress.enrolled) {
+                    const nextLesson = courseProgress.completedLessons.length > 0 
+                        ? getNextLesson(courseProgress.completedLessons[courseProgress.completedLessons.length - 1])
+                        : '1.1';
+                    openLesson(nextLesson);
+                } else {
+                    alert('Please enroll in the course first!');
+                }
+            });
+
+            // Reset progress button
+            document.getElementById('reset-progress-btn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to reset your course progress? This cannot be undone.')) {
+                    courseProgress = {
+                        enrolled: true,
+                        completedLessons: ['1.1'],
+                        currentModule: 1,
+                        currentLesson: '1.1',
+                        exerciseAnswers: {},
+                        progress: 5
+                    };
+                    localStorage.setItem('interviewCourseProgress', JSON.stringify(courseProgress));
+                    updateCourseUI();
+                    alert('Progress reset successfully!');
+                }
+            });
+
+            // Download buttons
+            document.querySelectorAll('.download-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const fileName = this.getAttribute('data-file');
+                    alert(`Downloading ${fileName}... (In a real implementation, this would download the file)`);
+                });
+            });
+
+            // Exercise submission
+            document.querySelectorAll('.submit-exercise').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const exerciseCard = this.closest('.exercise-card');
+                    const textarea = exerciseCard.querySelector('.exercise-answer');
                     
-                    // Show interview course for interview category
-                    const interviewCourse = document.querySelector('.featured-course');
-                    if (category === 'interview' || category === 'free' || category === 'all') {
-                        interviewCourse.style.display = 'block';
+                    if (textarea.value.trim()) {
+                        const exerciseId = exerciseCard.querySelector('h4').textContent;
+                        courseProgress.exerciseAnswers[exerciseId] = textarea.value;
+                        localStorage.setItem('interviewCourseProgress', JSON.stringify(courseProgress));
+                        
+                        this.innerHTML = '<i class="fas fa-check"></i> Submitted';
+                        this.disabled = true;
+                        alert('Exercise submitted successfully!');
                     } else {
-                        interviewCourse.style.display = 'none';
+                        alert('Please write your answer before submitting.');
                     }
                 });
             });
-        });
-        
-        function processCourseDonation(amount) {
-            // Simulate donation processing
-            const reference = `COURSEDONATION${Date.now().toString().slice(-6)}`;
-            
-            const modal = document.createElement('div');
-            modal.className = 'donation-modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <h3><i class="fas fa-graduation-cap"></i> Thank You for Supporting Education!</h3>
-                    <p>Your donation of R${amount} will help us provide free courses to job seekers across South Africa.</p>
-                    
-                    <div class="payment-info">
-                        <h4>Please complete your donation:</h4>
-                        <div class="bank-details">
-                            <p><strong>Bank:</strong> Standard Bank</p>
-                            <p><strong>Account:</strong> MagTec Invest</p>
-                            <p><strong>Account Number:</strong> 1234567890</p>
-                            <p><strong>Reference:</strong> ${reference}</p>
-                            <p><strong>Amount:</strong> R${amount}</p>
-                        </div>
-                        <p>Email proof of payment to: magtecinvest@gmail.com</p>
-                    </div>
-                    
-                    <p>As a thank you, you'll receive:</p>
-                    <ul>
-                        <li>Certificate of Appreciation</li>
-                        <li>Priority access to new courses</li>
-                        <li>Monthly impact report</li>
-                    </ul>
-                    
-                    <button class="btn-primary close-donation">Done</button>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            modal.querySelector('.close-donation').addEventListener('click', () => {
-                document.body.removeChild(modal);
+
+            // View certificate button
+            document.getElementById('view-certificate-btn').addEventListener('click', function() {
+                if (courseProgress.completedLessons.length === 20) {
+                    // Generate certificate
+                    generateCertificate();
+                } else {
+                    alert('Complete all lessons to unlock your certificate!');
+                }
             });
-        }
+
+            // Donation functionality
+            const donateBtn = document.getElementById('donate-btn');
+            const donationOptions = document.querySelectorAll('.donation-option');
+            const donationAmountInput = document.getElementById('donation-amount');
+            
+            donationOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    donationOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    donationAmountInput.value = '';
+                });
+            });
+            
+            donationAmountInput.addEventListener('input', function() {
+                donationOptions.forEach(opt => opt.classList.remove('selected'));
+            });
+            
+            donateBtn.addEventListener('click', function() {
+                let amount = 0;
+                
+                const selectedOption = document.querySelector('.donation-option.selected');
+                if (selectedOption) {
+                    amount = selectedOption.getAttribute('data-amount');
+                } else if (donationAmountInput.value) {
+                    amount = donationAmountInput.value;
+                }
+                
+                if (amount > 0) {
+                    processDonation(amount);
+                } else {
+                    alert('Please select or enter a donation amount');
+                }
+            });
+
+            // Initialize UI
+            if (courseProgress.enrolled) {
+                enrollBtn.innerHTML = '<i class="fas fa-play-circle"></i> Continue Learning';
+                updateCourseUI();
+            }
+
+            // Helper functions
+            function getNextLesson(currentLesson) {
+                // Simple implementation - just get the next lesson numerically
+                const parts = currentLesson.split('.');
+                let module = parseInt(parts[0]);
+                let lesson = parseInt(parts[1]);
+                
+                if (lesson < 5) {
+                    lesson++;
+                } else if (module < 4) {
+                    module++;
+                    lesson = 1;
+                } else {
+                    return '1.1'; // Loop back to beginning
+                }
+                
+                return `${module}.${lesson}`;
+            }
+            
+            function generateCertificate() {
+                const certificateHTML = `
+                    <div class="certificate">
+                        <h2>Certificate of Completion</h2>
+                        <p>This certifies that</p>
+                        <h3>${localStorage.getItem('userName') || 'The Student'}</h3>
+                        <p>has successfully completed the course</p>
+                        <h4>"Master Your Interview Skills"</h4>
+                        <p>on ${new Date().toLocaleDateString()}</p>
+                        <div class="signatures">
+                            <div class="signature">
+                                <p>_______________________</p>
+                                <p>Dr. Thandiwe Nkosi</p>
+                                <p>Course Instructor</p>
+                            </div>
+                            <div class="signature">
+                                <p>_______________________</p>
+                                <p>9to5 University</p>
+                                <p>MagTec Invest</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                const win = window.open('', '_blank');
+                win.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Interview Mastery Certificate</title>
+                        <style>
+                            body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+                            .certificate { border: 20px solid #4a6bff; padding: 50px; max-width: 800px; margin: 0 auto; }
+                            h2 { color: #4a6bff; }
+                            h3 { font-size: 2em; margin: 20px 0; }
+                            .signatures { display: flex; justify-content: space-around; margin-top: 50px; }
+                            @media print { button { display: none; } }
+                        </style>
+                    </head>
+                    <body>
+                        ${certificateHTML}
+                        <button onclick="window.print()" style="margin-top: 30px; padding: 10px 20px; background: #4a6bff; color: white; border: none; cursor: pointer;">Print Certificate</button>
+                    </body>
+                    </html>
+                `);
+            }
+            
+            function processDonation(amount) {
+                const reference = `COURSE-${Date.now().toString().slice(-6)}`;
+                
+                const modal = document.createElement('div');
+                modal.className = 'donation-modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <h3><i class="fas fa-graduation-cap"></i> Thank You for Your Donation!</h3>
+                        <p>Your contribution of R${amount} helps keep this course free for everyone.</p>
+                        
+                        <div class="payment-info">
+                            <h4>Please complete your donation via EFT:</h4>
+                            <div class="bank-details">
+                                <p><strong>Bank:</strong> Standard Bank</p>
+                                <p><strong>Account:</strong> MagTec Invest</p>
+                                <p><strong>Account Number:</strong> 1234567890</p>
+                                <p><strong>Reference:</strong> ${reference}</p>
+                                <p><strong>Amount:</strong> R${amount}</p>
+                            </div>
+                            <p>Email proof of payment to: magtecinvest@gmail.com</p>
+                        </div>
+                        
+                        <button class="btn-primary close-donation-modal">Done</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                modal.querySelector('.close-donation-modal').addEventListener('click', () => {
+                    document.body.removeChild(modal);
+                });
+            }
+
+            // Close modal when clicking outside
+            window.addEventListener('click', (event) => {
+                if (event.target === lessonModal) {
+                    lessonModal.style.display = 'none';
+                    updateCourseUI();
+                }
+            });
+        });
     </script>
 </body>
 </html>
