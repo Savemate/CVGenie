@@ -3,124 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Changed title -->
-    <title>9to5 University</title>
+    <title>9to5 University - Free Career Resources by MagTec Invest</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
             <div class="logo">
-                <!-- Changed logo text -->
-                <h1><i class="fas fa-file-alt"></i> 9to5 University</h1>
+                <i class="fas fa-university"></i>
+                <span>9to5 University</span>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-menu">
                 <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="resume-builder.html"><i class="fas fa-edit"></i> Resume Builder</a></li>
+                <li><a href="resume.html"><i class="fas fa-file-alt"></i> Resume Builder</a></li>
+                <li><a href="rights.html"><i class="fas fa-gavel"></i> Workers Rights</a></li>
                 <li><a href="courses.html"><i class="fas fa-graduation-cap"></i> Courses</a></li>
-                <li><a href="hustle-jobs.html"><i class="fas fa-briefcase"></i> Hustle Jobs</a></li>
-                <li><a href="workers-rights.html"><i class="fas fa-balance-scale"></i> Workers Rights</a></li>
-                <li><a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="tel:+27794874559" class="btn-call"><i class="fas fa-phone"></i> Call: 079 487 4559</a></li>
             </ul>
-            <div class="mobile-menu">
+            <div class="mobile-toggle">
                 <i class="fas fa-bars"></i>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main class="hero">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="hero-content">
-            <!-- Changed hero title -->
-            <h1>Welcome to 9to5 University</h1>
-            <p>Build Your Professional Resume in Minutes with our easy-to-use builder</p>
+            <h1>Build Your Career with <span class="highlight">9to5 University</span></h1>
+            <p class="subtitle">Free professional resume builder and workplace rights education powered by MagTec Invest</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <h3>100%</h3>
+                    <p>Free Forever</p>
+                </div>
+                <div class="stat">
+                    <h3>No Signup</h3>
+                    <p>Required</p>
+                </div>
+                <div class="stat">
+                    <h3>Instant</h3>
+                    <p>PDF Download</p>
+                </div>
+            </div>
             <div class="hero-buttons">
-                <a href="resume-builder.html" class="btn-primary">Build Your Resume</a>
-                <a href="#features" class="btn-secondary">Learn More</a>
+                <a href="resume.html" class="btn-primary">
+                    <i class="fas fa-file-pdf"></i> Build Resume Now
+                </a>
+                <a href="rights.html" class="btn-secondary">
+                    <i class="fas fa-book"></i> Learn Your Rights
+                </a>
             </div>
         </div>
         <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Resume Builder">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Professional Success">
         </div>
-    </main>
+    </section>
 
-    <section id="features" class="features">
-        <h2>Why Choose 9to5 University?</h2>
+    <!-- Features -->
+    <section class="features">
+        <h2 class="section-title">Everything You Need for Career Success</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <i class="fas fa-magic"></i>
-                <h3>Easy to Use</h3>
-                <p>Simple, intuitive interface that guides you through the resume creation process</p>
+                <div class="feature-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h3>Professional Resume Builder</h3>
+                <p>Create ATS-friendly resumes with multiple templates. Instant PDF download, no registration needed.</p>
+                <a href="resume.html" class="feature-link">Start Building →</a>
             </div>
             <div class="feature-card">
-                <i class="fas fa-palette"></i>
-                <h3>Beautiful Templates</h3>
-                <p>Choose from multiple professionally designed templates</p>
+                <div class="feature-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <h3>Workplace Rights Guide</h3>
+                <p>Learn about labor laws, discrimination protection, fair wages, and how to handle workplace issues.</p>
+                <a href="rights.html" class="feature-link">Learn More →</a>
             </div>
             <div class="feature-card">
-                <i class="fas fa-file-download"></i>
-                <h3>Instant Download</h3>
-                <p>Download your resume as PDF or DOCX with one click</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Privacy Protected</h3>
-                <p>Your data is secure and never shared with third parties</p>
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Legal Protection</h3>
+                <p>Step-by-step guides for dealing with harassment, wrongful termination, and unsafe working conditions.</p>
+                <a href="rights.html#legal" class="feature-link">Get Protected →</a>
             </div>
         </div>
     </section>
 
-    <section class="testimonials">
-        <h2>Success Stories</h2>
-        <div class="testimonial-slider">
-            <div class="testimonial-card">
-                <p>"9to5 University helped me land my dream job at Google. The templates are professional and the process was super easy!"</p>
-                <div class="testimonial-author">
-                    <h4>Sarah Johnson</h4>
-                    <p>Software Engineer</p>
+    <!-- Resume Preview -->
+    <section class="templates-section">
+        <h2 class="section-title">Professional Resume Templates</h2>
+        <p class="section-subtitle">Choose from multiple ATS-friendly designs</p>
+        <div class="templates-grid">
+            <div class="template-preview">
+                <div class="template-demo modern-template">
+                    <div class="demo-header"></div>
+                    <div class="demo-content">
+                        <div class="demo-left"></div>
+                        <div class="demo-right"></div>
+                    </div>
                 </div>
+                <h4>Modern Professional</h4>
+                <p>Clean design for all industries</p>
             </div>
-            <div class="testimonial-card">
-                <p>"As a recent graduate, I didn't know how to create a good resume. This builder made it simple and effective!"</p>
-                <div class="testimonial-author">
-                    <h4>Michael Chen</h4>
-                    <p>Marketing Specialist</p>
+            <div class="template-preview">
+                <div class="template-demo classic-template">
+                    <div class="demo-header"></div>
+                    <div class="demo-content">
+                        <div class="demo-section"></div>
+                        <div class="demo-section"></div>
+                    </div>
                 </div>
+                <h4>Classic Executive</h4>
+                <p>Traditional format for corporate roles</p>
+            </div>
+            <div class="template-preview">
+                <div class="template-demo creative-template">
+                    <div class="demo-header"></div>
+                    <div class="demo-content">
+                        <div class="demo-sidebar"></div>
+                        <div class="demo-main"></div>
+                    </div>
+                </div>
+                <h4>Creative Portfolio</h4>
+                <p>For designers and creative professionals</p>
+            </div>
+        </div>
+        <div class="center-button">
+            <a href="resume.html" class="btn-primary btn-large">
+                <i class="fas fa-magic"></i> Create Your Resume Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Workplace Rights -->
+    <section class="rights-preview">
+        <div class="rights-content">
+            <h2>Know Your Workplace Rights</h2>
+            <p>Every worker deserves fair treatment and a safe environment. Learn about your legal protections:</p>
+            <ul class="rights-list">
+                <li><i class="fas fa-check-circle"></i> Protection from discrimination and harassment</li>
+                <li><i class="fas fa-check-circle"></i> Right to fair wages and overtime pay</li>
+                <li><i class="fas fa-check-circle"></i> Safe working conditions</li>
+                <li><i class="fas fa-check-circle"></i> Protection from wrongful termination</li>
+                <li><i class="fas fa-check-circle"></i> Right to breaks and reasonable hours</li>
+                <li><i class="fas fa-check-circle"></i> Privacy rights in the workplace</li>
+            </ul>
+            <a href="rights.html" class="btn-secondary">
+                <i class="fas fa-gavel"></i> Full Rights Guide
+            </a>
+        </div>
+        <div class="rights-image">
+            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Workplace Rights">
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2><i class="fas fa-university"></i> About 9to5 University</h2>
+            <p>A MagTec Invest initiative dedicated to empowering workers through free education and resources. We believe everyone deserves access to career-building tools and knowledge of their workplace rights.</p>
+            <div class="mission">
+                <h4>Our Mission:</h4>
+                <p>To provide free, accessible career resources that help individuals achieve professional success while understanding and exercising their workplace rights.</p>
             </div>
         </div>
     </section>
 
-    <footer>
+    <!-- Footer -->
+    <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <!-- Changed footer section -->
-                <h3>9to5 University</h3>
-                <p>Building careers one resume at a time</p>
+                <h3><i class="fas fa-university"></i> 9to5 University</h3>
+                <p>A MagTec Invest Initiative</p>
+                <p>Building careers through free education</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Information</h4>
+                <p><i class="fas fa-envelope"></i> magtecinvest@gmail.com</p>
+                <p><i class="fas fa-phone"></i> 079 487 4559</p>
+                <p><i class="fab fa-whatsapp"></i> 079 487 4559</p>
+                <p><i class="fas fa-map-marker-alt"></i> South Africa</p>
             </div>
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="resume-builder.html">Resume Builder</a></li>
+                    <li><a href="resume.html">Resume Builder</a></li>
+                    <li><a href="rights.html">Workplace Rights</a></li>
                     <li><a href="courses.html">Courses</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="cookies.html">Cookies Policy</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Contact</h4>
-                <!-- Changed contact details -->
-                <p>Email: magtecinvest@gmail.com</p>
-                <p>Phone: 079 487 4559</p>
-                <p>WhatsApp: 079 487 4559</p>
+                <h4>Legal Resources</h4>
+                <ul>
+                    <li><a href="rights.html#discrimination">Discrimination</a></li>
+                    <li><a href="rights.html#wages">Wage Rights</a></li>
+                    <li><a href="rights.html#safety">Safety Regulations</a></li>
+                    <li><a href="rights.html#termination">Termination Rights</a></li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <!-- Changed copyright notice -->
             <p>&copy; 2023 9to5 University. All rights reserved to MagTec Invest.</p>
+            <p class="disclaimer">Disclaimer: Information provided is for educational purposes. Consult legal professionals for specific advice.</p>
         </div>
     </footer>
 
-    <script src="scripts.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
